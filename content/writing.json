@@ -1,0 +1,13 @@
+{
+  "writing": [
+    {
+      "id": "example-piece",
+      "title": "Essay or Story Title",
+      "excerpt": "Opening paragraph or compelling excerpt that draws readers in...",
+      "date": "2025-01-15",
+      "tags": ["water", "california"],
+      "url": "/pages/literary/example-piece"
+    }
+  ],
+  "_notes": "Add your creative water writing pieces here. Each entry should have a unique id, title, excerpt, date, and optional tags."
+}

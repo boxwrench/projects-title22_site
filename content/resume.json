@@ -1,0 +1,36 @@
+{
+  "profile": {
+    "name": "Keith Wilkinson",
+    "title": "Water Industry Professional",
+    "location": "Livermore, CA",
+    "tagline": "Bridging technical expertise with practical implementation",
+    "contact": {
+      "blog": "https://www.title22.org",
+      "linkedin": "",
+      "email": ""
+    }
+  },
+  "currently": {
+    "role": "",
+    "focus": "",
+    "learning": ""
+  },
+  "experience": [
+    {
+      "role": "Position Title",
+      "org": "Organization",
+      "period": "2020 - Present",
+      "highlights": [
+        "Key accomplishment or responsibility",
+        "Another highlight"
+      ]
+    }
+  ],
+  "certifications": [],
+  "skills": {
+    "operations": [],
+    "technical": [],
+    "other": []
+  },
+  "_notes": "Fill in your professional details. The 'currently' section is for a 'now page' style update."
+}

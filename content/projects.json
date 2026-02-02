@@ -1,0 +1,24 @@
+{
+  "projects": [
+    {
+      "id": "water-treatment-sim",
+      "title": "Water Treatment Plant Simulator",
+      "description": "Interactive simulation of a conventional surface water treatment plant. Practice process control decisions without the consequences.",
+      "tags": ["simulation", "treatment", "training"],
+      "status": "active",
+      "url": "/pages/projects/water-treatment-sim",
+      "image": "water-treatment-sim.webp",
+      "featured": true
+    },
+    {
+      "id": "example-project-2",
+      "title": "Project Title Here",
+      "description": "One-line description of what this project does and why it matters.",
+      "tags": ["tag1", "tag2"],
+      "status": "wip",
+      "url": "/pages/projects/example",
+      "image": "placeholder.webp",
+      "featured": false
+    }
+  ]
+}

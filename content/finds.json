@@ -1,0 +1,23 @@
+{
+  "finds": [
+    {
+      "id": "find-001",
+      "title": "Example: EPA PFAS Rule Update",
+      "source": "EPA",
+      "url": "https://example.com/article",
+      "takeaway": "Your 1-2 sentence commentary on why this matters for water operators.",
+      "date": "2025-01-20",
+      "tags": ["regulation", "pfas"]
+    },
+    {
+      "id": "find-002",
+      "title": "Example: New Membrane Technology",
+      "source": "WaterWorld",
+      "url": "https://example.com/article2",
+      "takeaway": "Brief note on the operational implications or why you found it interesting.",
+      "date": "2025-01-18",
+      "tags": ["treatment", "technology"]
+    }
+  ],
+  "_notes": "Your 'interesting finds' feed. Add links to articles, papers, tools with your brief commentary."
+}
