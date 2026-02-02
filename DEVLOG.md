@@ -58,6 +58,29 @@
 
 ---
 
+### Session 1 (continued): First Draft Attempt
+
+**Built:**
+- ✓ index.html with intro, parallax hero, card grid
+- ✓ css/styles.css with brand colors and responsive layout
+- ✓ js/main.js with GSAP ScrollTrigger parallax effects
+
+**Result:**
+- ✗ First draft didn't hit the mark visually/functionally
+- Need to revise approach
+
+**Lessons:**
+- Parallax implementation needs refinement
+- May need different structure/effects than initially planned
+- Good to test early - draft phase working as intended
+
+**Next Iteration:**
+- [ ] Review what didn't work about first draft
+- [ ] Revise approach based on feedback
+- [ ] Build v2 with adjusted direction
+
+---
+
 ## How to Pick Up
 
 1. Review SITE-PLAN.md for full context
