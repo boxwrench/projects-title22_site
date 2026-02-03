@@ -1,5 +1,51 @@
 # Development Log - projects.title22.org
 
+## 2026-02-03
+
+### Session 2: Pivot & Refine (The "Clean" Update)
+
+**Major Pivot:**
+- **Decision:** The initial "Agency/Portfolio" direction (parallax, 3D folds, scrolljacking) felt too heavy and distracted from the content.
+- **New Direction:** "Clean & Intentional". Static HTML/CSS focus. High-quality art assets used as Section Heroes rather than small cards.
+- **Goal:** A professional, skimmable resource for water operators.
+
+### Session 3: Footer Polish & Brand Consistency
+
+**Completed:**
+- ✓ **Footer Cleanup:**
+  - Removed "white square" filter from the footer logo to reveal original brand colors.
+  - Removed "watermark cover" hack; adjusted layout to respect the clean background image.
+  - Verified removal of stray watermarks and correct logo scaling (32px).
+- ✓ **Visual Verification:**
+  - Confirmed footer looks professional and aligned with the "Clean & Intentional" design direction.
+  - No more "hacks" or cover-ups; site code is cleaner.
+
+**Completed:**
+- ✓ **Redesigned Information Architecture:**
+  - New Sections: Projects, Tools, Research, Writing, Resume (with "Now" block), Finds/Fun.
+- ✓ **Implemented Static Layout:**
+  - Built `index.html` with semantic structure.
+  - Created `css/static.css` for clean, professional typography and spacing.
+  - Removed all GSAP/ScrollTrigger dependencies for now.
+- ✓ **Asset Integration:**
+  - Repurposed high-res painted landscape assets as **Section Header Cards**.
+  - Verified image loading and responsive scaling.
+- ✓ **Visual Verification:**
+  - Confirmed "Header Card" layout works visually (verified via browser screenshots).
+  - Confirmed skimmable text lists below headers.
+
+**Current Status:**
+- Site is now a single static page with anchor navigation.
+- "Projects", "Tools", "Research", and "Writing" have distinct visual identities via the art headers.
+- "Resume" section is clear and professional.
+
+**Next Steps:**
+- [ ] Connect actual content links (currently `#`).
+- [ ] Add subtle polish (fade-ins, smooth scroll behavior adjustments).
+- [ ] Build out individual detail pages for Simulators/Tools.
+
+---
+
 ## 2026-02-02
 
 ### Session 1: Foundation & Planning
@@ -83,8 +129,7 @@
 
 ## How to Pick Up
 
-1. Review SITE-PLAN.md for full context
-2. Check assets/hero/layers/ for parallax images
-3. Check content/*.json for data structure
-4. Start with index.html + css/styles.css + js/main.js
-5. Use GSAP ScrollTrigger from CDN: https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js
+1. Review SITE-PLAN.md for updated "Clean & Intentional" direction.
+2. `index.html` is now the single source of truth for structure.
+3. `css/static.css` handles the styling (no complex JS).
+4. Assets are in `assets/cards/full` used as headers.

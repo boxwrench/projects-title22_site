@@ -6,19 +6,19 @@
       "description": "Interactive simulation of a conventional surface water treatment plant. Practice process control decisions without the consequences.",
       "tags": ["simulation", "treatment", "training"],
       "status": "active",
-      "url": "/pages/projects/water-treatment-sim",
-      "image": "water-treatment-sim.webp",
+      "url": "#",
+      "image": "20260201_2221_Stylized Landscape Illustration_remix_01kgeg67qmfq6bxw3bdggezjss.png",
       "featured": true
     },
     {
-      "id": "example-project-2",
-      "title": "Project Title Here",
-      "description": "One-line description of what this project does and why it matters.",
-      "tags": ["tag1", "tag2"],
-      "status": "wip",
-      "url": "/pages/projects/example",
-      "image": "placeholder.webp",
-      "featured": false
+      "id": "analytical-lab-notes",
+      "title": "Analytical Laboratory Bench",
+      "description": "Quick-reference guides for common water quality tests (Alkalinity, Turbidity, Color).",
+      "tags": ["lab", "quality", "technical"],
+      "status": "active",
+      "url": "#",
+      "image": "20260202_0858_Image Generation_remix_01kgfmj3wjfg9bqtm91tfc2pxt.png",
+      "featured": true
     }
   ]
 }
