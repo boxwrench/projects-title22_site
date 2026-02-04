@@ -1,0 +1,42 @@
+{
+  "sectionTitle": "Overflow",
+  "sectionSubtitle": "Interesting finds, curiosities, and diversions.",
+  "sectionImage": "assets/cards/full/overflow_header.png",
+  "categories": [
+    {
+      "name": "Interesting Finds",
+      "items": [
+        {
+          "id": "sand-filtration-history",
+          "title": "The history of sand filtration",
+          "description": "Historical archive.",
+          "url": "#"
+        },
+        {
+          "id": "modern-scada",
+          "title": "Modern SCADA interfaces",
+          "description": "UI/UX inspiration.",
+          "url": "#"
+        }
+      ]
+    },
+    {
+      "name": "Fun",
+      "items": [
+        {
+          "id": "water-tower-spotter",
+          "title": "Water Tower Spotter",
+          "description": "Photo log.",
+          "url": "#"
+        },
+        {
+          "id": "hydrant-colors",
+          "title": "Hydrant Colors",
+          "description": "Flow rate color coding guide.",
+          "url": "#"
+        }
+      ]
+    }
+  ],
+  "_guide": "Add interesting links, fun projects, or random water-related stuff here. Organized into categories for easier browsing."
+}
