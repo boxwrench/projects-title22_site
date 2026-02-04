@@ -2,6 +2,40 @@
 
 ## 2026-02-03
 
+### Session 4: Multi-Page Architecture & Resume Polish
+
+**Completed:**
+- ✓ **Resume Section Header:**
+  - Added matching illustrated landscape header to Resume section.
+  - Now visually consistent with Projects, Tools, Research, and Writing.
+- ✓ **Dedicated Section Pages:**
+  - Created `projects.html`, `tools.html`, `research.html`, `writing.html`, `resume.html`.
+  - Each page uses the same header image as the homepage section.
+  - Section titles on homepage now link to their respective pages.
+- ✓ **Navigation Updates:**
+  - Category pages have updated nav with `active` state for current page.
+  - Logo links back to homepage (`/`).
+- ✓ **Architecture:**
+  - Homepage now acts as "Featured" showcase with limited items per section.
+  - Dedicated pages are ready to house full archives.
+
+**Files Added:**
+- `projects.html`
+- `tools.html`
+- `research.html`
+- `writing.html`
+- `resume.html`
+
+**Files Modified:**
+- `index.html` - Section titles wrapped in links, Resume section redesigned with header image.
+
+**Next Steps:**
+- [ ] Add more content items to dedicated pages.
+- [ ] Style the `active` nav link state.
+- [ ] Consider breadcrumb navigation for deeper pages.
+
+---
+
 ### Session 2: Pivot & Refine (The "Clean" Update)
 
 **Major Pivot:**
