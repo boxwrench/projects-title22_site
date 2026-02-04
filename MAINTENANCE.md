@@ -14,8 +14,7 @@ All your content lives in the `content/` folder as JSON files:
 | `content/tools.json` | Tools section |
 | `content/research.json` | Research section |
 | `content/writing.json` | Writing section |
-| `content/finds.json` | Interesting Finds list |
-| `content/fun.json` | Fun section list |
+| `content/overflow.json` | Overflow section (Interesting Finds & Fun) |
 
 ---
 
@@ -61,18 +60,40 @@ This lets you keep your homepage clean while having a complete archive on sub-pa
 
 ---
 
-## 📝 Adding to Finds or Fun
+## 📝 Adding to Overflow (Interesting Finds or Fun)
 
-These use a simpler format:
+The Overflow section has a special categorized structure. Open `content/overflow.json`:
 
 ```json
 {
-  "id": "my-find",
-  "title": "Article Title",
-  "description": "Brief note about it.",
-  "url": "https://example.com/article"
+  "categories": [
+    {
+      "name": "Interesting Finds",
+      "items": [
+        {
+          "id": "my-find",
+          "title": "Article Title",
+          "description": "Brief note about it.",
+          "url": "https://example.com/article"
+        }
+      ]
+    },
+    {
+      "name": "Fun",
+      "items": [
+        {
+          "id": "my-fun-thing",
+          "title": "Water Tower Spotter",
+          "description": "Photo log.",
+          "url": "#"
+        }
+      ]
+    }
+  ]
 }
 ```
+
+Add new items to the appropriate category's `items` array.
 
 ---
 
@@ -148,13 +169,13 @@ projects-title22_site/
 │   ├── tools.json
 │   ├── research.json
 │   ├── writing.json
-│   ├── finds.json
-│   └── fun.json
+│   └── overflow.json     ← Interesting Finds & Fun
 ├── index.html            ← Homepage (shows featured items)
 ├── projects.html         ← Projects page (shows all projects)
 ├── tools.html            ← Tools page (shows all tools)
 ├── research.html         ← Research page
 ├── writing.html          ← Writing page
+├── overflow.html         ← Overflow page (finds & fun)
 ├── resume.html           ← Resume (edit HTML directly)
 ├── js/
 │   ├── content-loader.js ← Loads JSON and renders HTML
