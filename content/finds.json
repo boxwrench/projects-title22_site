@@ -1,23 +1,17 @@
 {
-  "finds": [
+  "items": [
     {
-      "id": "find-001",
-      "title": "Example: EPA PFAS Rule Update",
-      "source": "EPA",
-      "url": "https://example.com/article",
-      "takeaway": "Your 1-2 sentence commentary on why this matters for water operators.",
-      "date": "2025-01-20",
-      "tags": ["regulation", "pfas"]
+      "id": "sand-filtration-history",
+      "title": "The history of sand filtration",
+      "description": "Historical archive.",
+      "url": "#"
     },
     {
-      "id": "find-002",
-      "title": "Example: New Membrane Technology",
-      "source": "WaterWorld",
-      "url": "https://example.com/article2",
-      "takeaway": "Brief note on the operational implications or why you found it interesting.",
-      "date": "2025-01-18",
-      "tags": ["treatment", "technology"]
+      "id": "modern-scada",
+      "title": "Modern SCADA interfaces",
+      "description": "UI/UX inspiration.",
+      "url": "#"
     }
   ],
-  "_notes": "Your 'interesting finds' feed. Add links to articles, papers, tools with your brief commentary."
+  "_guide": "Add interesting links you find. Each item needs: id, title, description, url."
 }

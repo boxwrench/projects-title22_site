@@ -1,24 +1,26 @@
 {
-  "projects": [
+  "sectionTitle": "Projects",
+  "sectionSubtitle": "Portfolio builds, simulators, and writeups.",
+  "sectionImage": "assets/cards/full/20260201_2221_Stylized Landscape Illustration_remix_01kgeg67qmfq6bxw3bdggezjss.png",
+  "items": [
     {
       "id": "water-treatment-sim",
       "title": "Water Treatment Plant Simulator",
-      "description": "Interactive simulation of a conventional surface water treatment plant. Practice process control decisions without the consequences.",
-      "tags": ["simulation", "treatment", "training"],
+      "description": "Interactive conventional surface water treatment plant simulation for operator training.",
+      "tag": "Simulation",
       "status": "active",
-      "url": "#",
-      "image": "20260201_2221_Stylized Landscape Illustration_remix_01kgeg67qmfq6bxw3bdggezjss.png",
-      "featured": true
+      "featured": true,
+      "url": "#"
     },
     {
-      "id": "analytical-lab-notes",
-      "title": "Analytical Laboratory Bench",
-      "description": "Quick-reference guides for common water quality tests (Alkalinity, Turbidity, Color).",
-      "tags": ["lab", "quality", "technical"],
-      "status": "active",
-      "url": "#",
-      "image": "20260202_0858_Image Generation_remix_01kgfmj3wjfg9bqtm91tfc2pxt.png",
-      "featured": true
+      "id": "lims",
+      "title": "Laboratory Management System",
+      "description": "Custom LIMS implementation for mid-sized municipal labs.",
+      "tag": "Dev",
+      "status": "build",
+      "featured": true,
+      "url": "#"
     }
-  ]
+  ],
+  "_guide": "To add a new project: copy an item block, change the values. Set featured:true to show on homepage."
 }

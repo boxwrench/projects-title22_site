@@ -43,28 +43,8 @@
               </div>
             </div>
           </div>
-          <div class="content-list">
-            <a href="#" class="content-item">
-              <div class="content-main">
-                <h3 class="content-title">Water Treatment Plant Simulator</h3>
-                <p class="content-desc">Interactive conventional surface water treatment plant simulation for operator training.</p>
-              </div>
-              <div class="content-meta">
-                <span class="tag tag-active">Active</span>
-                <span class="type">Simulation</span>
-              </div>
-            </a>
-            <a href="#" class="content-item">
-              <div class="content-main">
-                <h3 class="content-title">Laboratory Management System</h3>
-                <p class="content-desc">Custom LIMS implementation for mid-sized municipal labs.</p>
-              </div>
-              <div class="content-meta">
-                <span class="tag">Build</span>
-                <span class="type">Dev</span>
-              </div>
-            </a>
-            <!-- Placeholder for more projects -->
+          <div class="content-list" id="projects-list">
+            <!-- Content loaded dynamically from content/projects.json -->
           </div>
         </div>
       </section>
@@ -96,5 +76,12 @@
       </div>
     </footer>
     <script src="js/parallax.js"></script>
+    <script src="js/content-loader.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Load ALL projects (not just featured)
+        ContentLoader.loadSection('content/projects.json', 'projects-list');
+      });
+    </script>
   </body>
 </html>

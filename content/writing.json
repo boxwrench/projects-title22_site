@@ -1,13 +1,26 @@
 {
-  "writing": [
+  "sectionTitle": "Writing",
+  "sectionSubtitle": "Literary and creative perspectives on water.",
+  "sectionImage": "assets/cards/full/20260202_0858_Stylized Natural Landscape_remix_01kgfmk14wf4997gy84yrexs5m.png",
+  "items": [
     {
-      "id": "example-piece",
-      "title": "Essay or Story Title",
-      "excerpt": "Opening paragraph or compelling excerpt that draws readers in...",
-      "date": "2025-01-15",
-      "tags": ["water", "california"],
-      "url": "/pages/literary/example-piece"
+      "id": "reservoir-dawn",
+      "title": "The Reservoir at Dawn",
+      "description": "Reflections on the stillness of stored energy.",
+      "tag": "Essay",
+      "status": "",
+      "featured": true,
+      "url": "#"
+    },
+    {
+      "id": "pipe-dreams",
+      "title": "Pipe Dreams",
+      "description": "A short story about infrastructure and memory.",
+      "tag": "Fiction",
+      "status": "",
+      "featured": true,
+      "url": "#"
     }
   ],
-  "_notes": "Add your creative water writing pieces here. Each entry should have a unique id, title, excerpt, date, and optional tags."
+  "_guide": "To add a new writing piece: copy an item block, change the values. Set featured:true to show on homepage."
 }

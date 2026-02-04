@@ -1,14 +1,24 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Title 22 | Water Treatment</title>
-    <meta name="description" content="Professional water treatment resources, research, and writing." />
-    <link rel="icon" type="image/png" href="assets/brand/favicon/22favicon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+    <meta
+      name="description"
+      content="Professional water treatment resources, research, and writing."
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="assets/brand/favicon/22favicon.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/static.css" />
   </head>
   <body>
@@ -16,7 +26,11 @@
     <header class="header">
       <div class="container header-inner">
         <a href="/" class="logo">
-          <img src="assets/brand/favicon/22favicon.png" alt="Title 22" class="logo-img" />
+          <img
+            src="assets/brand/favicon/22favicon.png"
+            alt="Title 22"
+            class="logo-img"
+          />
           <span class="logo-text">Title 22</span>
         </a>
         <nav class="nav">
@@ -32,7 +46,6 @@
     <!-- Main Content -->
 
     <main class="main-content">
-      
       <!-- Hero Section -->
       <section class="hero">
         <div class="hero-bg"></div>
@@ -47,34 +60,22 @@
         <div class="container">
           <div class="category-header">
             <div class="category-image">
-              <img src="assets/cards/full/20260201_2221_Stylized Landscape Illustration_remix_01kgeg67qmfq6bxw3bdggezjss.png" alt="Projects Landscape" />
+              <img
+                src="assets/cards/full/20260201_2221_Stylized Landscape Illustration_remix_01kgeg67qmfq6bxw3bdggezjss.png"
+                alt="Projects Landscape"
+              />
               <div class="category-overlay">
-                <h2 class="category-title"><a href="projects.html">Projects</a></h2>
-                <p class="category-subtitle">Portfolio builds, simulators, and writeups.</p>
+                <h2 class="category-title">
+                  <a href="projects.html">Projects</a>
+                </h2>
+                <p class="category-subtitle">
+                  Portfolio builds, simulators, and writeups.
+                </p>
               </div>
             </div>
           </div>
-          <div class="content-list">
-            <a href="#" class="content-item">
-              <div class="content-main">
-                <h3 class="content-title">Water Treatment Plant Simulator</h3>
-                <p class="content-desc">Interactive conventional surface water treatment plant simulation for operator training.</p>
-              </div>
-              <div class="content-meta">
-                <span class="tag tag-active">Active</span>
-                <span class="type">Simulation</span>
-              </div>
-            </a>
-            <a href="#" class="content-item">
-              <div class="content-main">
-                <h3 class="content-title">Laboratory Management System</h3>
-                <p class="content-desc">Custom LIMS implementation for mid-sized municipal labs.</p>
-              </div>
-              <div class="content-meta">
-                <span class="tag">Build</span>
-                <span class="type">Dev</span>
-              </div>
-            </a>
+          <div class="content-list" id="projects-list">
+            <!-- Content loaded dynamically from content/projects.json -->
           </div>
         </div>
       </section>
@@ -84,41 +85,20 @@
         <div class="container">
           <div class="category-header">
             <div class="category-image">
-              <img src="assets/cards/full/20260201_2327_Image Generation_remix_01kgekyve4edqbf2rjr12fwh77.png" alt="Tools Landscape" />
+              <img
+                src="assets/cards/full/20260201_2327_Image Generation_remix_01kgekyve4edqbf2rjr12fwh77.png"
+                alt="Tools Landscape"
+              />
               <div class="category-overlay">
                 <h2 class="category-title"><a href="tools.html">Tools</a></h2>
-                <p class="category-subtitle">Calculators, checklists, and templates.</p>
+                <p class="category-subtitle">
+                  Calculators, checklists, and templates.
+                </p>
               </div>
             </div>
           </div>
-          <div class="content-list">
-            <a href="#" class="content-item">
-              <div class="content-main">
-                <h3 class="content-title">Chlorine Decay Calculator</h3>
-                <p class="content-desc">Estimate residuals based on hydraulic residence time and decay coefficients.</p>
-              </div>
-              <div class="content-meta">
-                <span class="tag">Utility</span>
-              </div>
-            </a>
-            <a href="#" class="content-item">
-              <div class="content-main">
-                <h3 class="content-title">CT Compliance Sheet</h3>
-                <p class="content-desc">Automated spreadsheet for Surface Water Treatment Rule reporting.</p>
-              </div>
-              <div class="content-meta">
-                <span class="tag">Template</span>
-              </div>
-            </a>
-            <a href="#" class="content-item">
-              <div class="content-main">
-                <h3 class="content-title">Start-up Checklists</h3>
-                <p class="content-desc">Standard operating procedures for chemical feed systems.</p>
-              </div>
-              <div class="content-meta">
-                <span class="tag">SOP</span>
-              </div>
-            </a>
+          <div class="content-list" id="tools-list">
+            <!-- Content loaded dynamically from content/tools.json -->
           </div>
         </div>
       </section>
@@ -128,32 +108,22 @@
         <div class="container">
           <div class="category-header">
             <div class="category-image">
-              <img src="assets/cards/full/20260202_0858_Image Generation_remix_01kgfmj3wjfg9bqtm91tfc2pxt.png" alt="Research Landscape" />
+              <img
+                src="assets/cards/full/20260202_0858_Image Generation_remix_01kgfmj3wjfg9bqtm91tfc2pxt.png"
+                alt="Research Landscape"
+              />
               <div class="category-overlay">
-                <h2 class="category-title"><a href="research.html">Research</a></h2>
-                <p class="category-subtitle">Notes on regulations, white papers, and technical deep dives.</p>
+                <h2 class="category-title">
+                  <a href="research.html">Research</a>
+                </h2>
+                <p class="category-subtitle">
+                  Notes on regulations, white papers, and technical deep dives.
+                </p>
               </div>
             </div>
           </div>
-          <div class="content-list">
-            <a href="#" class="content-item">
-              <div class="content-main">
-                <h3 class="content-title">PFAS Regulation Update</h3>
-                <p class="content-desc">Connecting the dots on recent federal MCLs and treatment technologies.</p>
-              </div>
-              <div class="content-meta">
-                <span class="tag">Notes</span>
-              </div>
-            </a>
-            <a href="#" class="content-item">
-              <div class="content-main">
-                <h3 class="content-title">Coagulation Chemistry</h3>
-                <p class="content-desc">Deep dive into charge neutralization vs. sweep floc mechanisms.</p>
-              </div>
-              <div class="content-meta">
-                <span class="tag">Tech</span>
-              </div>
-            </a>
+          <div class="content-list" id="research-list">
+            <!-- Content loaded dynamically from content/research.json -->
           </div>
         </div>
       </section>
@@ -163,59 +133,63 @@
         <div class="container">
           <div class="category-header">
             <div class="category-image">
-              <img src="assets/cards/full/20260202_0858_Stylized Natural Landscape_remix_01kgfmk14wf4997gy84yrexs5m.png" alt="Writing Landscape" />
+              <img
+                src="assets/cards/full/20260202_0858_Stylized Natural Landscape_remix_01kgfmk14wf4997gy84yrexs5m.png"
+                alt="Writing Landscape"
+              />
               <div class="category-overlay">
-                <h2 class="category-title"><a href="writing.html">Writing</a></h2>
-                <p class="category-subtitle">Literary and creative perspectives on water.</p>
+                <h2 class="category-title">
+                  <a href="writing.html">Writing</a>
+                </h2>
+                <p class="category-subtitle">
+                  Literary and creative perspectives on water.
+                </p>
               </div>
             </div>
           </div>
-          <div class="content-list">
-            <a href="#" class="content-item">
-              <div class="content-main">
-                <h3 class="content-title">The Reservoir at Dawn</h3>
-                <p class="content-desc">Reflections on the stillness of stored energy.</p>
-              </div>
-              <div class="content-meta">
-                <span class="tag">Essay</span>
-              </div>
-            </a>
-            <a href="#" class="content-item">
-              <div class="content-main">
-                <h3 class="content-title">Pipe Dreams</h3>
-                <p class="content-desc">A short story about infrastructure and memory.</p>
-              </div>
-              <div class="content-meta">
-                <span class="tag">Fiction</span>
-              </div>
-            </a>
+          <div class="content-list" id="writing-list">
+            <!-- Content loaded dynamically from content/writing.json -->
           </div>
         </div>
       </section>
-      
+
       <!-- Resume Section -->
       <section id="resume" class="category-section section-resume">
         <div class="container">
           <div class="category-header">
             <div class="category-image">
-              <img src="assets/cards/full/20260202_0900_Image Generation_remix_01kgfmq2s3fh0819xk7c0rf806.png" alt="Resume Landscape" />
+              <img
+                src="assets/cards/full/20260202_0900_Image Generation_remix_01kgfmq2s3fh0819xk7c0rf806.png"
+                alt="Resume Landscape"
+              />
               <div class="category-overlay">
                 <h2 class="category-title"><a href="resume.html">Resume</a></h2>
-                <p class="category-subtitle">Professional experience and qualifications.</p>
+                <p class="category-subtitle">
+                  Professional experience and qualifications.
+                </p>
               </div>
             </div>
           </div>
-          <div class="resume-grid" style="margin-top: 2rem;">
+          <div class="resume-grid" style="margin-top: 2rem">
             <div class="resume-main">
               <div class="resume-block">
                 <h3 class="resume-role">Lead Water Treatment Operator</h3>
-                <p class="resume-company">City Utility District • 2018 - Present</p>
-                <p class="resume-desc">Lead operator for a 40 MGD conventional surface water plant. Optimization of coagulation, filtration, and disinfection processes.</p>
+                <p class="resume-company">
+                  City Utility District • 2018 - Present
+                </p>
+                <p class="resume-desc">
+                  Lead operator for a 40 MGD conventional surface water plant.
+                  Optimization of coagulation, filtration, and disinfection
+                  processes.
+                </p>
               </div>
               <div class="resume-block">
                 <h3 class="resume-role">Water Quality Analyst</h3>
                 <p class="resume-company">Regional Water Board • 2015 - 2018</p>
-                <p class="resume-desc">Regulatory compliance monitoring and reporting (TCR, DBP Rule). Laboratory QA/QC supervision.</p>
+                <p class="resume-desc">
+                  Regulatory compliance monitoring and reporting (TCR, DBP
+                  Rule). Laboratory QA/QC supervision.
+                </p>
               </div>
             </div>
             <div class="resume-sidebar">
@@ -240,23 +214,21 @@
           </div>
         </div>
       </section>
-      
+
       <!-- Finds & Fun -->
       <section id="finds" class="section">
         <div class="container">
           <div class="grid-2-col">
             <div class="col">
               <h3 class="small-title">Interesting Finds</h3>
-              <ul class="simple-list">
-                <li><a href="#">The history of sand filtration</a> - <span>Historical archive.</span></li>
-                <li><a href="#">Modern SCADA interfaces</a> - <span>UI/UX inspiration.</span></li>
+              <ul class="simple-list" id="finds-list">
+                <!-- Content loaded dynamically from content/finds.json -->
               </ul>
             </div>
             <div class="col">
               <h3 class="small-title">Fun</h3>
-              <ul class="simple-list">
-                <li><a href="#">Water Tower Spotter</a> - <span>Photo log.</span></li>
-                <li><a href="#">Hydrant Colors</a> - <span>Flow rate color coding guide.</span></li>
+              <ul class="simple-list" id="fun-list">
+                <!-- Content loaded dynamically from content/fun.json -->
               </ul>
             </div>
           </div>
@@ -267,15 +239,22 @@
       <section class="newsletter-section">
         <div class="container newsletter-box">
           <h2 class="newsletter-title">Join the Flow</h2>
-          <p class="newsletter-desc">Weekly notes on water treatment operations, chemistry, and systems thinking.</p>
+          <p class="newsletter-desc">
+            Weekly notes on water treatment operations, chemistry, and systems
+            thinking.
+          </p>
           <form class="newsletter-form" action="#" method="POST">
-            <input type="email" class="newsletter-input" placeholder="Enter your email" required />
+            <input
+              type="email"
+              class="newsletter-input"
+              placeholder="Enter your email"
+              required
+            />
             <button type="submit" class="newsletter-btn">Subscribe</button>
           </form>
           <p class="newsletter-note">Read by 500+ operators and engineers.</p>
         </div>
       </section>
-
     </main>
 
     <!-- Footer -->
@@ -283,12 +262,45 @@
       <div class="footer-bg"></div>
       <div class="container footer-inner">
         <div class="footer-brand">
-          <img src="assets/brand/favicon/22favicon.png" alt="Title 22" class="footer-logo" />
+          <img
+            src="assets/brand/favicon/22favicon.png"
+            alt="Title 22"
+            class="footer-logo"
+          />
           <span>Title 22</span>
         </div>
-        <p class="footer-copy">&copy; 2025 Title 22. Built for water treatment professionals.</p>
+        <p class="footer-copy">
+          &copy; 2025 Title 22. Built for water treatment professionals.
+        </p>
       </div>
     </footer>
     <script src="js/parallax.js"></script>
+    <script src="js/content-loader.js"></script>
+    <script>
+      // Load content from JSON files
+      document.addEventListener("DOMContentLoaded", () => {
+        // Featured items on homepage (only items with featured: true)
+        ContentLoader.loadSection("content/projects.json", "projects-list", {
+          featuredOnly: true,
+        });
+        ContentLoader.loadSection("content/tools.json", "tools-list", {
+          featuredOnly: true,
+        });
+        ContentLoader.loadSection("content/research.json", "research-list", {
+          featuredOnly: true,
+        });
+        ContentLoader.loadSection("content/writing.json", "writing-list", {
+          featuredOnly: true,
+        });
+
+        // Simple lists for Finds & Fun
+        ContentLoader.loadSection("content/finds.json", "finds-list", {
+          simpleList: true,
+        });
+        ContentLoader.loadSection("content/fun.json", "fun-list", {
+          simpleList: true,
+        });
+      });
+    </script>
   </body>
 </html>

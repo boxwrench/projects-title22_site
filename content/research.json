@@ -1,0 +1,26 @@
+{
+  "sectionTitle": "Research",
+  "sectionSubtitle": "Notes on regulations, white papers, and technical deep dives.",
+  "sectionImage": "assets/cards/full/20260202_0858_Image Generation_remix_01kgfmj3wjfg9bqtm91tfc2pxt.png",
+  "items": [
+    {
+      "id": "pfas-update",
+      "title": "PFAS Regulation Update",
+      "description": "Connecting the dots on recent federal MCLs and treatment technologies.",
+      "tag": "Notes",
+      "status": "",
+      "featured": true,
+      "url": "#"
+    },
+    {
+      "id": "coagulation-chemistry",
+      "title": "Coagulation Chemistry",
+      "description": "Deep dive into charge neutralization vs. sweep floc mechanisms.",
+      "tag": "Tech",
+      "status": "",
+      "featured": true,
+      "url": "#"
+    }
+  ],
+  "_guide": "To add a new research item: copy an item block, change the values. Set featured:true to show on homepage."
+}

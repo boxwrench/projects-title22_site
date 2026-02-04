@@ -1,0 +1,17 @@
+{
+  "items": [
+    {
+      "id": "water-tower-spotter",
+      "title": "Water Tower Spotter",
+      "description": "Photo log.",
+      "url": "#"
+    },
+    {
+      "id": "hydrant-colors",
+      "title": "Hydrant Colors",
+      "description": "Flow rate color coding guide.",
+      "url": "#"
+    }
+  ],
+  "_guide": "Add fun water-related stuff. Each item needs: id, title, description, url."
+}

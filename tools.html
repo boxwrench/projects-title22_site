@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tools | Title 22</title>
-    <meta name="description" content="Calculators, checklists, and templates for water professionals." />
+    <meta name="description" content="Calculators, checklists, and templates." />
     <link rel="icon" type="image/png" href="assets/brand/favicon/22favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,34 +43,8 @@
               </div>
             </div>
           </div>
-          <div class="content-list">
-            <a href="#" class="content-item">
-              <div class="content-main">
-                <h3 class="content-title">Chlorine Decay Calculator</h3>
-                <p class="content-desc">Estimate residuals based on hydraulic residence time and decay coefficients.</p>
-              </div>
-              <div class="content-meta">
-                <span class="tag">Utility</span>
-              </div>
-            </a>
-            <a href="#" class="content-item">
-              <div class="content-main">
-                <h3 class="content-title">CT Compliance Sheet</h3>
-                <p class="content-desc">Automated spreadsheet for Surface Water Treatment Rule reporting.</p>
-              </div>
-              <div class="content-meta">
-                <span class="tag">Template</span>
-              </div>
-            </a>
-            <a href="#" class="content-item">
-              <div class="content-main">
-                <h3 class="content-title">Start-up Checklists</h3>
-                <p class="content-desc">Standard operating procedures for chemical feed systems.</p>
-              </div>
-              <div class="content-meta">
-                <span class="tag">SOP</span>
-              </div>
-            </a>
+          <div class="content-list" id="tools-list">
+            <!-- Content loaded dynamically from content/tools.json -->
           </div>
         </div>
       </section>
@@ -102,5 +76,12 @@
       </div>
     </footer>
     <script src="js/parallax.js"></script>
+    <script src="js/content-loader.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Load ALL tools (not just featured)
+        ContentLoader.loadSection('content/tools.json', 'tools-list');
+      });
+    </script>
   </body>
 </html>

@@ -43,25 +43,8 @@
               </div>
             </div>
           </div>
-          <div class="content-list">
-            <a href="#" class="content-item">
-              <div class="content-main">
-                <h3 class="content-title">The Reservoir at Dawn</h3>
-                <p class="content-desc">Reflections on the stillness of stored energy.</p>
-              </div>
-              <div class="content-meta">
-                <span class="tag">Essay</span>
-              </div>
-            </a>
-            <a href="#" class="content-item">
-              <div class="content-main">
-                <h3 class="content-title">Pipe Dreams</h3>
-                <p class="content-desc">A short story about infrastructure and memory.</p>
-              </div>
-              <div class="content-meta">
-                <span class="tag">Fiction</span>
-              </div>
-            </a>
+          <div class="content-list" id="writing-list">
+            <!-- Content loaded dynamically from content/writing.json -->
           </div>
         </div>
       </section>
@@ -93,5 +76,12 @@
       </div>
     </footer>
     <script src="js/parallax.js"></script>
+    <script src="js/content-loader.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Load ALL writing items (not just featured)
+        ContentLoader.loadSection('content/writing.json', 'writing-list');
+      });
+    </script>
   </body>
 </html>

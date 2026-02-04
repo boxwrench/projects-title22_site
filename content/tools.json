@@ -1,31 +1,35 @@
 {
-  "tools": [
+  "sectionTitle": "Tools",
+  "sectionSubtitle": "Calculators, checklists, and templates.",
+  "sectionImage": "assets/cards/full/20260201_2327_Image Generation_remix_01kgekyve4edqbf2rjr12fwh77.png",
+  "items": [
     {
       "id": "chlorine-decay",
       "title": "Chlorine Decay Calculator",
-      "description": "Estimate residual chlorine at distribution system endpoints based on contact time and decay rate.",
-      "tags": ["disinfection", "calc"],
-      "status": "planned",
-      "url": "#",
-      "image": "20260201_2327_Image Generation_remix_01kgekyve4edqbf2rjr12fwh77.png"
+      "description": "Estimate residuals based on hydraulic residence time and decay coefficients.",
+      "tag": "Utility",
+      "status": "",
+      "featured": true,
+      "url": "#"
     },
     {
-      "id": "ct-calculator",
-      "title": "CT Compliance Calculator",
-      "description": "Calculate disinfection CT values for compliance with Surface Water Treatment Rule.",
-      "tags": ["disinfection", "compliance"],
-      "status": "planned",
-      "url": "#",
-      "image": "20260201_2329_Image Generation_remix_01kgem2enyff69d7d80waberze.png"
+      "id": "ct-compliance",
+      "title": "CT Compliance Sheet",
+      "description": "Automated spreadsheet for Surface Water Treatment Rule reporting.",
+      "tag": "Template",
+      "status": "",
+      "featured": true,
+      "url": "#"
     },
     {
-      "id": "filter-loading",
-      "title": "Filter Loading Rate",
-      "description": "Determine filter loading rates and backwash requirements for gravity filters.",
-      "tags": ["filtration", "operations"],
-      "status": "planned",
-      "url": "#",
-      "image": "20260202_0900_Image Generation_remix_01kgfmq2s3fh0819xk7c0rf806.png"
+      "id": "startup-checklists",
+      "title": "Start-up Checklists",
+      "description": "Standard operating procedures for chemical feed systems.",
+      "tag": "SOP",
+      "status": "",
+      "featured": true,
+      "url": "#"
     }
-  ]
+  ],
+  "_guide": "To add a new tool: copy an item block, change the values. Set featured:true to show on homepage."
 }

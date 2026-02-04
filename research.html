@@ -43,25 +43,8 @@
               </div>
             </div>
           </div>
-          <div class="content-list">
-            <a href="#" class="content-item">
-              <div class="content-main">
-                <h3 class="content-title">PFAS Regulation Update</h3>
-                <p class="content-desc">Connecting the dots on recent federal MCLs and treatment technologies.</p>
-              </div>
-              <div class="content-meta">
-                <span class="tag">Notes</span>
-              </div>
-            </a>
-            <a href="#" class="content-item">
-              <div class="content-main">
-                <h3 class="content-title">Coagulation Chemistry</h3>
-                <p class="content-desc">Deep dive into charge neutralization vs. sweep floc mechanisms.</p>
-              </div>
-              <div class="content-meta">
-                <span class="tag">Tech</span>
-              </div>
-            </a>
+          <div class="content-list" id="research-list">
+            <!-- Content loaded dynamically from content/research.json -->
           </div>
         </div>
       </section>
@@ -93,5 +76,12 @@
       </div>
     </footer>
     <script src="js/parallax.js"></script>
+    <script src="js/content-loader.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Load ALL research items (not just featured)
+        ContentLoader.loadSection('content/research.json', 'research-list');
+      });
+    </script>
   </body>
 </html>
