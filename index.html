@@ -59,20 +59,20 @@
       <section id="projects" class="category-section">
         <div class="container">
           <div class="category-header">
-            <div class="category-image">
-              <img
-                src="assets/cards/full/20260201_2221_Stylized Landscape Illustration_remix_01kgeg67qmfq6bxw3bdggezjss.png"
-                alt="Projects Landscape"
-              />
-              <div class="category-overlay">
-                <h2 class="category-title">
-                  <a href="projects.html">Projects</a>
-                </h2>
-                <p class="category-subtitle">
-                  Portfolio builds, simulators, and writeups.
-                </p>
+            <a href="projects.html">
+              <div class="category-image">
+                <img
+                  src="assets/cards/full/20260201_2221_Stylized Landscape Illustration_remix_01kgeg67qmfq6bxw3bdggezjss.png"
+                  alt="Projects Landscape"
+                />
+                <div class="category-overlay">
+                  <h2 class="category-title">Projects</h2>
+                  <p class="category-subtitle">
+                    Portfolio builds, simulators, and writeups.
+                  </p>
+                </div>
               </div>
-            </div>
+            </a>
           </div>
           <div class="content-list" id="projects-list">
             <!-- Content loaded dynamically from content/projects.json -->
@@ -84,18 +84,20 @@
       <section id="tools" class="category-section">
         <div class="container">
           <div class="category-header">
-            <div class="category-image">
-              <img
-                src="assets/cards/full/20260201_2327_Image Generation_remix_01kgekyve4edqbf2rjr12fwh77.png"
-                alt="Tools Landscape"
-              />
-              <div class="category-overlay">
-                <h2 class="category-title"><a href="tools.html">Tools</a></h2>
-                <p class="category-subtitle">
-                  Calculators, checklists, and templates.
-                </p>
+            <a href="tools.html">
+              <div class="category-image">
+                <img
+                  src="assets/cards/full/20260201_2327_Image Generation_remix_01kgekyve4edqbf2rjr12fwh77.png"
+                  alt="Tools Landscape"
+                />
+                <div class="category-overlay">
+                  <h2 class="category-title">Tools</h2>
+                  <p class="category-subtitle">
+                    Calculators, checklists, and templates.
+                  </p>
+                </div>
               </div>
-            </div>
+            </a>
           </div>
           <div class="content-list" id="tools-list">
             <!-- Content loaded dynamically from content/tools.json -->
@@ -107,20 +109,20 @@
       <section id="research" class="category-section">
         <div class="container">
           <div class="category-header">
-            <div class="category-image">
-              <img
-                src="assets/cards/full/20260202_0858_Image Generation_remix_01kgfmj3wjfg9bqtm91tfc2pxt.png"
-                alt="Research Landscape"
-              />
-              <div class="category-overlay">
-                <h2 class="category-title">
-                  <a href="research.html">Research</a>
-                </h2>
-                <p class="category-subtitle">
-                  Notes on regulations, white papers, and technical deep dives.
-                </p>
+            <a href="research.html">
+              <div class="category-image">
+                <img
+                  src="assets/cards/full/20260202_0858_Image Generation_remix_01kgfmj3wjfg9bqtm91tfc2pxt.png"
+                  alt="Research Landscape"
+                />
+                <div class="category-overlay">
+                  <h2 class="category-title">Research</h2>
+                  <p class="category-subtitle">
+                    Notes on regulations, white papers, and technical deep dives.
+                  </p>
+                </div>
               </div>
-            </div>
+            </a>
           </div>
           <div class="content-list" id="research-list">
             <!-- Content loaded dynamically from content/research.json -->
@@ -132,20 +134,20 @@
       <section id="writing" class="category-section">
         <div class="container">
           <div class="category-header">
-            <div class="category-image">
-              <img
-                src="assets/cards/full/20260202_0858_Stylized Natural Landscape_remix_01kgfmk14wf4997gy84yrexs5m.png"
-                alt="Writing Landscape"
-              />
-              <div class="category-overlay">
-                <h2 class="category-title">
-                  <a href="writing.html">Writing</a>
-                </h2>
-                <p class="category-subtitle">
-                  Literary and creative perspectives on water.
-                </p>
+            <a href="writing.html">
+              <div class="category-image">
+                <img
+                  src="assets/cards/full/20260202_0858_Stylized Natural Landscape_remix_01kgfmk14wf4997gy84yrexs5m.png"
+                  alt="Writing Landscape"
+                />
+                <div class="category-overlay">
+                  <h2 class="category-title">Writing</h2>
+                  <p class="category-subtitle">
+                    Literary and creative perspectives on water.
+                  </p>
+                </div>
               </div>
-            </div>
+            </a>
           </div>
           <div class="content-list" id="writing-list">
             <!-- Content loaded dynamically from content/writing.json -->
@@ -279,18 +281,22 @@
     <script>
       // Load content from JSON files
       document.addEventListener("DOMContentLoaded", () => {
-        // Featured items on homepage (only items with featured: true)
+        // Featured items on homepage (only items with featured: true, max 3 per section)
         ContentLoader.loadSection("content/projects.json", "projects-list", {
           featuredOnly: true,
+          limit: 3,
         });
         ContentLoader.loadSection("content/tools.json", "tools-list", {
           featuredOnly: true,
+          limit: 3,
         });
         ContentLoader.loadSection("content/research.json", "research-list", {
           featuredOnly: true,
+          limit: 3,
         });
         ContentLoader.loadSection("content/writing.json", "writing-list", {
           featuredOnly: true,
+          limit: 3,
         });
 
         // Simple lists for Finds & Fun

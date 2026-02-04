@@ -10,16 +10,19 @@
   --paper: #f8f9fc;
   --white: #ffffff;
   --accent: #2b6cb0;
-  
+
   --radius: 12px;
   --radius-lg: 16px;
-  
-  --font-serif: 'Outfit', sans-serif; /* Using Outfit for headings as modern "serif-like" sans */
-  --font-sans: 'Inter', sans-serif;
+
+  --font-serif:
+    "Outfit", sans-serif; /* Using Outfit for headings as modern "serif-like" sans */
+  --font-sans: "Inter", sans-serif;
 }
 
 /* Reset & Base */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -100,7 +103,6 @@ img {
   color: var(--ink);
 }
 
-
 /* ========================================
    Hero Section
    ======================================== */
@@ -123,7 +125,7 @@ img {
   width: 100%;
   height: 120%; /* Taller for parallax movement */
   background-color: var(--accent); /* Fallback */
-  background-image: url('../assets/hero/hero_background_hq_1770157778448.png');
+  background-image: url("../assets/hero/hero_background_hq_1770157778448.png");
   background-size: cover;
   background-position: center center;
   z-index: -1;
@@ -134,7 +136,7 @@ img {
   position: relative;
   text-align: center;
   z-index: 1;
-  text-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .hero-title {
@@ -143,14 +145,16 @@ img {
   font-weight: 800;
   letter-spacing: -0.03em;
   margin-bottom: 16px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.4);
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
 .hero-subtitle {
   font-size: 1.5rem;
   font-weight: 500;
   opacity: 0.95;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   max-width: 600px;
   margin: 0 auto;
 }
@@ -160,7 +164,7 @@ img {
     font-size: 2.5rem;
   }
   .hero-subtitle {
-     font-size: 1.1rem;
+    font-size: 1.1rem;
   }
 }
 
@@ -176,13 +180,19 @@ img {
   border-radius: var(--radius-lg);
   overflow: hidden;
   position: relative;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .category-image {
   position: relative;
   height: 240px;
   background: #2d3748;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.category-image:hover {
+  transform: scale(1.01);
 }
 
 .category-image img {
@@ -198,7 +208,7 @@ img {
   left: 0;
   width: 100%;
   padding: 32px;
-  background: linear-gradient(to top, rgba(26,31,54,0.9), transparent);
+  background: linear-gradient(to top, rgba(26, 31, 54, 0.9), transparent);
   color: var(--white);
 }
 
@@ -208,12 +218,21 @@ img {
   font-weight: 700;
   margin-bottom: 4px;
   letter-spacing: -0.02em;
+  text-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.6),
+    0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.category-title a {
+  color: inherit;
+  text-decoration: none;
 }
 
 .category-subtitle {
   font-size: 1.1rem;
   opacity: 0.9;
   font-weight: 400;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
 /* ========================================
@@ -232,14 +251,17 @@ img {
   background: var(--white);
   padding: 24px;
   border-radius: var(--radius);
-  border: 1px solid rgba(0,0,0,0.04);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .content-item:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-  border-color: rgba(0,0,0,0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, 0.08);
 }
 
 .content-main {
@@ -295,7 +317,7 @@ img {
   background: var(--white);
   padding: 60px 0;
   margin-top: 40px;
-  border-top: 1px solid rgba(0,0,0,0.05);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .resume-grid {
@@ -335,7 +357,8 @@ img {
 }
 
 /* Now Block */
-.now-block, .skills-block {
+.now-block,
+.skills-block {
   background: var(--paper);
   padding: 24px;
   border-radius: var(--radius);
@@ -351,11 +374,13 @@ img {
   font-weight: 700;
 }
 
-.now-list, .skills-list {
+.now-list,
+.skills-list {
   list-style: none;
 }
 
-.now-list li, .skills-list li {
+.now-list li,
+.skills-list li {
   margin-bottom: 10px;
   color: var(--ink);
   font-weight: 500;
@@ -398,7 +423,7 @@ img {
 .simple-list a {
   font-weight: 600;
   color: var(--ink);
-  border-bottom: 1px solid rgba(0,0,0,0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .simple-list a:hover {
@@ -418,7 +443,7 @@ img {
 .newsletter-section {
   background: var(--white);
   padding: 80px 0;
-  border-top: 1px solid rgba(0,0,0,0.05);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
   text-align: center;
 }
 
@@ -448,7 +473,7 @@ img {
 .newsletter-input {
   flex: 1;
   padding: 12px 16px;
-  border: 1px solid rgba(0,0,0,0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: var(--radius);
   font-family: var(--font-sans);
   font-size: 1rem;
@@ -500,7 +525,7 @@ img {
   left: 0;
   width: 100%;
   height: 140%; /* Taller for parallax movement */
-  background-image: url('../assets/hero/hero_background_hq_1770157778448.png');
+  background-image: url("../assets/hero/hero_background_hq_1770157778448.png");
   background-size: cover;
   background-position: center bottom; /* Align the mountains to the bottom initially */
   z-index: 0;
@@ -515,7 +540,11 @@ img {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(to bottom, rgba(10,17,32,0), rgba(10,17,32,0.9));
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 17, 32, 0),
+    rgba(10, 17, 32, 0.9)
+  );
   z-index: 0;
   pointer-events: none;
 }
@@ -547,31 +576,32 @@ img {
 
 .footer-copy {
   font-size: 0.9rem;
-  color: rgba(255,255,255,0.4);
+  color: rgba(255, 255, 255, 0.4);
 }
 
 /* ========================================
    Mobile
    ======================================== */
 
-
 @media (max-width: 768px) {
   .nav {
     display: none;
   }
-  
+
   .category-image {
     height: 180px;
   }
-  
+
   .category-title {
     font-size: 1.75rem;
   }
-  
-  .resume-grid, .grid-2-col, .content-list {
+
+  .resume-grid,
+  .grid-2-col,
+  .content-list {
     grid-template-columns: 1fr;
   }
-  
+
   .category-header {
     border-radius: var(--radius);
   }
