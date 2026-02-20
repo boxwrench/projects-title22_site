@@ -26,15 +26,27 @@ const ContentLoader = {
    * @returns {string} HTML string
    */
   renderItem(item) {
+    const safeTitle = this.escapeHTML(item.title || '');
+    const safeId = this.escapeHTML(item.id || '');
+    const safeHref = this.safeUrl(item.url);
     const statusClass = item.status === 'active' ? 'tag-active' : '';
-    const statusTag = item.status ? `<span class="tag ${statusClass}">${this.capitalize(item.status)}</span>` : '';
-    const typeTag = item.tag ? `<span class="type">${item.tag}</span>` : '';
-    
+    const statusTag = item.status ? `<span class="tag ${statusClass}">${this.escapeHTML(this.capitalize(item.status))}</span>` : '';
+    const typeTag = item.tag ? `<span class="type">${this.escapeHTML(item.tag)}</span>` : '';
+    const blurb = this.escapeHTML(item.blurb || item.description || '');
+    const detail = item.blurb && item.description && item.description !== item.blurb
+      ? `<p class="content-desc">${this.escapeHTML(item.description)}</p>`
+      : '';
+    const thumb = item.thumbnail
+      ? `<img class="content-thumb" src="${this.escapeHTML(item.thumbnail)}" alt="${safeTitle} thumbnail" loading="lazy" />`
+      : '';
+
     return `
-      <a href="${item.url || '#'}" class="content-item" data-id="${item.id}">
+      <a href="${safeHref}" class="content-item" data-id="${safeId}">
+        ${thumb}
         <div class="content-main">
-          <h3 class="content-title">${item.title}</h3>
-          <p class="content-desc">${item.description}</p>
+          <h3 class="content-title">${safeTitle}</h3>
+          <p class="content-blurb">${blurb}</p>
+          ${detail}
         </div>
         <div class="content-meta">
           ${statusTag}
@@ -50,7 +62,14 @@ const ContentLoader = {
    * @returns {string} HTML string
    */
   renderSimpleItem(item) {
-    return `<li><a href="${item.url || '#'}">${item.title}</a> - <span>${item.description}</span></li>`;
+    const safeTitle = this.escapeHTML(item.title || '');
+    const safeBlurb = this.escapeHTML(item.blurb || item.description || '');
+    const safeHref = this.safeUrl(item.url);
+    const thumb = item.thumbnail
+      ? `<img class="simple-thumb" src="${this.escapeHTML(item.thumbnail)}" alt="${safeTitle} thumbnail" loading="lazy" />`
+      : '';
+
+    return `<li>${thumb}<a href="${safeHref}">${safeTitle}</a> - <span>${safeBlurb}</span></li>`;
   },
 
   /**
@@ -107,6 +126,30 @@ const ContentLoader = {
   capitalize(str) {
     if (!str) return '';
     return str.charAt(0).toUpperCase() + str.slice(1);
+  },
+
+  escapeHTML(str) {
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  },
+
+  safeUrl(url) {
+    const value = String(url || '#').trim();
+    if (!value) return '#';
+    if (value.startsWith('#') || value.startsWith('/') || value.startsWith('./') || value.startsWith('../')) {
+      return value;
+    }
+    try {
+      const parsed = new URL(value, window.location.origin);
+      if (parsed.protocol === 'http:' || parsed.protocol === 'https:') return parsed.href;
+    } catch (e) {
+      return '#';
+    }
+    return '#';
   }
 };
 

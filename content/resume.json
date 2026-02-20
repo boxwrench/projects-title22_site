@@ -1,9 +1,9 @@
 {
   "profile": {
     "name": "Keith Wilkinson",
-    "title": "Water Industry Professional",
+    "title": "Water Operations Lead",
     "location": "Livermore, CA",
-    "tagline": "Bridging technical expertise with practical implementation",
+    "tagline": "Operations, compliance, and practical systems thinking.",
     "contact": {
       "blog": "https://www.title22.org",
       "linkedin": "",
@@ -11,26 +11,52 @@
     }
   },
   "currently": {
-    "role": "",
-    "focus": "",
-    "learning": ""
+    "role": "Building a practical library of tools and references for treatment operations.",
+    "focus": "Operational reliability, alarm quality, and treatment optimization workflows.",
+    "learning": "Advanced treatment strategy, automation patterns, and regulatory translation."
   },
   "experience": [
     {
-      "role": "Position Title",
-      "org": "Organization",
-      "period": "2020 - Present",
+      "role": "Lead Water Treatment Operator",
+      "org": "Municipal Surface Water Plant",
+      "period": "2018 - Present",
       "highlights": [
-        "Key accomplishment or responsibility",
-        "Another highlight"
+        "Led daily operations and process control for conventional treatment train.",
+        "Built repeatable SOP/checklist flow for shift turnovers and startup conditions.",
+        "Reduced nuisance alarms through severity and wording standardization effort."
+      ]
+    },
+    {
+      "role": "Water Quality Analyst",
+      "org": "Regional Utility Lab",
+      "period": "2015 - 2018",
+      "highlights": [
+        "Managed compliance sample workflows and QA/QC review.",
+        "Supported DBP and microbial monitoring investigation and reporting.",
+        "Improved lab handoff documentation between bench and operations teams."
       ]
     }
   ],
-  "certifications": [],
+  "certifications": [
+    "State Water Treatment Operator Certification",
+    "Distribution System Certification"
+  ],
   "skills": {
-    "operations": [],
-    "technical": [],
-    "other": []
+    "operations": [
+      "Conventional surface water treatment",
+      "Coagulation and filtration tuning",
+      "Disinfection process control"
+    ],
+    "technical": [
+      "SCADA alarm strategy",
+      "Operational data analysis",
+      "Process documentation and SOP design"
+    ],
+    "other": [
+      "Cross-shift communication",
+      "Incident debrief and action tracking",
+      "Training and mentoring"
+    ]
   },
-  "_notes": "Fill in your professional details. The 'currently' section is for a 'now page' style update."
+  "_notes": "This is reference/sample content. Replace with your real resume details before publishing."
 }

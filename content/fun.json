@@ -3,15 +3,27 @@
     {
       "id": "water-tower-spotter",
       "title": "Water Tower Spotter",
-      "description": "Photo log.",
+      "blurb": "Photo log of distinct tower shapes and paint schemes.",
+      "description": "Personal field collection from road trips.",
+      "thumbnail": "assets/cards/optimized/overflow_header.png",
       "url": "#"
     },
     {
-      "id": "hydrant-colors",
-      "title": "Hydrant Colors",
-      "description": "Flow rate color coding guide.",
+      "id": "hydrant-color-notes",
+      "title": "Hydrant Color Notes",
+      "blurb": "Quick visual cheat sheet for common flow-capacity color systems.",
+      "description": "Reference list by region and utility standard.",
+      "thumbnail": "",
+      "url": "#"
+    },
+    {
+      "id": "control-room-oddities",
+      "title": "Control Room Oddities",
+      "blurb": "Small archive of weird but memorable operator moments.",
+      "description": "A light collection of practical lessons and near-misses.",
+      "thumbnail": "assets/cards/optimized/writing_header.png",
       "url": "#"
     }
   ],
-  "_guide": "Add fun water-related stuff. Each item needs: id, title, description, url."
+  "_guide": "Each item should include: id, title, blurb, description, url. Thumbnail is optional."
 }

@@ -4,23 +4,38 @@
   "sectionImage": "assets/cards/full/20260202_0858_Stylized Natural Landscape_remix_01kgfmk14wf4997gy84yrexs5m.png",
   "items": [
     {
-      "id": "reservoir-dawn",
-      "title": "The Reservoir at Dawn",
-      "description": "Reflections on the stillness of stored energy.",
+      "id": "reservoir-at-first-light",
+      "title": "Reservoir at First Light",
+      "blurb": "A short reflection on infrastructure before the city wakes up.",
+      "description": "Essay exploring quiet systems, stored potential, and operator attention.",
+      "thumbnail": "assets/cards/optimized/writing_header.png",
       "tag": "Essay",
-      "status": "",
+      "status": "active",
       "featured": true,
       "url": "#"
     },
     {
       "id": "pipe-dreams",
       "title": "Pipe Dreams",
-      "description": "A short story about infrastructure and memory.",
+      "blurb": "Fiction set inside a city seen through valves, pumps, and pressure zones.",
+      "description": "Character-driven short story about memory, maintenance, and overlooked labor.",
+      "thumbnail": "",
       "tag": "Fiction",
-      "status": "",
+      "status": "active",
       "featured": true,
+      "url": "#"
+    },
+    {
+      "id": "chlorine-notes-midnight-shift",
+      "title": "Chlorine Notes on a Midnight Shift",
+      "blurb": "Journal fragments from night operations and process stability checks.",
+      "description": "A field-note style piece about routine, uncertainty, and trust in instrumentation.",
+      "thumbnail": "assets/cards/optimized/research_header.png",
+      "tag": "Journal",
+      "status": "build",
+      "featured": false,
       "url": "#"
     }
   ],
-  "_guide": "To add a new writing piece: copy an item block, change the values. Set featured:true to show on homepage."
+  "_guide": "Each item should include: id, title, blurb, description, tag, status, featured, url. Thumbnail is optional."
 }

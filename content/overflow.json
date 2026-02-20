@@ -7,15 +7,19 @@
       "name": "Interesting Finds",
       "items": [
         {
-          "id": "sand-filtration-history",
-          "title": "The history of sand filtration",
-          "description": "Historical archive.",
+          "id": "slow-sand-history",
+          "title": "Slow Sand Filtration Archive",
+          "blurb": "Historical drawings and design notes from early municipal plants.",
+          "description": "Primary-source references and old operating docs.",
+          "thumbnail": "assets/cards/optimized/overflow_header.png",
           "url": "#"
         },
         {
-          "id": "modern-scada",
-          "title": "Modern SCADA interfaces",
-          "description": "UI/UX inspiration.",
+          "id": "scada-pattern-library",
+          "title": "SCADA Pattern Library",
+          "blurb": "Examples of modern alarm and trend visualization patterns.",
+          "description": "Useful UI references for operator-first screens.",
+          "thumbnail": "",
           "url": "#"
         }
       ]
@@ -26,17 +30,34 @@
         {
           "id": "water-tower-spotter",
           "title": "Water Tower Spotter",
-          "description": "Photo log.",
+          "blurb": "Photo log of distinct tower shapes and paint schemes.",
+          "description": "Personal field collection from road trips.",
+          "thumbnail": "assets/cards/optimized/overflow_header.png",
           "url": "#"
         },
         {
-          "id": "hydrant-colors",
-          "title": "Hydrant Colors",
-          "description": "Flow rate color coding guide.",
+          "id": "control-room-oddities",
+          "title": "Control Room Oddities",
+          "blurb": "Small archive of weird but memorable operator moments.",
+          "description": "A light collection of practical lessons and near-misses.",
+          "thumbnail": "assets/cards/optimized/writing_header.png",
+          "url": "#"
+        }
+      ]
+    },
+    {
+      "name": "References to Revisit",
+      "items": [
+        {
+          "id": "dbp-troubleshooting-flow",
+          "title": "DBP Troubleshooting Flow",
+          "blurb": "Decision flow for elevated THM/HAA trend response planning.",
+          "description": "Checklist-style response guide for seasonal shifts.",
+          "thumbnail": "",
           "url": "#"
         }
       ]
     }
   ],
-  "_guide": "Add interesting links, fun projects, or random water-related stuff here. Organized into categories for easier browsing."
+  "_guide": "Overflow items should include: id, title, blurb, description, url. Thumbnail is optional."
 }

@@ -4,23 +4,38 @@
   "sectionImage": "assets/cards/full/20260202_0858_Image Generation_remix_01kgfmj3wjfg9bqtm91tfc2pxt.png",
   "items": [
     {
-      "id": "pfas-update",
-      "title": "PFAS Regulation Update",
-      "description": "Connecting the dots on recent federal MCLs and treatment technologies.",
-      "tag": "Notes",
-      "status": "",
+      "id": "pfas-mcl-ops-playbook",
+      "title": "PFAS MCL Operations Playbook",
+      "blurb": "Operator-focused breakdown of PFAS monitoring and treatment implications.",
+      "description": "Working notes tying regulatory language to operational checks and communication plans.",
+      "thumbnail": "assets/cards/optimized/research_header.png",
+      "tag": "Regulatory",
+      "status": "active",
       "featured": true,
       "url": "#"
     },
     {
-      "id": "coagulation-chemistry",
-      "title": "Coagulation Chemistry",
-      "description": "Deep dive into charge neutralization vs. sweep floc mechanisms.",
-      "tag": "Tech",
-      "status": "",
+      "id": "coagulation-charge-vs-sweep",
+      "title": "Coagulation: Charge Neutralization vs Sweep Floc",
+      "blurb": "Practical decision model for selecting dose strategy by water condition.",
+      "description": "Bench-to-plant guidance for balancing TOC removal, turbidity, and sludge production.",
+      "thumbnail": "",
+      "tag": "Chemistry",
+      "status": "active",
       "featured": true,
+      "url": "#"
+    },
+    {
+      "id": "dbp-seasonal-control",
+      "title": "Seasonal DBP Control Patterns",
+      "blurb": "How seasonal temperature and organics shifts affect DBP risk windows.",
+      "description": "Reference notebook for blending, contact time control, and precursor reduction tactics.",
+      "thumbnail": "assets/cards/optimized/tools_header.png",
+      "tag": "Process",
+      "status": "build",
+      "featured": false,
       "url": "#"
     }
   ],
-  "_guide": "To add a new research item: copy an item block, change the values. Set featured:true to show on homepage."
+  "_guide": "Each item should include: id, title, blurb, description, tag, status, featured, url. Thumbnail is optional."
 }

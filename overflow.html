@@ -89,6 +89,7 @@
         const data = await ContentLoader.load('content/overflow.json');
         if (data && data.categories) {
           const container = document.getElementById('overflow-content');
+          container.innerHTML = '';
           
           // Render each category
           data.categories.forEach(category => {
@@ -102,9 +103,7 @@
             
             const list = document.createElement('ul');
             list.className = 'simple-list';
-            list.innerHTML = category.items.map(item => 
-              `<li><a href="${item.url || '#'}">${item.title}</a> - <span>${item.description}</span></li>`
-            ).join('');
+            list.innerHTML = (category.items || []).map(item => ContentLoader.renderSimpleItem(item)).join('');
             
             section.appendChild(title);
             section.appendChild(list);

@@ -6,30 +6,36 @@
     {
       "id": "chlorine-decay",
       "title": "Chlorine Decay Calculator",
-      "description": "Estimate residuals based on hydraulic residence time and decay coefficients.",
+      "blurb": "Estimate endpoint residual using residence time and decay constant.",
+      "description": "Quick utility for free chlorine forecasting in long detention zones.",
+      "thumbnail": "assets/cards/optimized/tools_header.png",
       "tag": "Utility",
-      "status": "",
+      "status": "active",
       "featured": true,
       "url": "#"
     },
     {
-      "id": "ct-compliance",
+      "id": "ct-compliance-sheet",
       "title": "CT Compliance Sheet",
-      "description": "Automated spreadsheet for Surface Water Treatment Rule reporting.",
+      "blurb": "Daily CT verification helper for disinfection reporting.",
+      "description": "Template-based workflow for SWTR reporting and shift handoff checks.",
+      "thumbnail": "",
       "tag": "Template",
-      "status": "",
+      "status": "active",
       "featured": true,
       "url": "#"
     },
     {
-      "id": "startup-checklists",
-      "title": "Start-up Checklists",
-      "description": "Standard operating procedures for chemical feed systems.",
+      "id": "chemical-startup-checklist",
+      "title": "Chemical Feed Startup Checklist",
+      "blurb": "Step-by-step startup and validation list for feed skids.",
+      "description": "Covers pumps, calibration, stroke checks, and residual confirmation.",
+      "thumbnail": "assets/cards/optimized/overflow_header.png",
       "tag": "SOP",
-      "status": "",
-      "featured": true,
+      "status": "build",
+      "featured": false,
       "url": "#"
     }
   ],
-  "_guide": "To add a new tool: copy an item block, change the values. Set featured:true to show on homepage."
+  "_guide": "Each item should include: id, title, blurb, description, tag, status, featured, url. Thumbnail is optional."
 }

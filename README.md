@@ -31,6 +31,14 @@ resume.html         # Full Resume page
 - **JS:** `js/parallax.js` - Subtle parallax effects for hero/footer
 - **Assets:** `assets/cards/full/` - Illustrated landscape headers
 
+## Local Admin Workflow
+
+- `admin.html` is intended to stay local-only and is ignored by Git.
+- Start a local server when editing:
+  - `./scripts/run-admin-local.sh` (default port `8787`)
+  - or `./scripts/run-admin-local.sh 9000`
+- Open `http://127.0.0.1:<port>/admin.html`
+
 ## Logs
 
 - `DEVLOG.md` - Session-by-session development history

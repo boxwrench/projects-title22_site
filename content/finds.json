@@ -1,17 +1,29 @@
 {
   "items": [
     {
-      "id": "sand-filtration-history",
-      "title": "The history of sand filtration",
-      "description": "Historical archive.",
+      "id": "slow-sand-history",
+      "title": "Slow Sand Filtration Archive",
+      "blurb": "Historical drawings and design notes from early municipal plants.",
+      "description": "Primary-source references and old operating docs.",
+      "thumbnail": "assets/cards/optimized/overflow_header.png",
       "url": "#"
     },
     {
-      "id": "modern-scada",
-      "title": "Modern SCADA interfaces",
-      "description": "UI/UX inspiration.",
+      "id": "scada-pattern-library",
+      "title": "SCADA Pattern Library",
+      "blurb": "Examples of modern alarm and trend visualization patterns.",
+      "description": "Useful UI references for operator-first screens.",
+      "thumbnail": "",
+      "url": "#"
+    },
+    {
+      "id": "valve-failure-casebook",
+      "title": "Valve Failure Casebook",
+      "blurb": "Collection of root-cause writeups for isolation and control valve failures.",
+      "description": "Maintenance and reliability learning set.",
+      "thumbnail": "assets/cards/optimized/tools_header.png",
       "url": "#"
     }
   ],
-  "_guide": "Add interesting links you find. Each item needs: id, title, description, url."
+  "_guide": "Each item should include: id, title, blurb, description, url. Thumbnail is optional."
 }

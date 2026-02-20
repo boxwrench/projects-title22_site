@@ -19,3 +19,8 @@ Thumbs.db
 # Environment
 .env
 .env.local
+
+# Local-only admin tooling (never commit)
+admin.html
+admin.local.html
+admin.*.bak.html

@@ -6,21 +6,36 @@
     {
       "id": "water-treatment-sim",
       "title": "Water Treatment Plant Simulator",
-      "description": "Interactive conventional surface water treatment plant simulation for operator training.",
+      "blurb": "Interactive operator-training simulator for conventional surface water treatment.",
+      "description": "Scenario-based simulator for coagulation, filtration, disinfection, and process upsets.",
+      "thumbnail": "assets/cards/optimized/projects_header.png",
       "tag": "Simulation",
       "status": "active",
+      "featured": true,
+      "url": "https://github.com/boxwrench/Water-Treatment-Plant-Simulator"
+    },
+    {
+      "id": "scada-alarm-normalizer",
+      "title": "SCADA Alarm Normalizer",
+      "blurb": "Standardized alarm text and priority model for faster response.",
+      "description": "Audit and cleanup workflow for high-noise alarm environments with operator-first naming conventions.",
+      "thumbnail": "",
+      "tag": "Operations",
+      "status": "build",
       "featured": true,
       "url": "#"
     },
     {
-      "id": "lims",
-      "title": "Laboratory Management System",
-      "description": "Custom LIMS implementation for mid-sized municipal labs.",
-      "tag": "Dev",
-      "status": "build",
-      "featured": true,
+      "id": "jar-test-tracker",
+      "title": "Jar Test Tracker",
+      "blurb": "Repeatable jar-test logging template with dose and settled turbidity trend capture.",
+      "description": "Tracks source shifts and links bench outcomes to actual dose setpoint decisions.",
+      "thumbnail": "assets/cards/optimized/tools_header.png",
+      "tag": "Lab",
+      "status": "active",
+      "featured": false,
       "url": "#"
     }
   ],
-  "_guide": "To add a new project: copy an item block, change the values. Set featured:true to show on homepage."
+  "_guide": "Each item should include: id, title, blurb, description, tag, status, featured, url. Thumbnail is optional."
 }
