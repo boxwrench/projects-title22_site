@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FieldOps Assistant | Research</title>
+    <style>
+      :root {
+        --ink: #182230;
+        --paper: #f7f9fc;
+        --card: #ffffff;
+        --muted: #5d6b7b;
+      }
+      html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink); }
+      body { font-family: "Inter", "Segoe UI", Arial, sans-serif; line-height: 1.6; }
+      .wrap { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+      .card { background: var(--card); border-radius: 12px; padding: 28px; box-shadow: 0 8px 24px rgba(18, 38, 63, 0.08); }
+      h1 { margin: 0 0 8px; line-height: 1.2; }
+      .meta { color: var(--muted); font-size: 0.95rem; margin-bottom: 22px; }
+      p { margin: 0 0 12px; }
+      ul { margin: 0 0 12px 20px; }
+      a { color: #0b5fd4; }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <article class="card">
+        <h1>FieldOps Assistant</h1>
+        <div class="meta">Web preview generated from: FieldOps Assistant.docx</div>
+        <p>FieldOps Assistant: Technical Architecture &amp; Implementation Strategy</p>
+<p>Target Technology: Microsoft 365 Copilot Retrieval API (Public Preview)</p>
+<p>Version: 1.1</p>
+<p>Part 1: Strategic Overview &amp; Architecture</p>
+<p>1. Executive Summary</p>
+<p>This document outlines the technical architecture for the &quot;FieldOps Assistant,&quot; a phased AI pilot designed to assist frontline staff with equipment troubleshooting.</p>
+<p>The core recommendation is to utilize the newly released Microsoft 365 Copilot Retrieval API (/beta/copilot/retrieval). This approach allows us to leverage the existing security, compliance, and indexing infrastructure of our Microsoft 365 tenant, avoiding the need for high-risk, &quot;shadow IT&quot; vector databases or external storage.</p>
+<p>2. The Core Advantage: &quot;Retrieval API&quot; vs. Traditional RAG</p>
+<p>Traditionally, building a Retrieval-Augmented Generation (RAG) bot required complex infrastructure (vector databases, separate indexing pipelines). The Retrieval API simplifies this by exposing the native M365 semantic index.</p>
+<p>3. Technical Implementation Guide</p>
+<p>A. Prerequisites</p>
+<p>To deploy this architecture, the IT team will need:</p>
+<p>Identity: An App Registration in Microsoft Entra ID with Copilot.Read permissions.</p>
+<p>License: Users require a Microsoft 365 Copilot license to execute queries against the index.</p>
+<p>Data Source: A clean, curated SharePoint Document Library containing the target PDF manuals.</p>
+<p>B. The Application Flow</p>
+<p>The workflow follows a stateless, secure request pattern:</p>
+<p>User Input: The frontline worker asks a question in Teams (e.g., &quot;What is the lubrication interval for Pump P-203?&quot;).</p>
+<p>API Call: The backend service (Azure Function or Copilot Studio) sends a POST request to the Microsoft Graph endpoint.</p>
+<p>Security Check: Microsoft Graph validates the user&#x27;s Entra ID token to ensure they have read-access to the specific SharePoint files.</p>
+<p>Retrieval: The API returns relevant text snippets (&quot;chunks&quot;) from the manuals, along with citation metadata (File Name, URL).</p>
+<p>Synthesis: These snippets are passed to the LLM (GPT-4o) to generate a natural language answer.</p>
+<p>Response: The answer is delivered to Teams with clickable citation links.</p>
+<p>C. Sample API Payload (Technical Reference)</p>
+<p>Endpoint: https://graph.microsoft.com/beta/copilot/retrieval</p>
+<p>{
+    &quot;query&quot;: &quot;lubrication interval for P-203 blower&quot;,
+    &quot;top&quot;: 3,
+    &quot;input&quot;: {
+        &quot;text&quot;: &quot;What is the recommended lubrication for the P-203 blower?&quot;
+    },
+    &quot;filters&quot;: {
+        // Critical for Pilot: Scopes search ONLY to the Vendor Manuals library
+        &quot;container&quot;: &quot;https://[YourOrg][.sharepoint.com/sites/FieldOps_Pilot_Docs](https://.sharepoint.com/sites/FieldOps_Pilot_Docs)&quot;
+    }
+}</p>
+<p>4. Implementation Options</p>
+<p>Option A: The &quot;Low-Code&quot; Pilot (Recommended)</p>
+<p>Platform: Microsoft Copilot Studio (formerly Power Virtual Agents).</p>
+<p>Why: Copilot Studio creates an abstraction layer over the Retrieval API. You simply select &quot;SharePoint&quot; as your knowledge source in the settings.</p>
+<p>Time to Deploy: Hours.</p>
+<p>Maintenance: Zero code to maintain.</p>
+<p>Option B: The &quot;Pro-Code&quot; Custom Build</p>
+<p>Platform: Azure Functions + Bot Framework SDK.</p>
+<p>Why: If the organization requires a highly customized UI or integration with non-Microsoft systems (e.g., SAP/Maximo) in the future.</p>
+<p>Time to Deploy: Weeks.</p>
+<p>5. Security &amp; Governance FAQ</p>
+<p>For discussion with InfoSec and IT Governance teams.</p>
+<p>Q: Does this data leave our tenant?</p>
+<p>A: No. The Retrieval API operates entirely within the Microsoft 365 trust boundary. The data flow is SharePoint -&gt; Graph API -&gt; Teams.</p>
+<p>Q: What if a user asks about a document they shouldn&#x27;t see?</p>
+<p>A: The API enforces Permission Trimming at query time. If a user does not have permission to view a file in SharePoint, the API will not return that file in the search results, and the bot will effectively say &quot;I don&#x27;t know.&quot;</p>
+<p>Q: How do we prevent hallucinations?</p>
+<p>A: We utilize Grounding. The LLM is instructed via System Prompt to only answer using the context snippets provided by the Retrieval API. If the API returns no results, the model is forced to reply with uncertainty rather than fabrication.</p>
+<p>Part 2: Detailed Implementation Reference</p>
+<p>This section provides a step-by-step checklist for the technical team to configure the Option A (Copilot Studio) pilot environment.</p>
+<p>Phase 1: Data Preparation (SharePoint)</p>
+<p>The quality of the AI response is directly dependent on the quality of the source documents.</p>
+<p>Create Dedicated Site:</p>
+<p>Create a new SharePoint Online site (e.g., FieldOps_Pilot_KnowledgeBase).</p>
+<p>Governance Note: Ensure permissions are set to &quot;Read Only&quot; for the pilot user group to prevent accidental deletion.</p>
+<p>Curate &amp; Ingest:</p>
+<p>Upload ~20-50 high-value PDF manuals (start small).</p>
+<p>CRITICAL: Ensure all PDFs are OCR’d (Optical Character Recognition). If the text cannot be highlighted with a mouse cursor, the AI cannot read it.</p>
+<p>Capture URL:</p>
+<p>Note the full URL to the Document Library.</p>
+<p>Example: https://[Tenant].sharepoint.com/sites/FieldOps_Pilot_KnowledgeBase/Shared Documents</p>
+<p>Phase 2: Copilot Studio Configuration</p>
+<p>Initialize Bot:</p>
+<p>Navigate to copilotstudio.microsoft.com.</p>
+<p>Select Create &gt; New Copilot.</p>
+<p>Name: &quot;FieldOps Maintenance Assistant&quot;.</p>
+<p>Connect Knowledge Source:</p>
+<p>In the &quot;Generative AI&quot; or &quot;Knowledge&quot; settings:</p>
+<p>Locate the SharePoint field.</p>
+<p>Paste the URL captured in Phase 1.</p>
+<p>Note: It may take 15-30 minutes for the index to initially crawl the documents.</p>
+<p>Configure Authentication (Crucial for Security):</p>
+<p>Go to Settings &gt; Security &gt; Authentication.</p>
+<p>Select &quot;Authenticate with Microsoft&quot;.</p>
+<p>Why: This passes the user&#x27;s Entra ID token to the SharePoint Graph API. Without this, the bot cannot &quot;see&quot; the documents because it won&#x27;t have permission.</p>
+<p>Phase 3: System Prompt Engineering</p>
+<p>To ensure the bot acts as an industrial assistant and not a generic chatbot, apply the following instructions in the Generative AI / Instructions panel:</p>
+<p>Role: You are an expert Industrial Maintenance Assistant for the organization. Your goal is to help frontline operators and mechanics troubleshoot equipment.</p>
+<p>Directives:</p>
+<p>Source of Truth: ONLY answer using the provided SharePoint documents. Do not use outside internet knowledge.</p>
+<p>Safety First: If the user asks about physical repair or maintenance tasks, always begin your response with: &quot;⚠️ Safety Check: Ensure Lock-Out/Tag-Out (LOTO) procedures are followed before proceeding.&quot;</p>
+<p>Uncertainty: If the answer is not in the documents, state clearly: &quot;I cannot find that information in the current manuals. Please check with a supervisor.&quot; Do not guess.</p>
+<p>Formatting: Use bullet points for steps. Be concise.</p>
+<p>Citations: Always include the reference link to the source document.</p>
+<p>Phase 4: Deployment &amp; Testing</p>
+<p>Publish:</p>
+<p>Click the Publish button in Copilot Studio to make changes live.</p>
+<p>Teams Integration:</p>
+<p>Go to Channels &gt; Microsoft Teams.</p>
+<p>Click &quot;Turn on Teams&quot;.</p>
+<p>Copy the &quot;App ID&quot; or &quot;Installation Link&quot; to share with the pilot user group.</p>
+<p>Validation Test:</p>
+<p>Query: &quot;What is the max operating pressure for [Specific Pump Name]?&quot;</p>
+<p>Expected Result: Correct value returned + Link to PDF manual.</p>
+      </article>
+    </main>
+  </body>
+</html>
