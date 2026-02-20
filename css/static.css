@@ -125,7 +125,7 @@ img {
   width: 100%;
   height: 120%; /* Taller for parallax movement */
   background-color: var(--accent); /* Fallback */
-  background-image: url("../assets/hero/hero_background_hq_1770157778448.png");
+  background-image: url("../assets/hero/optimized/hero_background_hq_1770157778448.webp");
   background-size: cover;
   background-position: center center;
   z-index: -1;
@@ -525,9 +525,9 @@ img {
   left: 0;
   width: 100%;
   height: 140%; /* Taller for parallax movement */
-  background-image: url("../assets/hero/hero_background_hq_1770157778448.png");
+  background-image: url("../assets/hero/optimized/hero_background_hq_1770157778448.webp");
   background-size: cover;
-  background-position: center bottom; /* Align the mountains to the bottom initially */
+  background-position: center bottom;
   z-index: 0;
   will-change: transform;
   /* Dark filter via opacity if needed, or rely on the ::after gradient */

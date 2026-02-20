@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin | Title 22</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f0f2f5; color: #1a1f36; line-height: 1.5;
+    }
+    .admin-header {
+      background: #1a1f36; color: #fff; padding: 16px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .admin-header h1 { font-size: 1.25rem; font-weight: 600; }
+    .admin-header .badge {
+      background: rgba(255,255,255,0.15); padding: 4px 10px;
+      border-radius: 4px; font-size: 0.75rem;
+    }
+    .tabs {
+      display: flex; background: #fff; border-bottom: 2px solid #e2e8f0;
+      overflow-x: auto; padding: 0 16px;
+    }
+    .tab {
+      padding: 12px 20px; cursor: pointer; font-size: 0.9rem; font-weight: 500;
+      color: #718096; border-bottom: 2px solid transparent; margin-bottom: -2px;
+      white-space: nowrap; transition: all 0.15s;
+    }
+    .tab:hover { color: #1a1f36; }
+    .tab.active { color: #2b6cb0; border-bottom-color: #2b6cb0; }
+    .content { max-width: 900px; margin: 24px auto; padding: 0 16px; }
+    .panel { display: none; }
+    .panel.active { display: block; }
+    .card {
+      background: #fff; border-radius: 8px; padding: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08); margin-bottom: 16px;
+    }
+    .card-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 16px;
+    }
+    .card-header h2 { font-size: 1.1rem; }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn {
+      padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer;
+      font-size: 0.85rem; font-weight: 500; transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn-primary { background: #2b6cb0; color: #fff; }
+    .btn-success { background: #38a169; color: #fff; }
+    .btn-outline {
+      background: #fff; color: #4a5568; border: 1px solid #e2e8f0;
+    }
+    .btn-danger { background: #e53e3e; color: #fff; }
+    .btn-sm { padding: 5px 10px; font-size: 0.8rem; }
+    table {
+      width: 100%; border-collapse: collapse; font-size: 0.9rem;
+    }
+    th, td {
+      text-align: left; padding: 10px 12px; border-bottom: 1px solid #e2e8f0;
+    }
+    th { font-weight: 600; color: #718096; font-size: 0.8rem; text-transform: uppercase; }
+    tr:hover { background: #f7fafc; }
+    .featured-badge {
+      display: inline-block; padding: 2px 8px; border-radius: 4px;
+      font-size: 0.75rem; font-weight: 600;
+    }
+    .featured-yes { background: #c6f6d5; color: #22543d; }
+    .featured-no { background: #e2e8f0; color: #718096; }
+    .status-badge {
+      display: inline-block; padding: 2px 8px; border-radius: 4px;
+      font-size: 0.75rem; font-weight: 600;
+    }
+    .status-active { background: #c6f6d5; color: #22543d; }
+    .status-build { background: #fefcbf; color: #744210; }
+    .modal-overlay {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5); z-index: 100; align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal {
+      background: #fff; border-radius: 12px; padding: 32px; width: 90%;
+      max-width: 560px; max-height: 90vh; overflow-y: auto;
+    }
+    .modal h3 { margin-bottom: 20px; font-size: 1.15rem; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block; font-size: 0.85rem; font-weight: 600;
+      color: #4a5568; margin-bottom: 4px;
+    }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; padding: 8px 12px; border: 1px solid #e2e8f0;
+      border-radius: 6px; font-size: 0.9rem; font-family: inherit;
+    }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      outline: none; border-color: #2b6cb0;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .checkbox-group {
+      display: flex; align-items: center; gap: 8px; margin-top: 4px;
+    }
+    .checkbox-group input[type="checkbox"] { width: auto; }
+    .form-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 24px; }
+    .toast {
+      position: fixed; bottom: 24px; right: 24px; padding: 12px 20px;
+      background: #1a1f36; color: #fff; border-radius: 8px; font-size: 0.9rem;
+      z-index: 200; transform: translateY(100px); opacity: 0;
+      transition: all 0.3s ease;
+    }
+    .toast.visible { transform: translateY(0); opacity: 1; }
+    .empty-state {
+      text-align: center; padding: 48px 24px; color: #a0aec0;
+    }
+    .empty-state p { margin-bottom: 16px; }
+    .id-preview {
+      font-size: 0.8rem; color: #a0aec0; margin-top: 2px;
+    }
+    .overflow-cat {
+      border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px;
+      margin-bottom: 16px;
+    }
+    .overflow-cat-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 12px;
+    }
+    .overflow-cat-header h4 { font-size: 1rem; }
+  </style>
+</head>
+<body>
+
+<header class="admin-header">
+  <h1>Title 22 Admin</h1>
+  <span class="badge">Local CMS</span>
+</header>
+
+<nav class="tabs" id="tabs"></nav>
+
+<div class="content" id="content"></div>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" id="modal"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const SECTIONS = [
+  { key: 'projects', label: 'Projects', file: 'content/projects.json', type: 'items' },
+  { key: 'tools', label: 'Tools', file: 'content/tools.json', type: 'items' },
+  { key: 'research', label: 'Research', file: 'content/research.json', type: 'items' },
+  { key: 'writing', label: 'Writing', file: 'content/writing.json', type: 'items' },
+  { key: 'overflow', label: 'Overflow', file: 'content/overflow.json', type: 'overflow' },
+  { key: 'finds', label: 'Finds', file: 'content/finds.json', type: 'simple' },
+  { key: 'fun', label: 'Fun', file: 'content/fun.json', type: 'simple' },
+  { key: 'resume', label: 'Resume', file: 'content/resume.json', type: 'resume' },
+];
+
+let data = {};
+let activeSection = 'projects';
+
+// --- Init ---
+async function init() {
+  renderTabs();
+  for (const s of SECTIONS) {
+    try {
+      const resp = await fetch(s.file);
+      data[s.key] = await resp.json();
+    } catch (e) {
+      data[s.key] = s.type === 'overflow'
+        ? { sectionTitle: s.label, sectionSubtitle: '', sectionImage: '', categories: [] }
+        : s.type === 'resume'
+          ? { profile: { name: '', title: '', location: '', tagline: '', contact: { blog: '', linkedin: '', email: '' } }, currently: { role: '', focus: '', learning: '' }, experience: [], certifications: [], skills: { operations: [], technical: [], other: [] } }
+          : { items: [] };
+    }
+  }
+  switchTab('projects');
+}
+
+// --- Tabs ---
+function renderTabs() {
+  const tabsEl = document.getElementById('tabs');
+  tabsEl.innerHTML = SECTIONS.map(s =>
+    `<div class="tab${s.key === activeSection ? ' active' : ''}" data-key="${s.key}">${s.label}</div>`
+  ).join('');
+  tabsEl.addEventListener('click', e => {
+    const key = e.target.dataset.key;
+    if (key) switchTab(key);
+  });
+}
+
+function switchTab(key) {
+  activeSection = key;
+  document.querySelectorAll('.tab').forEach(t =>
+    t.classList.toggle('active', t.dataset.key === key)
+  );
+  renderPanel();
+}
+
+// --- Render Panel ---
+function renderPanel() {
+  const section = SECTIONS.find(s => s.key === activeSection);
+  const d = data[activeSection];
+  const el = document.getElementById('content');
+
+  if (section.type === 'items') renderItemsPanel(el, d, section);
+  else if (section.type === 'simple') renderSimplePanel(el, d, section);
+  else if (section.type === 'overflow') renderOverflowPanel(el, d, section);
+  else if (section.type === 'resume') renderResumePanel(el, d, section);
+}
+
+// --- Items Panel (projects, tools, research, writing) ---
+function renderItemsPanel(el, d, section) {
+  const items = d.items || [];
+  el.innerHTML = `
+    <div class="card">
+      <div class="card-header">
+        <h2>${section.label} (${items.length} items)</h2>
+        <div class="actions">
+          <button class="btn btn-primary" onclick="openItemForm('${section.key}')">+ Add Item</button>
+          <button class="btn btn-success" onclick="downloadJSON('${section.key}')">Download JSON</button>
+          <button class="btn btn-outline" onclick="copyJSON('${section.key}')">Copy</button>
+        </div>
+      </div>
+      ${items.length === 0 ? '<div class="empty-state"><p>No items yet.</p></div>' : `
+      <table>
+        <thead><tr><th>Title</th><th>Tag</th><th>Status</th><th>Featured</th><th></th></tr></thead>
+        <tbody>
+          ${items.map((item, i) => `
+            <tr>
+              <td><strong>${esc(item.title)}</strong><br><span style="color:#a0aec0;font-size:0.8rem">${esc(item.id)}</span></td>
+              <td>${item.tag ? `<span class="status-badge">${esc(item.tag)}</span>` : '-'}</td>
+              <td>${item.status ? `<span class="status-badge status-${item.status}">${esc(item.status)}</span>` : '-'}</td>
+              <td><span class="featured-badge ${item.featured ? 'featured-yes' : 'featured-no'}">${item.featured ? 'Yes' : 'No'}</span></td>
+              <td>
+                <button class="btn btn-outline btn-sm" onclick="openItemForm('${section.key}', ${i})">Edit</button>
+                <button class="btn btn-danger btn-sm" onclick="deleteItem('${section.key}', ${i})">Del</button>
+              </td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>`}
+    </div>`;
+}
+
+// --- Simple Panel (finds, fun) ---
+function renderSimplePanel(el, d, section) {
+  const items = d.items || [];
+  el.innerHTML = `
+    <div class="card">
+      <div class="card-header">
+        <h2>${section.label} (${items.length} items)</h2>
+        <div class="actions">
+          <button class="btn btn-primary" onclick="openSimpleForm('${section.key}')">+ Add Item</button>
+          <button class="btn btn-success" onclick="downloadJSON('${section.key}')">Download JSON</button>
+          <button class="btn btn-outline" onclick="copyJSON('${section.key}')">Copy</button>
+        </div>
+      </div>
+      ${items.length === 0 ? '<div class="empty-state"><p>No items yet.</p></div>' : `
+      <table>
+        <thead><tr><th>Title</th><th>Description</th><th>URL</th><th></th></tr></thead>
+        <tbody>
+          ${items.map((item, i) => `
+            <tr>
+              <td><strong>${esc(item.title)}</strong><br><span style="color:#a0aec0;font-size:0.8rem">${esc(item.id)}</span></td>
+              <td>${esc(item.description)}</td>
+              <td style="max-width:150px;overflow:hidden;text-overflow:ellipsis">${esc(item.url || '')}</td>
+              <td>
+                <button class="btn btn-outline btn-sm" onclick="openSimpleForm('${section.key}', ${i})">Edit</button>
+                <button class="btn btn-danger btn-sm" onclick="deleteItem('${section.key}', ${i})">Del</button>
+              </td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>`}
+    </div>`;
+}
+
+// --- Overflow Panel ---
+function renderOverflowPanel(el, d, section) {
+  const cats = d.categories || [];
+  el.innerHTML = `
+    <div class="card">
+      <div class="card-header">
+        <h2>Overflow (${cats.reduce((n, c) => n + c.items.length, 0)} items in ${cats.length} categories)</h2>
+        <div class="actions">
+          <button class="btn btn-primary" onclick="openOverflowItemForm()">+ Add Item</button>
+          <button class="btn btn-outline" onclick="addOverflowCategory()">+ Category</button>
+          <button class="btn btn-success" onclick="downloadJSON('overflow')">Download JSON</button>
+          <button class="btn btn-outline" onclick="copyJSON('overflow')">Copy</button>
+        </div>
+      </div>
+      ${cats.length === 0 ? '<div class="empty-state"><p>No categories yet.</p></div>' : cats.map((cat, ci) => `
+        <div class="overflow-cat">
+          <div class="overflow-cat-header">
+            <h4>${esc(cat.name)}</h4>
+            <div class="actions">
+              <button class="btn btn-outline btn-sm" onclick="openOverflowItemForm(${ci})">+ Item</button>
+              <button class="btn btn-danger btn-sm" onclick="deleteOverflowCategory(${ci})">Remove Category</button>
+            </div>
+          </div>
+          ${cat.items.length === 0 ? '<p style="color:#a0aec0;font-size:0.9rem">No items</p>' : `
+          <table>
+            <thead><tr><th>Title</th><th>Description</th><th></th></tr></thead>
+            <tbody>
+              ${cat.items.map((item, ii) => `
+                <tr>
+                  <td><strong>${esc(item.title)}</strong></td>
+                  <td>${esc(item.description)}</td>
+                  <td>
+                    <button class="btn btn-outline btn-sm" onclick="openOverflowItemForm(${ci}, ${ii})">Edit</button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteOverflowItem(${ci}, ${ii})">Del</button>
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>`}
+        </div>
+      `).join('')}
+    </div>`;
+}
+
+// --- Resume Panel ---
+function renderResumePanel(el, d, section) {
+  const p = d.profile || {};
+  const c = d.currently || {};
+  el.innerHTML = `
+    <div class="card">
+      <div class="card-header">
+        <h2>Resume</h2>
+        <div class="actions">
+          <button class="btn btn-primary" onclick="openResumeProfileForm()">Edit Profile</button>
+          <button class="btn btn-outline" onclick="openResumeExpForm()">+ Experience</button>
+          <button class="btn btn-success" onclick="downloadJSON('resume')">Download JSON</button>
+          <button class="btn btn-outline" onclick="copyJSON('resume')">Copy</button>
+        </div>
+      </div>
+      <h4 style="margin-bottom:8px">Profile</h4>
+      <table>
+        <tr><td style="width:120px;font-weight:600">Name</td><td>${esc(p.name || '')}</td></tr>
+        <tr><td style="font-weight:600">Title</td><td>${esc(p.title || '')}</td></tr>
+        <tr><td style="font-weight:600">Location</td><td>${esc(p.location || '')}</td></tr>
+        <tr><td style="font-weight:600">Tagline</td><td>${esc(p.tagline || '')}</td></tr>
+      </table>
+      <h4 style="margin:16px 0 8px">Currently</h4>
+      <table>
+        <tr><td style="width:120px;font-weight:600">Role</td><td>${esc(c.role || '')}</td></tr>
+        <tr><td style="font-weight:600">Focus</td><td>${esc(c.focus || '')}</td></tr>
+        <tr><td style="font-weight:600">Learning</td><td>${esc(c.learning || '')}</td></tr>
+      </table>
+      <h4 style="margin:16px 0 8px">Experience (${(d.experience || []).length})</h4>
+      ${(d.experience || []).length === 0 ? '<p style="color:#a0aec0">No entries</p>' : `
+      <table>
+        <thead><tr><th>Role</th><th>Organization</th><th>Period</th><th></th></tr></thead>
+        <tbody>
+          ${(d.experience || []).map((exp, i) => `
+            <tr>
+              <td><strong>${esc(exp.role)}</strong></td>
+              <td>${esc(exp.org)}</td>
+              <td>${esc(exp.period)}</td>
+              <td>
+                <button class="btn btn-outline btn-sm" onclick="openResumeExpForm(${i})">Edit</button>
+                <button class="btn btn-danger btn-sm" onclick="deleteExp(${i})">Del</button>
+              </td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>`}
+      <h4 style="margin:16px 0 8px">Skills &amp; Certifications</h4>
+      <button class="btn btn-outline btn-sm" onclick="openResumeSkillsForm()">Edit Skills</button>
+    </div>`;
+}
+
+// --- Modal Helpers ---
+function openModal(html) {
+  document.getElementById('modal').innerHTML = html;
+  document.getElementById('modal-overlay').classList.add('active');
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('active');
+}
+
+document.getElementById('modal-overlay').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeModal();
+});
+
+// --- Item Form (projects, tools, research, writing) ---
+function openItemForm(sectionKey, idx) {
+  const editing = idx !== undefined;
+  const item = editing ? data[sectionKey].items[idx] : { id: '', title: '', description: '', tag: '', status: '', featured: false, url: '#' };
+  openModal(`
+    <h3>${editing ? 'Edit' : 'Add'} Item</h3>
+    <form onsubmit="saveItem(event, '${sectionKey}', ${idx !== undefined ? idx : -1})">
+      <div class="form-group">
+        <label>Title *</label>
+        <input name="title" value="${escAttr(item.title)}" required oninput="updateIdPreview(this)" />
+        <div class="id-preview" id="id-preview">${editing ? 'ID: ' + item.id : ''}</div>
+      </div>
+      <div class="form-group">
+        <label>Description *</label>
+        <textarea name="description" required>${esc(item.description)}</textarea>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Tag</label>
+          <input name="tag" value="${escAttr(item.tag || '')}" />
+        </div>
+        <div class="form-group">
+          <label>Status</label>
+          <select name="status">
+            <option value=""${item.status === '' ? ' selected' : ''}>None</option>
+            <option value="active"${item.status === 'active' ? ' selected' : ''}>Active</option>
+            <option value="build"${item.status === 'build' ? ' selected' : ''}>Build</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>URL</label>
+        <input name="url" value="${escAttr(item.url || '#')}" />
+      </div>
+      <div class="form-group">
+        <div class="checkbox-group">
+          <input type="checkbox" name="featured" id="featured-cb"${item.featured ? ' checked' : ''} />
+          <label for="featured-cb" style="margin-bottom:0">Featured on homepage</label>
+        </div>
+      </div>
+      ${editing ? `<input type="hidden" name="existingId" value="${escAttr(item.id)}" />` : ''}
+      <div class="form-actions">
+        <button type="button" class="btn btn-outline" onclick="closeModal()">Cancel</button>
+        <button type="submit" class="btn btn-primary">${editing ? 'Save' : 'Add'}</button>
+      </div>
+    </form>
+  `);
+}
+
+function saveItem(e, sectionKey, idx) {
+  e.preventDefault();
+  const f = new FormData(e.target);
+  const title = f.get('title').trim();
+  const existingId = f.get('existingId');
+  const id = existingId || slugify(title);
+
+  // Check duplicate ID
+  const items = data[sectionKey].items || [];
+  const dup = items.findIndex((it, i) => it.id === id && i !== idx);
+  if (dup !== -1) { toast('Duplicate ID: ' + id); return; }
+
+  const item = {
+    id,
+    title,
+    description: f.get('description').trim(),
+    tag: f.get('tag').trim(),
+    status: f.get('status'),
+    featured: f.has('featured'),
+    url: f.get('url').trim() || '#',
+  };
+
+  if (idx >= 0) items[idx] = item;
+  else items.push(item);
+  data[sectionKey].items = items;
+
+  closeModal();
+  renderPanel();
+  toast(idx >= 0 ? 'Item updated' : 'Item added');
+}
+
+// --- Simple Item Form (finds, fun) ---
+function openSimpleForm(sectionKey, idx) {
+  const editing = idx !== undefined;
+  const item = editing ? data[sectionKey].items[idx] : { id: '', title: '', description: '', url: '#' };
+  openModal(`
+    <h3>${editing ? 'Edit' : 'Add'} Item</h3>
+    <form onsubmit="saveSimpleItem(event, '${sectionKey}', ${idx !== undefined ? idx : -1})">
+      <div class="form-group">
+        <label>Title *</label>
+        <input name="title" value="${escAttr(item.title)}" required oninput="updateIdPreview(this)" />
+        <div class="id-preview" id="id-preview">${editing ? 'ID: ' + item.id : ''}</div>
+      </div>
+      <div class="form-group">
+        <label>Description *</label>
+        <textarea name="description" required>${esc(item.description)}</textarea>
+      </div>
+      <div class="form-group">
+        <label>URL</label>
+        <input name="url" value="${escAttr(item.url || '#')}" />
+      </div>
+      ${editing ? `<input type="hidden" name="existingId" value="${escAttr(item.id)}" />` : ''}
+      <div class="form-actions">
+        <button type="button" class="btn btn-outline" onclick="closeModal()">Cancel</button>
+        <button type="submit" class="btn btn-primary">${editing ? 'Save' : 'Add'}</button>
+      </div>
+    </form>
+  `);
+}
+
+function saveSimpleItem(e, sectionKey, idx) {
+  e.preventDefault();
+  const f = new FormData(e.target);
+  const title = f.get('title').trim();
+  const existingId = f.get('existingId');
+  const id = existingId || slugify(title);
+
+  const items = data[sectionKey].items || [];
+  const dup = items.findIndex((it, i) => it.id === id && i !== idx);
+  if (dup !== -1) { toast('Duplicate ID: ' + id); return; }
+
+  const item = {
+    id,
+    title,
+    description: f.get('description').trim(),
+    url: f.get('url').trim() || '#',
+  };
+
+  if (idx >= 0) items[idx] = item;
+  else items.push(item);
+  data[sectionKey].items = items;
+
+  closeModal();
+  renderPanel();
+  toast(idx >= 0 ? 'Item updated' : 'Item added');
+}
+
+// --- Overflow ---
+function addOverflowCategory() {
+  const name = prompt('Category name:');
+  if (!name) return;
+  data.overflow.categories.push({ name: name.trim(), items: [] });
+  renderPanel();
+  toast('Category added');
+}
+
+function deleteOverflowCategory(ci) {
+  if (!confirm('Delete this category and all its items?')) return;
+  data.overflow.categories.splice(ci, 1);
+  renderPanel();
+  toast('Category deleted');
+}
+
+function openOverflowItemForm(ci, ii) {
+  const cats = data.overflow.categories;
+  const editing = ii !== undefined;
+  const item = editing ? cats[ci].items[ii] : { id: '', title: '', description: '', url: '#' };
+  const catOptions = cats.map((c, i) =>
+    `<option value="${i}"${i === ci ? ' selected' : ''}>${esc(c.name)}</option>`
+  ).join('');
+
+  openModal(`
+    <h3>${editing ? 'Edit' : 'Add'} Overflow Item</h3>
+    <form onsubmit="saveOverflowItem(event, ${ci !== undefined ? ci : -1}, ${ii !== undefined ? ii : -1})">
+      <div class="form-group">
+        <label>Category *</label>
+        <select name="category">${catOptions}</select>
+      </div>
+      <div class="form-group">
+        <label>Title *</label>
+        <input name="title" value="${escAttr(item.title)}" required />
+      </div>
+      <div class="form-group">
+        <label>Description *</label>
+        <textarea name="description" required>${esc(item.description)}</textarea>
+      </div>
+      <div class="form-group">
+        <label>URL</label>
+        <input name="url" value="${escAttr(item.url || '#')}" />
+      </div>
+      ${editing ? `<input type="hidden" name="existingId" value="${escAttr(item.id)}" />` : ''}
+      <div class="form-actions">
+        <button type="button" class="btn btn-outline" onclick="closeModal()">Cancel</button>
+        <button type="submit" class="btn btn-primary">${editing ? 'Save' : 'Add'}</button>
+      </div>
+    </form>
+  `);
+}
+
+function saveOverflowItem(e, origCi, ii) {
+  e.preventDefault();
+  const f = new FormData(e.target);
+  const targetCi = parseInt(f.get('category'));
+  const title = f.get('title').trim();
+  const existingId = f.get('existingId');
+  const id = existingId || slugify(title);
+
+  const item = {
+    id,
+    title,
+    description: f.get('description').trim(),
+    url: f.get('url').trim() || '#',
+  };
+
+  // If editing, remove from old position first
+  if (ii >= 0 && origCi >= 0) {
+    data.overflow.categories[origCi].items.splice(ii, 1);
+  }
+  data.overflow.categories[targetCi].items.push(item);
+
+  closeModal();
+  renderPanel();
+  toast(ii >= 0 ? 'Item updated' : 'Item added');
+}
+
+function deleteOverflowItem(ci, ii) {
+  if (!confirm('Delete this item?')) return;
+  data.overflow.categories[ci].items.splice(ii, 1);
+  renderPanel();
+  toast('Item deleted');
+}
+
+// --- Resume Forms ---
+function openResumeProfileForm() {
+  const p = data.resume.profile || {};
+  const c = data.resume.currently || {};
+  const contact = p.contact || {};
+  openModal(`
+    <h3>Edit Profile</h3>
+    <form onsubmit="saveResumeProfile(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Name</label>
+          <input name="name" value="${escAttr(p.name || '')}" />
+        </div>
+        <div class="form-group">
+          <label>Title</label>
+          <input name="title" value="${escAttr(p.title || '')}" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Location</label>
+          <input name="location" value="${escAttr(p.location || '')}" />
+        </div>
+        <div class="form-group">
+          <label>Tagline</label>
+          <input name="tagline" value="${escAttr(p.tagline || '')}" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Blog URL</label>
+          <input name="blog" value="${escAttr(contact.blog || '')}" />
+        </div>
+        <div class="form-group">
+          <label>LinkedIn</label>
+          <input name="linkedin" value="${escAttr(contact.linkedin || '')}" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input name="email" value="${escAttr(contact.email || '')}" />
+      </div>
+      <h4 style="margin:16px 0 8px">Currently</h4>
+      <div class="form-group">
+        <label>Role</label>
+        <input name="role" value="${escAttr(c.role || '')}" />
+      </div>
+      <div class="form-group">
+        <label>Focus</label>
+        <input name="focus" value="${escAttr(c.focus || '')}" />
+      </div>
+      <div class="form-group">
+        <label>Learning</label>
+        <input name="learning" value="${escAttr(c.learning || '')}" />
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn btn-outline" onclick="closeModal()">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </form>
+  `);
+}
+
+function saveResumeProfile(e) {
+  e.preventDefault();
+  const f = new FormData(e.target);
+  data.resume.profile = {
+    name: f.get('name').trim(),
+    title: f.get('title').trim(),
+    location: f.get('location').trim(),
+    tagline: f.get('tagline').trim(),
+    contact: {
+      blog: f.get('blog').trim(),
+      linkedin: f.get('linkedin').trim(),
+      email: f.get('email').trim(),
+    }
+  };
+  data.resume.currently = {
+    role: f.get('role').trim(),
+    focus: f.get('focus').trim(),
+    learning: f.get('learning').trim(),
+  };
+  closeModal();
+  renderPanel();
+  toast('Profile updated');
+}
+
+function openResumeExpForm(idx) {
+  const editing = idx !== undefined;
+  const exp = editing ? data.resume.experience[idx] : { role: '', org: '', period: '', highlights: [] };
+  openModal(`
+    <h3>${editing ? 'Edit' : 'Add'} Experience</h3>
+    <form onsubmit="saveResumeExp(event, ${idx !== undefined ? idx : -1})">
+      <div class="form-group">
+        <label>Role *</label>
+        <input name="role" value="${escAttr(exp.role)}" required />
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Organization *</label>
+          <input name="org" value="${escAttr(exp.org)}" required />
+        </div>
+        <div class="form-group">
+          <label>Period</label>
+          <input name="period" value="${escAttr(exp.period)}" placeholder="2020 - Present" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Highlights (one per line)</label>
+        <textarea name="highlights">${esc((exp.highlights || []).join('\n'))}</textarea>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn btn-outline" onclick="closeModal()">Cancel</button>
+        <button type="submit" class="btn btn-primary">${editing ? 'Save' : 'Add'}</button>
+      </div>
+    </form>
+  `);
+}
+
+function saveResumeExp(e, idx) {
+  e.preventDefault();
+  const f = new FormData(e.target);
+  const exp = {
+    role: f.get('role').trim(),
+    org: f.get('org').trim(),
+    period: f.get('period').trim(),
+    highlights: f.get('highlights').trim().split('\n').map(s => s.trim()).filter(Boolean),
+  };
+  if (!data.resume.experience) data.resume.experience = [];
+  if (idx >= 0) data.resume.experience[idx] = exp;
+  else data.resume.experience.push(exp);
+  closeModal();
+  renderPanel();
+  toast(idx >= 0 ? 'Experience updated' : 'Experience added');
+}
+
+function deleteExp(idx) {
+  if (!confirm('Delete this experience entry?')) return;
+  data.resume.experience.splice(idx, 1);
+  renderPanel();
+  toast('Experience deleted');
+}
+
+function openResumeSkillsForm() {
+  const s = data.resume.skills || {};
+  const c = data.resume.certifications || [];
+  openModal(`
+    <h3>Edit Skills &amp; Certifications</h3>
+    <form onsubmit="saveResumeSkills(event)">
+      <div class="form-group">
+        <label>Operations (one per line)</label>
+        <textarea name="operations">${esc((s.operations || []).join('\n'))}</textarea>
+      </div>
+      <div class="form-group">
+        <label>Technical (one per line)</label>
+        <textarea name="technical">${esc((s.technical || []).join('\n'))}</textarea>
+      </div>
+      <div class="form-group">
+        <label>Other (one per line)</label>
+        <textarea name="other">${esc((s.other || []).join('\n'))}</textarea>
+      </div>
+      <div class="form-group">
+        <label>Certifications (one per line)</label>
+        <textarea name="certifications">${esc(c.join('\n'))}</textarea>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn btn-outline" onclick="closeModal()">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </form>
+  `);
+}
+
+function saveResumeSkills(e) {
+  e.preventDefault();
+  const f = new FormData(e.target);
+  const toArr = v => v.trim().split('\n').map(s => s.trim()).filter(Boolean);
+  data.resume.skills = {
+    operations: toArr(f.get('operations')),
+    technical: toArr(f.get('technical')),
+    other: toArr(f.get('other')),
+  };
+  data.resume.certifications = toArr(f.get('certifications'));
+  closeModal();
+  renderPanel();
+  toast('Skills updated');
+}
+
+// --- Delete item (items/simple sections) ---
+function deleteItem(sectionKey, idx) {
+  if (!confirm('Delete this item?')) return;
+  data[sectionKey].items.splice(idx, 1);
+  renderPanel();
+  toast('Item deleted');
+}
+
+// --- Download / Copy ---
+function getExportData(sectionKey) {
+  const d = JSON.parse(JSON.stringify(data[sectionKey]));
+  delete d._guide;
+  delete d._notes;
+  return d;
+}
+
+function downloadJSON(sectionKey) {
+  const section = SECTIONS.find(s => s.key === sectionKey);
+  const json = JSON.stringify(getExportData(sectionKey), null, 2);
+  const blob = new Blob([json + '\n'], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = section.file.split('/').pop();
+  a.click();
+  URL.revokeObjectURL(a.href);
+  toast('Downloaded ' + a.download);
+}
+
+function copyJSON(sectionKey) {
+  const json = JSON.stringify(getExportData(sectionKey), null, 2);
+  navigator.clipboard.writeText(json + '\n').then(
+    () => toast('Copied to clipboard'),
+    () => toast('Copy failed')
+  );
+}
+
+// --- Utilities ---
+function slugify(text) {
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+function esc(s) {
+  const d = document.createElement('div');
+  d.textContent = s || '';
+  return d.innerHTML;
+}
+
+function escAttr(s) {
+  return (s || '').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function updateIdPreview(input) {
+  const preview = document.getElementById('id-preview');
+  if (preview) preview.textContent = input.value.trim() ? 'ID: ' + slugify(input.value) : '';
+}
+
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('visible');
+  clearTimeout(el._t);
+  el._t = setTimeout(() => el.classList.remove('visible'), 2500);
+}
+
+// --- Start ---
+init();
+</script>
+
+</body>
+</html>

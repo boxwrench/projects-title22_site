@@ -1,0 +1,21 @@
+# Raw source photos
+assets/raw Photos-3-001/
+
+# Unused brand assets (large files)
+assets/brand/headshot.png
+assets/brand/johnny5.png
+
+# Unused hero variants
+assets/hero/hero_background_1770144940553.png
+assets/hero/footer_depths_bg_1770158198576.png
+
+# Node
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
