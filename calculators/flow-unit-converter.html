@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flow Unit Converter | Title 22</title>
+    <link rel="icon" type="image/png" href="../assets/brand/favicon/22favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/static.css" />
+    <style>
+      .calc-page { max-width: 640px; margin: 0 auto; padding: 2rem 24px 4rem; }
+      .calc-header { margin-bottom: 2rem; }
+      .calc-header h1 { font-family: var(--font-serif); font-size: 1.75rem; color: var(--ink); margin-bottom: 0.4rem; }
+      .calc-header p { color: var(--ink-light); font-size: 0.95rem; }
+      .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-size: 0.875rem; font-weight: 500; margin-bottom: 1.5rem; }
+      .back-link:hover { opacity: 0.75; }
+
+      .input-group { margin-bottom: 1.25rem; }
+      .input-group label { display: block; font-size: 0.875rem; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+      .input-row { display: flex; gap: 10px; }
+      .input-row input { flex: 1; padding: 10px 14px; border: 1.5px solid #dde2ed; border-radius: 8px; font-family: var(--font-sans); font-size: 1rem; color: var(--ink); background: var(--white); transition: border-color 0.2s; }
+      .input-row input:focus { outline: none; border-color: var(--accent); }
+      .input-row select { padding: 10px 14px; border: 1.5px solid #dde2ed; border-radius: 8px; font-family: var(--font-sans); font-size: 0.95rem; color: var(--ink); background: var(--white); cursor: pointer; transition: border-color 0.2s; }
+      .input-row select:focus { outline: none; border-color: var(--accent); }
+
+      .results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 1.5rem; }
+      .result-card { background: var(--white); border: 1.5px solid #dde2ed; border-radius: 10px; padding: 14px 16px; }
+      .result-card .unit-label { font-size: 0.75rem; font-weight: 600; color: var(--ink-lighter); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+      .result-card .value { font-size: 1.25rem; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+      .result-card.highlight { border-color: var(--accent); background: #ebf4ff; }
+      .result-card.highlight .value { color: var(--accent); }
+
+      .divider { border: none; border-top: 1.5px solid #dde2ed; margin: 2rem 0; }
+      .note { font-size: 0.8rem; color: var(--ink-lighter); margin-top: 1.5rem; line-height: 1.5; }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header-inner">
+        <a href="/" class="logo">
+          <img src="../assets/brand/favicon/22favicon.png" alt="Title 22" class="logo-img" />
+          <span class="logo-text">Title 22</span>
+        </a>
+        <nav class="nav">
+          <a href="../tools.html" class="nav-link active">Tools</a>
+          <a href="../research.html" class="nav-link">Research</a>
+          <a href="../resume.html" class="nav-link">Resume</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <div class="calc-page">
+        <a href="../tools.html" class="back-link">← Back to Tools</a>
+
+        <div class="calc-header">
+          <h1>Flow Unit Converter</h1>
+          <p>Enter a flow rate in any unit — all others update instantly.</p>
+        </div>
+
+        <div class="input-group">
+          <label>Enter Flow Rate</label>
+          <div class="input-row">
+            <input type="number" id="input-value" placeholder="0" min="0" step="any" />
+            <select id="input-unit">
+              <option value="gpm">GPM — gallons per minute</option>
+              <option value="mgd">MGD — million gallons per day</option>
+              <option value="gph">GPH — gallons per hour</option>
+              <option value="gpd">GPD — gallons per day</option>
+              <option value="cfs">CFS — cubic feet per second</option>
+              <option value="cfm">CFM — cubic feet per minute</option>
+              <option value="lps">L/s — liters per second</option>
+              <option value="lpm">L/min — liters per minute</option>
+              <option value="m3h">m³/hr — cubic meters per hour</option>
+              <option value="m3d">m³/day — cubic meters per day</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="results-grid" id="results">
+          <!-- populated by JS -->
+        </div>
+
+        <p class="note">Tip: GPM × 1440 = GPD. MGD × 694.4 = GPM. 1 CFS ≈ 449 GPM.</p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-bg"></div>
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <img src="../assets/brand/favicon/22favicon.png" alt="Title 22" class="footer-logo" />
+          <span>Title 22</span>
+        </div>
+        <p class="footer-copy">&copy; 2025 Title 22. Built for water treatment professionals.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Conversion factors to GPM (base unit)
+      const TO_GPM = {
+        gpm: 1,
+        mgd: 694.444,
+        gph: 1 / 60,
+        gpd: 1 / 1440,
+        cfs: 448.831,
+        cfm: 7.48052,
+        lps: 15.8503,
+        lpm: 0.264172,
+        m3h: 4.40287,
+        m3d: 0.183453,
+      };
+
+      const LABELS = {
+        gpm: 'GPM',
+        mgd: 'MGD',
+        gph: 'GPH',
+        gpd: 'GPD',
+        cfs: 'CFS',
+        cfm: 'CFM',
+        lps: 'L/s',
+        lpm: 'L/min',
+        m3h: 'm³/hr',
+        m3d: 'm³/day',
+      };
+
+      const DESCRIPTIONS = {
+        gpm: 'gallons per minute',
+        mgd: 'million gallons per day',
+        gph: 'gallons per hour',
+        gpd: 'gallons per day',
+        cfs: 'cubic feet per second',
+        cfm: 'cubic feet per minute',
+        lps: 'liters per second',
+        lpm: 'liters per minute',
+        m3h: 'cubic meters per hour',
+        m3d: 'cubic meters per day',
+      };
+
+      function formatValue(n) {
+        if (n === 0) return '0';
+        if (n >= 1000000) return n.toExponential(3);
+        if (n >= 1) return parseFloat(n.toPrecision(6)).toLocaleString();
+        return parseFloat(n.toPrecision(4)).toString();
+      }
+
+      function convert() {
+        const raw = parseFloat(document.getElementById('input-value').value);
+        const fromUnit = document.getElementById('input-unit').value;
+        const container = document.getElementById('results');
+
+        if (isNaN(raw) || raw < 0) {
+          container.innerHTML = '';
+          return;
+        }
+
+        const gpm = raw * TO_GPM[fromUnit];
+
+        const html = Object.keys(TO_GPM).map(unit => {
+          const converted = gpm / TO_GPM[unit];
+          const isSelected = unit === fromUnit;
+          return `
+            <div class="result-card ${isSelected ? 'highlight' : ''}">
+              <div class="unit-label">${LABELS[unit]}</div>
+              <div class="value">${formatValue(converted)}</div>
+              <div style="font-size:0.75rem;color:var(--ink-lighter);margin-top:2px">${DESCRIPTIONS[unit]}</div>
+            </div>
+          `;
+        }).join('');
+
+        container.innerHTML = html;
+      }
+
+      document.getElementById('input-value').addEventListener('input', convert);
+      document.getElementById('input-unit').addEventListener('change', convert);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chlorine Dose Calculator | Title 22</title>
+    <link rel="icon" type="image/png" href="../assets/brand/favicon/22favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/static.css" />
+    <style>
+      .calc-page { max-width: 660px; margin: 0 auto; padding: 2rem 24px 4rem; }
+      .calc-header { margin-bottom: 2rem; }
+      .calc-header h1 { font-family: var(--font-serif); font-size: 1.75rem; color: var(--ink); margin-bottom: 0.4rem; }
+      .calc-header p { color: var(--ink-light); font-size: 0.95rem; }
+      .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-size: 0.875rem; font-weight: 500; margin-bottom: 1.5rem; }
+      .back-link:hover { opacity: 0.75; }
+
+      .card { background: var(--white); border: 1.5px solid #dde2ed; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.25rem; }
+      .card h2 { font-family: var(--font-serif); font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 1rem; }
+
+      .field { margin-bottom: 1rem; }
+      .field label { display: block; font-size: 0.875rem; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+      .field .hint { font-size: 0.75rem; color: var(--ink-lighter); margin-bottom: 5px; }
+      .input-row { display: flex; gap: 8px; }
+      .input-row input { flex: 1; padding: 10px 14px; border: 1.5px solid #dde2ed; border-radius: 8px; font-family: var(--font-sans); font-size: 1rem; color: var(--ink); background: var(--white); }
+      .input-row input:focus { outline: none; border-color: var(--accent); }
+      .input-row select { padding: 10px 14px; border: 1.5px solid #dde2ed; border-radius: 8px; font-family: var(--font-sans); font-size: 0.9rem; color: var(--ink); background: var(--white); cursor: pointer; }
+      .input-row select:focus { outline: none; border-color: var(--accent); }
+      .unit-badge { display: flex; align-items: center; padding: 10px 12px; background: #f0f4f8; border-radius: 8px; font-size: 0.85rem; font-weight: 600; color: var(--ink-light); white-space: nowrap; }
+
+      .results-card { background: var(--accent); border-radius: 12px; padding: 1.5rem; margin-top: 1.5rem; color: var(--white); }
+      .results-card h2 { font-family: var(--font-serif); font-size: 1rem; font-weight: 700; color: rgba(255,255,255,0.8); margin-bottom: 1rem; }
+      .result-row { display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.15); }
+      .result-row:last-child { border-bottom: none; }
+      .result-label { font-size: 0.875rem; color: rgba(255,255,255,0.8); }
+      .result-value { font-size: 1.3rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+      .result-value .result-unit { font-size: 0.8rem; font-weight: 500; opacity: 0.8; margin-left: 4px; }
+
+      .empty-state { color: rgba(255,255,255,0.6); font-size: 0.9rem; text-align: center; padding: 1rem 0; }
+      .warn { background: #fff3cd; border: 1.5px solid #f6c23e; border-radius: 8px; padding: 10px 14px; font-size: 0.85rem; color: #856404; margin-top: 1rem; display: none; }
+      .note { font-size: 0.8rem; color: var(--ink-lighter); margin-top: 1.5rem; line-height: 1.5; }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header-inner">
+        <a href="/" class="logo">
+          <img src="../assets/brand/favicon/22favicon.png" alt="Title 22" class="logo-img" />
+          <span class="logo-text">Title 22</span>
+        </a>
+        <nav class="nav">
+          <a href="../tools.html" class="nav-link active">Tools</a>
+          <a href="../research.html" class="nav-link">Research</a>
+          <a href="../resume.html" class="nav-link">Resume</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <div class="calc-page">
+        <a href="../tools.html" class="back-link">← Back to Tools</a>
+
+        <div class="calc-header">
+          <h1>Chlorine Dose Calculator</h1>
+          <p>Calculate chlorine feed rate from flow and target dose. Works for gas, liquid hypochlorite, or granular.</p>
+        </div>
+
+        <div class="card">
+          <h2>Flow & Dose</h2>
+
+          <div class="field">
+            <label>Flow Rate</label>
+            <div class="input-row">
+              <input type="number" id="flow" placeholder="0" min="0" step="any" />
+              <select id="flow-unit">
+                <option value="gpm">GPM</option>
+                <option value="mgd">MGD</option>
+                <option value="gpd">GPD</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Target Chlorine Dose</label>
+            <div class="input-row">
+              <input type="number" id="dose" placeholder="e.g. 2.0" min="0" step="any" />
+              <div class="unit-badge">mg/L</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Chemical Type (for feed rate)</h2>
+
+          <div class="field">
+            <label>Chemical</label>
+            <div class="input-row">
+              <select id="chem-type" style="flex:1">
+                <option value="cl2gas">Chlorine gas (Cl₂) — 100%</option>
+                <option value="hypo12">Sodium hypochlorite — 12.5% (trade)</option>
+                <option value="hypo10">Sodium hypochlorite — 10%</option>
+                <option value="hypo6">Sodium hypochlorite — 6% (bleach)</option>
+                <option value="hypo15">Sodium hypochlorite — 15%</option>
+                <option value="gran65">Calcium hypochlorite — 65% granular</option>
+                <option value="gran70">Calcium hypochlorite — 70% granular</option>
+                <option value="custom">Custom % available chlorine</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field" id="custom-field" style="display:none">
+            <label>Available Chlorine %</label>
+            <div class="input-row">
+              <input type="number" id="custom-pct" placeholder="e.g. 8.5" min="0.1" max="100" step="0.1" />
+              <div class="unit-badge">%</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="results-card">
+          <h2>Results</h2>
+          <div id="results"><p class="empty-state">Enter flow rate and dose above.</p></div>
+        </div>
+
+        <div class="warn" id="warn-high">⚠ Dose above 4 mg/L — verify intent. Typical potable water range is 0.5–4 mg/L.</div>
+
+        <p class="note">
+          Formula: Feed Rate (lbs/day) = Flow (MGD) × Dose (mg/L) × 8.34<br>
+          Liquid volume (GPD) = lbs/day ÷ (chemical strength × 8.34 lb/gal)<br>
+          Results are theoretical — verify with calibration and bench tests.
+        </p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-bg"></div>
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <img src="../assets/brand/favicon/22favicon.png" alt="Title 22" class="footer-logo" />
+          <span>Title 22</span>
+        </div>
+        <p class="footer-copy">&copy; 2025 Title 22. Built for water treatment professionals.</p>
+      </div>
+    </footer>
+
+    <script>
+      const CHEM = {
+        cl2gas:  { label: 'Chlorine gas (Cl₂)',         pct: 1.00,  liquid: false },
+        hypo15:  { label: 'NaOCl 15%',                  pct: 0.15,  liquid: true  },
+        hypo12:  { label: 'NaOCl 12.5%',                pct: 0.125, liquid: true  },
+        hypo10:  { label: 'NaOCl 10%',                  pct: 0.10,  liquid: true  },
+        hypo6:   { label: 'NaOCl 6%',                   pct: 0.06,  liquid: true  },
+        gran65:  { label: 'Ca(OCl)₂ 65% granular',      pct: 0.65,  liquid: false },
+        gran70:  { label: 'Ca(OCl)₂ 70% granular',      pct: 0.70,  liquid: false },
+        custom:  { label: 'Custom',                      pct: null,  liquid: null  },
+      };
+
+      // Convert flow to MGD
+      function toMGD(val, unit) {
+        if (unit === 'gpm') return val * 1440 / 1e6;
+        if (unit === 'mgd') return val;
+        if (unit === 'gpd') return val / 1e6;
+      }
+
+      function fmt(n, decimals = 2) {
+        return n.toLocaleString(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+      }
+
+      function calculate() {
+        const flowRaw = parseFloat(document.getElementById('flow').value);
+        const flowUnit = document.getElementById('flow-unit').value;
+        const dose = parseFloat(document.getElementById('dose').value);
+        const chemKey = document.getElementById('chem-type').value;
+        const resultsEl = document.getElementById('results');
+        const warnEl = document.getElementById('warn-high');
+
+        if (isNaN(flowRaw) || isNaN(dose) || flowRaw <= 0 || dose <= 0) {
+          resultsEl.innerHTML = '<p class="empty-state">Enter flow rate and dose above.</p>';
+          warnEl.style.display = 'none';
+          return;
+        }
+
+        warnEl.style.display = dose > 4 ? 'block' : 'none';
+
+        const mgd = toMGD(flowRaw, flowUnit);
+        const lbsPerDay = mgd * dose * 8.34;
+        const lbsPerHour = lbsPerDay / 24;
+        const gPerMin = lbsPerDay * 453.592 / 1440;
+
+        let pct;
+        if (chemKey === 'custom') {
+          pct = parseFloat(document.getElementById('custom-pct').value) / 100;
+          if (isNaN(pct) || pct <= 0) {
+            resultsEl.innerHTML = '<p class="empty-state">Enter custom % above.</p>';
+            return;
+          }
+        } else {
+          pct = CHEM[chemKey].pct;
+        }
+
+        const isLiquid = chemKey === 'custom' ? true : CHEM[chemKey].liquid;
+        const chemLbsPerDay = lbsPerDay / pct;
+        const galPerDay = chemLbsPerDay / 8.34;
+        const galPerHour = galPerDay / 24;
+        const mlPerMin = galPerDay * 3785.41 / 1440;
+
+        let html = `
+          <div class="result-row">
+            <span class="result-label">Cl₂ demand</span>
+            <span class="result-value">${fmt(lbsPerDay)} <span class="result-unit">lbs/day</span></span>
+          </div>
+          <div class="result-row">
+            <span class="result-label"></span>
+            <span class="result-value">${fmt(lbsPerHour)} <span class="result-unit">lbs/hr</span></span>
+          </div>
+          <div class="result-row">
+            <span class="result-label"></span>
+            <span class="result-value">${fmt(gPerMin)} <span class="result-unit">g/min</span></span>
+          </div>
+        `;
+
+        if (isLiquid || chemKey === 'custom') {
+          html += `
+            <div class="result-row" style="margin-top:0.5rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,0.3)">
+              <span class="result-label">Chemical feed (liquid)</span>
+              <span class="result-value">${fmt(galPerDay)} <span class="result-unit">GPD</span></span>
+            </div>
+            <div class="result-row">
+              <span class="result-label"></span>
+              <span class="result-value">${fmt(galPerHour, 3)} <span class="result-unit">GPH</span></span>
+            </div>
+            <div class="result-row">
+              <span class="result-label"></span>
+              <span class="result-value">${fmt(mlPerMin)} <span class="result-unit">mL/min</span></span>
+            </div>
+          `;
+        } else {
+          html += `
+            <div class="result-row" style="margin-top:0.5rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,0.3)">
+              <span class="result-label">Chemical feed (dry)</span>
+              <span class="result-value">${fmt(chemLbsPerDay)} <span class="result-unit">lbs/day</span></span>
+            </div>
+          `;
+        }
+
+        resultsEl.innerHTML = html;
+      }
+
+      document.getElementById('chem-type').addEventListener('change', function() {
+        document.getElementById('custom-field').style.display = this.value === 'custom' ? 'block' : 'none';
+        calculate();
+      });
+
+      ['flow', 'dose', 'custom-pct'].forEach(id => {
+        document.getElementById(id).addEventListener('input', calculate);
+      });
+      document.getElementById('flow-unit').addEventListener('change', calculate);
+    </script>
+  </body>
+</html>

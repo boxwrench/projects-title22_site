@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tank Volume Calculator | Title 22</title>
+    <link rel="icon" type="image/png" href="../assets/brand/favicon/22favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/static.css" />
+    <style>
+      .calc-page { max-width: 660px; margin: 0 auto; padding: 2rem 24px 4rem; }
+      .calc-header { margin-bottom: 2rem; }
+      .calc-header h1 { font-family: var(--font-serif); font-size: 1.75rem; color: var(--ink); margin-bottom: 0.4rem; }
+      .calc-header p { color: var(--ink-light); font-size: 0.95rem; }
+      .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-size: 0.875rem; font-weight: 500; margin-bottom: 1.5rem; }
+      .back-link:hover { opacity: 0.75; }
+
+      .tab-row { display: flex; gap: 8px; margin-bottom: 1.5rem; flex-wrap: wrap; }
+      .tab-btn { padding: 8px 18px; border-radius: 20px; border: 1.5px solid #dde2ed; background: var(--white); font-family: var(--font-sans); font-size: 0.875rem; font-weight: 600; color: var(--ink-light); cursor: pointer; transition: all 0.15s; }
+      .tab-btn.active { background: var(--accent); border-color: var(--accent); color: var(--white); }
+
+      .shape-diagram { text-align: center; margin-bottom: 1.5rem; }
+      .shape-diagram svg { max-width: 200px; }
+
+      .card { background: var(--white); border: 1.5px solid #dde2ed; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.25rem; }
+      .card h2 { font-family: var(--font-serif); font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 1rem; }
+      .field { margin-bottom: 1rem; }
+      .field label { display: block; font-size: 0.875rem; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+      .input-row { display: flex; gap: 8px; }
+      .input-row input { flex: 1; padding: 10px 14px; border: 1.5px solid #dde2ed; border-radius: 8px; font-family: var(--font-sans); font-size: 1rem; color: var(--ink); background: var(--white); }
+      .input-row input:focus { outline: none; border-color: var(--accent); }
+      .unit-badge { display: flex; align-items: center; padding: 10px 12px; background: #f0f4f8; border-radius: 8px; font-size: 0.85rem; font-weight: 600; color: var(--ink-light); white-space: nowrap; }
+
+      .fill-slider { margin-top: 0.5rem; }
+      .fill-slider input[type=range] { width: 100%; accent-color: var(--accent); }
+      .fill-slider .fill-label { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--ink-lighter); margin-top: 2px; }
+
+      .results-card { background: var(--accent); border-radius: 12px; padding: 1.5rem; margin-top: 1.5rem; color: var(--white); }
+      .results-card h2 { font-family: var(--font-serif); font-size: 1rem; font-weight: 700; color: rgba(255,255,255,0.8); margin-bottom: 1rem; }
+      .result-row { display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.15); }
+      .result-row:last-child { border-bottom: none; }
+      .result-label { font-size: 0.875rem; color: rgba(255,255,255,0.8); }
+      .result-value { font-size: 1.25rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+      .result-value .result-unit { font-size: 0.8rem; font-weight: 500; opacity: 0.8; margin-left: 4px; }
+      .empty-state { color: rgba(255,255,255,0.6); font-size: 0.9rem; text-align: center; padding: 1rem 0; }
+
+      .fill-bar-outer { background: rgba(255,255,255,0.2); border-radius: 6px; height: 10px; margin-top: 12px; overflow: hidden; }
+      .fill-bar-inner { height: 100%; background: rgba(255,255,255,0.85); border-radius: 6px; transition: width 0.3s; }
+
+      .note { font-size: 0.8rem; color: var(--ink-lighter); margin-top: 1.5rem; line-height: 1.5; }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header-inner">
+        <a href="/" class="logo">
+          <img src="../assets/brand/favicon/22favicon.png" alt="Title 22" class="logo-img" />
+          <span class="logo-text">Title 22</span>
+        </a>
+        <nav class="nav">
+          <a href="../tools.html" class="nav-link active">Tools</a>
+          <a href="../research.html" class="nav-link">Research</a>
+          <a href="../resume.html" class="nav-link">Resume</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <div class="calc-page">
+        <a href="../tools.html" class="back-link">← Back to Tools</a>
+
+        <div class="calc-header">
+          <h1>Tank Volume Calculator</h1>
+          <p>Calculate full and partial volumes for common tank shapes.</p>
+        </div>
+
+        <div class="tab-row">
+          <button class="tab-btn active" data-shape="cylinder">Cylinder</button>
+          <button class="tab-btn" data-shape="rect">Rectangular</button>
+          <button class="tab-btn" data-shape="cone">Cone Bottom</button>
+          <button class="tab-btn" data-shape="horiz">Horizontal Cylinder</button>
+        </div>
+
+        <div class="card" id="inputs-card">
+          <h2 id="inputs-title">Cylinder Dimensions</h2>
+          <div id="shape-fields"></div>
+
+          <div class="field" style="margin-top:1.25rem">
+            <label>Fill Level — <span id="fill-pct-label">100%</span></label>
+            <div class="fill-slider">
+              <input type="range" id="fill-pct" min="0" max="100" value="100" />
+              <div class="fill-label"><span>Empty</span><span>Full</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="results-card">
+          <h2>Results</h2>
+          <div id="results"><p class="empty-state">Enter dimensions above.</p></div>
+          <div class="fill-bar-outer"><div class="fill-bar-inner" id="fill-bar" style="width:100%"></div></div>
+        </div>
+
+        <p class="note">All dimensions in feet. Results in gallons and cubic feet. 1 cubic foot = 7.48052 gallons.</p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-bg"></div>
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <img src="../assets/brand/favicon/22favicon.png" alt="Title 22" class="footer-logo" />
+          <span>Title 22</span>
+        </div>
+        <p class="footer-copy">&copy; 2025 Title 22. Built for water treatment professionals.</p>
+      </div>
+    </footer>
+
+    <script>
+      const GAL_PER_CF = 7.48052;
+
+      const SHAPES = {
+        cylinder: {
+          title: 'Cylinder Dimensions',
+          fields: [
+            { id: 'diameter', label: 'Diameter', unit: 'ft' },
+            { id: 'height', label: 'Height (full)', unit: 'ft' },
+          ],
+          volume(f, fillPct) {
+            const r = f.diameter / 2;
+            const h = f.height * (fillPct / 100);
+            return Math.PI * r * r * h;
+          },
+          fullVolume(f) {
+            const r = f.diameter / 2;
+            return Math.PI * r * r * f.height;
+          }
+        },
+        rect: {
+          title: 'Rectangular Dimensions',
+          fields: [
+            { id: 'length', label: 'Length', unit: 'ft' },
+            { id: 'width', label: 'Width', unit: 'ft' },
+            { id: 'height', label: 'Height (full)', unit: 'ft' },
+          ],
+          volume(f, fillPct) {
+            return f.length * f.width * f.height * (fillPct / 100);
+          },
+          fullVolume(f) { return f.length * f.width * f.height; }
+        },
+        cone: {
+          title: 'Cone Bottom Dimensions',
+          fields: [
+            { id: 'diameter', label: 'Diameter', unit: 'ft' },
+            { id: 'cyl_height', label: 'Cylinder Height', unit: 'ft' },
+            { id: 'cone_height', label: 'Cone Height', unit: 'ft' },
+          ],
+          fullVolume(f) {
+            const r = f.diameter / 2;
+            const cylVol = Math.PI * r * r * f.cyl_height;
+            const coneVol = (Math.PI * r * r * f.cone_height) / 3;
+            return cylVol + coneVol;
+          },
+          volume(f, fillPct) {
+            // Simplified: proportional fill of full volume
+            return this.fullVolume(f) * (fillPct / 100);
+          }
+        },
+        horiz: {
+          title: 'Horizontal Cylinder Dimensions',
+          fields: [
+            { id: 'diameter', label: 'Diameter', unit: 'ft' },
+            { id: 'length', label: 'Length', unit: 'ft' },
+          ],
+          fullVolume(f) {
+            const r = f.diameter / 2;
+            return Math.PI * r * r * f.length;
+          },
+          volume(f, fillPct) {
+            // Horizontal fill uses circular segment formula
+            const r = f.diameter / 2;
+            const h = f.diameter * (fillPct / 100); // fill height
+            const d = h - r; // distance from center
+            const theta = Math.acos(Math.max(-1, Math.min(1, -d / r)));
+            const segArea = r * r * (theta - Math.sin(theta) * Math.cos(theta));
+            // when fill > 50%, use full minus the empty segment
+            const fillH = h;
+            const angle = Math.acos(Math.max(-1, Math.min(1, (r - fillH) / r)));
+            const area = r * r * (angle - Math.sin(angle) * Math.cos(angle));
+            const usedArea = Math.PI * r * r - area;
+            return usedArea * f.length;
+          }
+        }
+      };
+
+      let currentShape = 'cylinder';
+
+      function buildFields(shape) {
+        const container = document.getElementById('shape-fields');
+        document.getElementById('inputs-title').textContent = SHAPES[shape].title;
+        container.innerHTML = SHAPES[shape].fields.map(f => `
+          <div class="field">
+            <label>${f.label}</label>
+            <div class="input-row">
+              <input type="number" id="field-${f.id}" placeholder="0" min="0" step="any" />
+              <div class="unit-badge">${f.unit}</div>
+            </div>
+          </div>
+        `).join('');
+        container.querySelectorAll('input').forEach(el => el.addEventListener('input', calculate));
+      }
+
+      function getFields(shape) {
+        const vals = {};
+        for (const f of SHAPES[shape].fields) {
+          const v = parseFloat(document.getElementById('field-' + f.id)?.value);
+          vals[f.id] = v;
+          if (isNaN(v) || v <= 0) return null;
+        }
+        return vals;
+      }
+
+      function fmt(n) { return n.toLocaleString(undefined, { maximumFractionDigits: 1 }); }
+      function fmtSm(n) { return n.toLocaleString(undefined, { maximumFractionDigits: 3 }); }
+
+      function calculate() {
+        const fillPct = parseInt(document.getElementById('fill-pct').value);
+        document.getElementById('fill-pct-label').textContent = fillPct + '%';
+        document.getElementById('fill-bar').style.width = fillPct + '%';
+
+        const f = getFields(currentShape);
+        const resultsEl = document.getElementById('results');
+
+        if (!f) {
+          resultsEl.innerHTML = '<p class="empty-state">Enter dimensions above.</p>';
+          return;
+        }
+
+        const shape = SHAPES[currentShape];
+        const fullCF = shape.fullVolume(f);
+        const fillCF = shape.volume(f, fillPct);
+        const fullGal = fullCF * GAL_PER_CF;
+        const fillGal = fillCF * GAL_PER_CF;
+
+        resultsEl.innerHTML = `
+          <div class="result-row">
+            <span class="result-label">Volume at ${fillPct}% fill</span>
+            <span class="result-value">${fmt(fillGal)} <span class="result-unit">gal</span></span>
+          </div>
+          <div class="result-row">
+            <span class="result-label"></span>
+            <span class="result-value">${fmtSm(fillCF)} <span class="result-unit">ft³</span></span>
+          </div>
+          <div class="result-row" style="margin-top:0.5rem;padding-top:0.75rem;border-top:1px solid rgba(255,255,255,0.3)">
+            <span class="result-label">Full capacity</span>
+            <span class="result-value">${fmt(fullGal)} <span class="result-unit">gal</span></span>
+          </div>
+          <div class="result-row">
+            <span class="result-label"></span>
+            <span class="result-value">${fmtSm(fullCF)} <span class="result-unit">ft³</span></span>
+          </div>
+          ${fullGal >= 1000000 ? `<div class="result-row"><span class="result-label">Full capacity</span><span class="result-value">${(fullGal/1e6).toFixed(3)} <span class="result-unit">MG</span></span></div>` : ''}
+        `;
+      }
+
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentShape = btn.dataset.shape;
+          buildFields(currentShape);
+          calculate();
+        });
+      });
+
+      document.getElementById('fill-pct').addEventListener('input', calculate);
+
+      buildFields(currentShape);
+    </script>
+  </body>
+</html>

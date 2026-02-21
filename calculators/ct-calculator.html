@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CT Disinfection Credit Calculator | Title 22</title>
+    <link rel="icon" type="image/png" href="../assets/brand/favicon/22favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/static.css" />
+    <style>
+      .calc-page { max-width: 700px; margin: 0 auto; padding: 2rem 24px 4rem; }
+      .calc-header { margin-bottom: 2rem; }
+      .calc-header h1 { font-family: var(--font-serif); font-size: 1.75rem; color: var(--ink); margin-bottom: 0.4rem; }
+      .calc-header p { color: var(--ink-light); font-size: 0.95rem; }
+      .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-size: 0.875rem; font-weight: 500; margin-bottom: 1.5rem; }
+      .back-link:hover { opacity: 0.75; }
+
+      .card { background: var(--white); border: 1.5px solid #dde2ed; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.25rem; }
+      .card h2 { font-family: var(--font-serif); font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 1rem; }
+      .field { margin-bottom: 1rem; }
+      .field label { display: block; font-size: 0.875rem; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+      .field .hint { font-size: 0.75rem; color: var(--ink-lighter); margin-top: 3px; }
+      .input-row { display: flex; gap: 8px; }
+      .input-row input { flex: 1; padding: 10px 14px; border: 1.5px solid #dde2ed; border-radius: 8px; font-family: var(--font-sans); font-size: 1rem; color: var(--ink); background: var(--white); }
+      .input-row input:focus { outline: none; border-color: var(--accent); }
+      .input-row select { flex: 1; padding: 10px 14px; border: 1.5px solid #dde2ed; border-radius: 8px; font-family: var(--font-sans); font-size: 0.9rem; color: var(--ink); background: var(--white); cursor: pointer; }
+      .input-row select:focus { outline: none; border-color: var(--accent); }
+      .unit-badge { display: flex; align-items: center; padding: 10px 12px; background: #f0f4f8; border-radius: 8px; font-size: 0.85rem; font-weight: 600; color: var(--ink-light); white-space: nowrap; }
+
+      .results-card { border-radius: 12px; padding: 1.5rem; margin-top: 1.5rem; }
+      .results-card.pass { background: #276749; color: var(--white); }
+      .results-card.fail { background: #9b2335; color: var(--white); }
+      .results-card.neutral { background: var(--accent); color: var(--white); }
+      .results-card h2 { font-family: var(--font-serif); font-size: 1rem; font-weight: 700; color: rgba(255,255,255,0.8); margin-bottom: 1rem; }
+      .result-row { display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.15); }
+      .result-row:last-child { border-bottom: none; }
+      .result-label { font-size: 0.875rem; color: rgba(255,255,255,0.85); }
+      .result-value { font-size: 1.25rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+      .result-value .result-unit { font-size: 0.8rem; font-weight: 500; opacity: 0.8; margin-left: 4px; }
+      .pass-badge { font-size: 1rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; border: 2px solid rgba(255,255,255,0.5); display: inline-block; margin-bottom: 0.75rem; }
+      .empty-state { color: rgba(255,255,255,0.6); font-size: 0.9rem; text-align: center; padding: 1rem 0; }
+
+      /* CT requirement table */
+      .ref-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; margin-top: 0.75rem; }
+      .ref-table th { text-align: left; padding: 6px 10px; background: #f0f4f8; font-weight: 600; color: var(--ink); border-bottom: 1.5px solid #dde2ed; }
+      .ref-table td { padding: 6px 10px; border-bottom: 1px solid #edf2f7; color: var(--ink-light); }
+      .ref-table tr:last-child td { border-bottom: none; }
+      .ref-table tr.active-row td { background: #ebf4ff; color: var(--ink); font-weight: 600; }
+
+      .note { font-size: 0.8rem; color: var(--ink-lighter); margin-top: 1.5rem; line-height: 1.6; }
+      .disclaimer { font-size: 0.75rem; color: var(--ink-lighter); background: #fff8e1; border: 1px solid #f6e05e; border-radius: 8px; padding: 10px 14px; margin-top: 1rem; line-height: 1.5; }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header-inner">
+        <a href="/" class="logo">
+          <img src="../assets/brand/favicon/22favicon.png" alt="Title 22" class="logo-img" />
+          <span class="logo-text">Title 22</span>
+        </a>
+        <nav class="nav">
+          <a href="../tools.html" class="nav-link active">Tools</a>
+          <a href="../research.html" class="nav-link">Research</a>
+          <a href="../resume.html" class="nav-link">Resume</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <div class="calc-page">
+        <a href="../tools.html" class="back-link">← Back to Tools</a>
+
+        <div class="calc-header">
+          <h1>CT Disinfection Credit Calculator</h1>
+          <p>Calculate CT achieved and compare against required CT for Giardia inactivation (Surface Water Treatment Rule).</p>
+        </div>
+
+        <div class="card">
+          <h2>Operating Conditions</h2>
+          <div class="field">
+            <label>Disinfectant Residual (C)</label>
+            <div class="input-row">
+              <input type="number" id="residual" placeholder="e.g. 1.2" min="0" step="any" />
+              <div class="unit-badge">mg/L</div>
+            </div>
+            <p class="hint">Lowest residual measured at the outlet of the contact basin (10th percentile or worst-case)</p>
+          </div>
+          <div class="field">
+            <label>Contact Time (T)</label>
+            <div class="input-row">
+              <input type="number" id="contact-time" placeholder="e.g. 45" min="0" step="any" />
+              <div class="unit-badge">minutes</div>
+            </div>
+            <p class="hint">T₁₀ — time for 10% of tracer to pass through (or calculated from baffling factor)</p>
+          </div>
+          <div class="field">
+            <label>Water Temperature</label>
+            <div class="input-row">
+              <input type="number" id="temp" placeholder="e.g. 12" min="0.5" max="25" step="0.5" />
+              <div class="unit-badge">°C</div>
+            </div>
+          </div>
+          <div class="field">
+            <label>pH</label>
+            <div class="input-row">
+              <input type="number" id="ph" placeholder="e.g. 7.5" min="6" max="9" step="0.5" />
+              <div class="unit-badge">pH units</div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Disinfectant Type</label>
+            <div class="input-row">
+              <select id="disinfectant">
+                <option value="free">Free chlorine (Cl₂)</option>
+                <option value="chloramine">Chloramines (CT tables vary)</option>
+                <option value="chlorine_dioxide">Chlorine dioxide</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label>Target Log Inactivation</label>
+            <div class="input-row">
+              <select id="log-target">
+                <option value="0.5">0.5-log Giardia</option>
+                <option value="1.0">1.0-log Giardia</option>
+                <option value="1.5">1.5-log Giardia</option>
+                <option value="2.0" selected>2.0-log Giardia (SWTR minimum after filtration)</option>
+                <option value="2.5">2.5-log Giardia</option>
+                <option value="3.0">3.0-log Giardia</option>
+              </select>
+            </div>
+            <p class="hint">After 2.5-log filter credit, minimum 0.5-log disinfection credit required for 3-log total</p>
+          </div>
+        </div>
+
+        <div class="results-card neutral" id="results-card">
+          <div id="results"><p class="empty-state">Enter operating conditions above.</p></div>
+        </div>
+
+        <div class="card" style="margin-top:1.5rem">
+          <h2>Free Chlorine CT Requirements — Giardia (EPA SWTR)</h2>
+          <p style="font-size:0.8rem;color:var(--ink-lighter);margin-bottom:0.75rem">CT values (mg·min/L) required for log inactivation at pH 6–9. Source: EPA Guidance Manual.</p>
+          <div style="overflow-x:auto">
+            <table class="ref-table" id="ct-table">
+              <thead>
+                <tr>
+                  <th>Temp</th>
+                  <th>pH 6</th>
+                  <th>pH 6.5</th>
+                  <th>pH 7</th>
+                  <th>pH 7.5</th>
+                  <th>pH 8</th>
+                  <th>pH 8.5</th>
+                  <th>pH 9</th>
+                </tr>
+              </thead>
+              <tbody id="ct-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <p class="disclaimer">
+          ⚠ This calculator is a reference tool only. CT requirements must be verified against your state primacy agency's approved CT tables and your facility's permits. Regulatory CT requirements may differ from EPA defaults. Always consult your state drinking water program for compliance determinations.
+        </p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-bg"></div>
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <img src="../assets/brand/favicon/22favicon.png" alt="Title 22" class="footer-logo" />
+          <span>Title 22</span>
+        </div>
+        <p class="footer-copy">&copy; 2025 Title 22. Built for water treatment professionals.</p>
+      </div>
+    </footer>
+
+    <script>
+      // EPA SWTR CT tables for free chlorine — Giardia inactivation
+      // CT values (mg·min/L) at 1-log inactivation, indexed by [temp_C][pH]
+      // Source: EPA Guidance Manual for Compliance with SWTR, Table 3-1
+      // Temps: 0.5, 5, 10, 15, 20, 25 (°C)
+      // pH: 6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9.0
+
+      const CT_1LOG_FREE = {
+        //  °C :  [pH6,  pH6.5, pH7,  pH7.5, pH8,  pH8.5, pH9]
+        0.5: [49,   74,   99,   148,  197,   277,   397],
+        5:   [39,   58,   78,   117,  156,   219,   313],
+        10:  [29,   44,   59,   88,   117,   165,   236],
+        15:  [19,   29,   39,   58,   78,    109,   157],
+        20:  [15,   22,   29,   44,   59,    83,    118],
+        25:  [11,   16,   22,   33,   44,    62,    88],
+      };
+
+      const TEMPS = [0.5, 5, 10, 15, 20, 25];
+      const PHS = [6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9.0];
+
+      function interpolateCT(tempC, ph, logTarget) {
+        // Clamp to table bounds
+        const tClamped = Math.max(0.5, Math.min(25, tempC));
+        const phClamped = Math.max(6.0, Math.min(9.0, ph));
+
+        // Find bounding temps
+        let t1 = TEMPS[0], t2 = TEMPS[0];
+        for (let i = 0; i < TEMPS.length - 1; i++) {
+          if (tClamped >= TEMPS[i] && tClamped <= TEMPS[i+1]) {
+            t1 = TEMPS[i]; t2 = TEMPS[i+1]; break;
+          }
+        }
+        if (tClamped >= 25) { t1 = 25; t2 = 25; }
+
+        // Find bounding pH indices
+        let phIdx1 = 0, phIdx2 = 0;
+        for (let i = 0; i < PHS.length - 1; i++) {
+          if (phClamped >= PHS[i] && phClamped <= PHS[i+1]) {
+            phIdx1 = i; phIdx2 = i+1; break;
+          }
+        }
+        if (phClamped >= 9.0) { phIdx1 = 6; phIdx2 = 6; }
+
+        // Bilinear interpolation
+        function getVal(t, phIdx) {
+          return CT_1LOG_FREE[t][phIdx];
+        }
+
+        const tFrac = t1 === t2 ? 0 : (tClamped - t1) / (t2 - t1);
+        const phFrac = phIdx1 === phIdx2 ? 0 : (phClamped - PHS[phIdx1]) / (PHS[phIdx2] - PHS[phIdx1]);
+
+        const ct11 = getVal(t1, phIdx1);
+        const ct12 = getVal(t1, phIdx2);
+        const ct21 = getVal(t2, phIdx1);
+        const ct22 = getVal(t2, phIdx2);
+
+        // Higher temp = lower CT requirement; table decreases with temp
+        // Interpolate temp (use inverse - lower temp gives higher CT)
+        const ctAtT1 = ct11 + (ct12 - ct11) * phFrac;
+        const ctAtT2 = ct21 + (ct22 - ct21) * phFrac;
+        const ct1Log = ctAtT1 + (ctAtT2 - ctAtT1) * tFrac;
+
+        return ct1Log * logTarget;
+      }
+
+      function buildTable(activeTemp, activePh, logTarget) {
+        const tbody = document.getElementById('ct-table-body');
+        const phIdx = PHS.reduce((best, p, i) => Math.abs(p - activePh) < Math.abs(PHS[best] - activePh) ? i : best, 0);
+        const tempBest = TEMPS.reduce((best, t) => Math.abs(t - activeTemp) < Math.abs(best - activeTemp) ? t : best, TEMPS[0]);
+
+        tbody.innerHTML = TEMPS.map(t => {
+          const isActiveTemp = t === tempBest;
+          return `<tr class="${isActiveTemp ? 'active-row' : ''}">
+            <td>${t}°C</td>
+            ${CT_1LOG_FREE[t].map((v, i) => `<td style="${i === phIdx && isActiveTemp ? 'color:var(--accent);font-weight:700' : ''}">${(v * logTarget).toFixed(1)}</td>`).join('')}
+          </tr>`;
+        }).join('');
+      }
+
+      function calculate() {
+        const C = parseFloat(document.getElementById('residual').value);
+        const T = parseFloat(document.getElementById('contact-time').value);
+        const temp = parseFloat(document.getElementById('temp').value);
+        const ph = parseFloat(document.getElementById('ph').value);
+        const disinfectant = document.getElementById('disinfectant').value;
+        const logTarget = parseFloat(document.getElementById('log-target').value);
+
+        buildTable(isNaN(temp) ? 10 : temp, isNaN(ph) ? 7.0 : ph, logTarget);
+
+        const resultsEl = document.getElementById('results');
+        const card = document.getElementById('results-card');
+
+        if (isNaN(C) || isNaN(T) || isNaN(temp) || isNaN(ph)) {
+          resultsEl.innerHTML = '<p class="empty-state">Enter all fields above.</p>';
+          card.className = 'results-card neutral';
+          return;
+        }
+
+        const achieved = C * T;
+
+        if (disinfectant !== 'free') {
+          resultsEl.innerHTML = `
+            <div class="result-row">
+              <span class="result-label">CT Achieved</span>
+              <span class="result-value">${achieved.toFixed(1)} <span class="result-unit">mg·min/L</span></span>
+            </div>
+            <p style="margin-top:1rem;font-size:0.85rem;opacity:0.85">Required CT tables for ${disinfectant === 'chloramine' ? 'chloramines' : 'chlorine dioxide'} differ significantly from free chlorine. Consult your state-approved CT tables for this disinfectant type.</p>
+          `;
+          card.className = 'results-card neutral';
+          return;
+        }
+
+        const required = interpolateCT(temp, ph, logTarget);
+        const pct = (achieved / required) * 100;
+        const pass = achieved >= required;
+
+        card.className = `results-card ${pass ? 'pass' : 'fail'}`;
+
+        resultsEl.innerHTML = `
+          <div class="pass-badge">${pass ? '✓ CREDIT MET' : '✗ CREDIT NOT MET'}</div>
+          <div class="result-row">
+            <span class="result-label">CT Achieved (C × T)</span>
+            <span class="result-value">${achieved.toFixed(1)} <span class="result-unit">mg·min/L</span></span>
+          </div>
+          <div class="result-row">
+            <span class="result-label">CT Required (${logTarget}-log at ${temp}°C, pH ${ph})</span>
+            <span class="result-value">${required.toFixed(1)} <span class="result-unit">mg·min/L</span></span>
+          </div>
+          <div class="result-row">
+            <span class="result-label">% of requirement met</span>
+            <span class="result-value">${pct.toFixed(0)}<span class="result-unit">%</span></span>
+          </div>
+          ${!pass ? `<div class="result-row"><span class="result-label">Deficit</span><span class="result-value">${(required - achieved).toFixed(1)} <span class="result-unit">mg·min/L short</span></span></div>` : ''}
+          ${pass && achieved > required * 1.5 ? `<div style="margin-top:0.75rem;font-size:0.8rem;opacity:0.8">Achieved CT is ${((achieved/required - 1)*100).toFixed(0)}% above requirement — good margin.</div>` : ''}
+        `;
+      }
+
+      ['residual','contact-time','temp','ph'].forEach(id => {
+        document.getElementById(id).addEventListener('input', calculate);
+      });
+      ['disinfectant','log-target'].forEach(id => {
+        document.getElementById(id).addEventListener('change', calculate);
+      });
+
+      buildTable(10, 7.0, 2.0);
+    </script>
+  </body>
+</html>

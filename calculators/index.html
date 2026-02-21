@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculators | Title 22</title>
+    <link rel="icon" type="image/png" href="../assets/brand/favicon/22favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/static.css" />
+    <style>
+      .calc-index { max-width: 700px; margin: 0 auto; padding: 2rem 24px 4rem; }
+      .calc-index h1 { font-family: var(--font-serif); font-size: 1.75rem; color: var(--ink); margin-bottom: 0.4rem; }
+      .calc-index .subtitle { color: var(--ink-light); font-size: 0.95rem; margin-bottom: 2rem; }
+      .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-size: 0.875rem; font-weight: 500; margin-bottom: 1.5rem; }
+      .back-link:hover { opacity: 0.75; }
+
+      .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+      @media (max-width: 560px) { .calc-grid { grid-template-columns: 1fr; } }
+
+      .calc-card { display: block; background: var(--white); border: 1.5px solid #dde2ed; border-radius: 12px; padding: 1.25rem 1.25rem 1rem; text-decoration: none; color: inherit; transition: border-color 0.15s, box-shadow 0.15s; }
+      .calc-card:hover { border-color: var(--accent); box-shadow: 0 4px 16px rgba(43,108,176,0.1); opacity: 1; }
+      .calc-card .tag { display: inline-block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); background: #ebf4ff; padding: 2px 8px; border-radius: 10px; margin-bottom: 8px; }
+      .calc-card h3 { font-family: var(--font-serif); font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+      .calc-card p { font-size: 0.85rem; color: var(--ink-light); line-height: 1.5; }
+      .calc-card .arrow { font-size: 0.8rem; color: var(--accent); font-weight: 600; margin-top: 10px; display: block; }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header-inner">
+        <a href="/" class="logo">
+          <img src="../assets/brand/favicon/22favicon.png" alt="Title 22" class="logo-img" />
+          <span class="logo-text">Title 22</span>
+        </a>
+        <nav class="nav">
+          <a href="../tools.html" class="nav-link active">Tools</a>
+          <a href="../research.html" class="nav-link">Research</a>
+          <a href="../resume.html" class="nav-link">Resume</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <div class="calc-index">
+        <a href="../tools.html" class="back-link">← Back to Tools</a>
+        <h1>Calculators</h1>
+        <p class="subtitle">Field-ready calculators for water treatment and facility operations.</p>
+
+        <div class="calc-grid">
+          <a href="flow-unit-converter.html" class="calc-card">
+            <span class="tag">Flow</span>
+            <h3>Flow Unit Converter</h3>
+            <p>Convert between GPM, MGD, GPD, CFS, L/s, m³/hr, and more — all at once.</p>
+            <span class="arrow">Open →</span>
+          </a>
+          <a href="chlorine-dose.html" class="calc-card">
+            <span class="tag">Chemical Feed</span>
+            <h3>Chlorine Dose Calculator</h3>
+            <p>Flow + target dose → lbs/day, GPD, GPH, mL/min. Works for gas, liquid hypo, and granular.</p>
+            <span class="arrow">Open →</span>
+          </a>
+          <a href="tank-volume.html" class="calc-card">
+            <span class="tag">Volume</span>
+            <h3>Tank Volume Calculator</h3>
+            <p>Cylinder, rectangular, cone bottom, horizontal — full or partial fill with a drag slider.</p>
+            <span class="arrow">Open →</span>
+          </a>
+          <a href="ct-calculator.html" class="calc-card">
+            <span class="tag">Compliance</span>
+            <h3>CT Disinfection Credit</h3>
+            <p>CT achieved vs. required for Giardia inactivation. Built-in EPA SWTR CT tables with pass/fail.</p>
+            <span class="arrow">Open →</span>
+          </a>
+          <a href="chemical-dilution.html" class="calc-card">
+            <span class="tag">Chemical</span>
+            <h3>Chemical Dilution</h3>
+            <p>C₁V₁ = C₂V₂ solver — find stock volume, water to add, or resulting concentration. Presets included.</p>
+            <span class="arrow">Open →</span>
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-bg"></div>
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <img src="../assets/brand/favicon/22favicon.png" alt="Title 22" class="footer-logo" />
+          <span>Title 22</span>
+        </div>
+        <p class="footer-copy">&copy; 2025 Title 22. Built for water treatment professionals.</p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chemical Dilution Calculator | Title 22</title>
+    <link rel="icon" type="image/png" href="../assets/brand/favicon/22favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/static.css" />
+    <style>
+      .calc-page { max-width: 660px; margin: 0 auto; padding: 2rem 24px 4rem; }
+      .calc-header { margin-bottom: 2rem; }
+      .calc-header h1 { font-family: var(--font-serif); font-size: 1.75rem; color: var(--ink); margin-bottom: 0.4rem; }
+      .calc-header p { color: var(--ink-light); font-size: 0.95rem; }
+      .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-size: 0.875rem; font-weight: 500; margin-bottom: 1.5rem; }
+      .back-link:hover { opacity: 0.75; }
+
+      .mode-row { display: flex; gap: 8px; margin-bottom: 1.5rem; }
+      .mode-btn { flex: 1; padding: 10px; border-radius: 8px; border: 1.5px solid #dde2ed; background: var(--white); font-family: var(--font-sans); font-size: 0.875rem; font-weight: 600; color: var(--ink-light); cursor: pointer; text-align: center; transition: all 0.15s; }
+      .mode-btn.active { background: var(--accent); border-color: var(--accent); color: var(--white); }
+
+      .card { background: var(--white); border: 1.5px solid #dde2ed; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.25rem; }
+      .card h2 { font-family: var(--font-serif); font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 1rem; }
+      .field { margin-bottom: 1rem; }
+      .field label { display: block; font-size: 0.875rem; font-weight: 600; color: var(--ink); margin-bottom: 5px; }
+      .field .hint { font-size: 0.75rem; color: var(--ink-lighter); margin-top: 3px; }
+      .input-row { display: flex; gap: 8px; }
+      .input-row input { flex: 1; padding: 10px 14px; border: 1.5px solid #dde2ed; border-radius: 8px; font-family: var(--font-sans); font-size: 1rem; color: var(--ink); background: var(--white); }
+      .input-row input:focus { outline: none; border-color: var(--accent); }
+      .input-row select { padding: 10px 14px; border: 1.5px solid #dde2ed; border-radius: 8px; font-family: var(--font-sans); font-size: 0.9rem; color: var(--ink); background: var(--white); cursor: pointer; }
+      .input-row select:focus { outline: none; border-color: var(--accent); }
+      .unit-badge { display: flex; align-items: center; padding: 10px 12px; background: #f0f4f8; border-radius: 8px; font-size: 0.85rem; font-weight: 600; color: var(--ink-light); white-space: nowrap; }
+
+      .results-card { background: var(--accent); border-radius: 12px; padding: 1.5rem; margin-top: 1.5rem; color: var(--white); }
+      .results-card h2 { font-family: var(--font-serif); font-size: 1rem; font-weight: 700; color: rgba(255,255,255,0.8); margin-bottom: 1rem; }
+      .result-row { display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.15); }
+      .result-row:last-child { border-bottom: none; }
+      .result-label { font-size: 0.875rem; color: rgba(255,255,255,0.85); }
+      .result-value { font-size: 1.25rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+      .result-value .result-unit { font-size: 0.8rem; font-weight: 500; opacity: 0.8; margin-left: 4px; }
+      .empty-state { color: rgba(255,255,255,0.6); font-size: 0.9rem; text-align: center; padding: 1rem 0; }
+
+      .mix-visual { display: flex; align-items: center; gap: 12px; background: #f0f4f8; border-radius: 10px; padding: 14px 16px; margin-top: 1rem; font-size: 0.85rem; font-weight: 600; color: var(--ink); }
+      .mix-block { flex: 1; background: var(--white); border-radius: 8px; padding: 10px; text-align: center; border: 1.5px solid #dde2ed; }
+      .mix-block .vol { font-size: 1.1rem; font-weight: 700; color: var(--accent); }
+      .mix-block .lbl { font-size: 0.75rem; color: var(--ink-lighter); }
+      .mix-plus { font-size: 1.25rem; color: var(--ink-lighter); }
+      .mix-equals { font-size: 1.25rem; color: var(--ink-lighter); }
+
+      /* Quick reference presets */
+      .presets { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1rem; }
+      .preset-btn { padding: 5px 12px; border-radius: 20px; border: 1.5px solid #dde2ed; background: var(--white); font-family: var(--font-sans); font-size: 0.8rem; font-weight: 500; color: var(--ink-light); cursor: pointer; transition: all 0.15s; }
+      .preset-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+      .note { font-size: 0.8rem; color: var(--ink-lighter); margin-top: 1.5rem; line-height: 1.6; }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header-inner">
+        <a href="/" class="logo">
+          <img src="../assets/brand/favicon/22favicon.png" alt="Title 22" class="logo-img" />
+          <span class="logo-text">Title 22</span>
+        </a>
+        <nav class="nav">
+          <a href="../tools.html" class="nav-link active">Tools</a>
+          <a href="../research.html" class="nav-link">Research</a>
+          <a href="../resume.html" class="nav-link">Resume</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <div class="calc-page">
+        <a href="../tools.html" class="back-link">← Back to Tools</a>
+
+        <div class="calc-header">
+          <h1>Chemical Dilution Calculator</h1>
+          <p>Solve for stock volume, water volume, or target concentration using C₁V₁ = C₂V₂.</p>
+        </div>
+
+        <div class="mode-row">
+          <button class="mode-btn active" data-mode="find-stock">Find stock volume needed</button>
+          <button class="mode-btn" data-mode="find-conc">Find resulting concentration</button>
+          <button class="mode-btn" data-mode="find-water">Find water to add</button>
+        </div>
+
+        <div class="card">
+          <h2>Quick Presets</h2>
+          <div class="presets">
+            <button class="preset-btn" data-c1="12.5" data-u1="pct" data-c2="1" data-u2="pct">12.5% → 1% hypo</button>
+            <button class="preset-btn" data-c1="12.5" data-u1="pct" data-c2="0.5" data-u2="pct">12.5% → 0.5%</button>
+            <button class="preset-btn" data-c1="6" data-u1="pct" data-c2="1" data-u2="pct">6% bleach → 1%</button>
+            <button class="preset-btn" data-c1="100" data-u1="pct" data-c2="10" data-u2="pct">100% → 10%</button>
+            <button class="preset-btn" data-c1="1000" data-u1="mgl" data-c2="10" data-u2="mgl">1000 mg/L → 10 mg/L</button>
+            <button class="preset-btn" data-c1="50000" data-u1="mgl" data-c2="100" data-u2="mgl">5% → 100 mg/L</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 id="card-title">Find: How much stock do I need?</h2>
+
+          <div class="field">
+            <label>Stock Concentration (C₁)</label>
+            <div class="input-row">
+              <input type="number" id="c1" placeholder="e.g. 12.5" min="0" step="any" />
+              <select id="u1">
+                <option value="pct">% (percent)</option>
+                <option value="mgl">mg/L</option>
+                <option value="gpl">g/L</option>
+                <option value="ppm">ppm</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field" id="v1-field">
+            <label>Stock Volume Available (V₁) <span style="font-weight:400;color:var(--ink-lighter)">(optional — for ratio check)</span></label>
+            <div class="input-row">
+              <input type="number" id="v1" placeholder="e.g. 5" min="0" step="any" />
+              <select id="uv1">
+                <option value="gal">gallons</option>
+                <option value="qt">quarts</option>
+                <option value="L">liters</option>
+                <option value="mL">mL</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Target Concentration (C₂)</label>
+            <div class="input-row">
+              <input type="number" id="c2" placeholder="e.g. 1.0" min="0" step="any" />
+              <select id="u2">
+                <option value="pct">% (percent)</option>
+                <option value="mgl">mg/L</option>
+                <option value="gpl">g/L</option>
+                <option value="ppm">ppm</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label id="solve-label">Final Volume Needed (V₂)</label>
+            <div class="input-row">
+              <input type="number" id="v2" placeholder="e.g. 10" min="0" step="any" />
+              <select id="uv2">
+                <option value="gal">gallons</option>
+                <option value="qt">quarts</option>
+                <option value="L">liters</option>
+                <option value="mL">mL</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="results-card">
+          <h2>Results</h2>
+          <div id="results"><p class="empty-state">Enter concentrations and volume above.</p></div>
+        </div>
+
+        <p class="note">
+          Formula: C₁V₁ = C₂V₂ — concentrations must be in compatible units (both % or both mg/L).<br>
+          Water to add = Final Volume (V₂) − Stock Volume (V₁ solved).<br>
+          Does not account for density differences of concentrated solutions — for precision work, measure by mass.
+        </p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-bg"></div>
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <img src="../assets/brand/favicon/22favicon.png" alt="Title 22" class="footer-logo" />
+          <span>Title 22</span>
+        </div>
+        <p class="footer-copy">&copy; 2025 Title 22. Built for water treatment professionals.</p>
+      </div>
+    </footer>
+
+    <script>
+      let mode = 'find-stock';
+
+      // Convert concentration to common unit (percent)
+      function toPct(val, unit) {
+        if (unit === 'pct') return val;
+        if (unit === 'mgl') return val / 10000; // 1% = 10,000 mg/L
+        if (unit === 'gpl') return val / 10;    // 1% = 10 g/L
+        if (unit === 'ppm') return val / 10000; // ppm ≈ mg/L for dilute solutions
+        return val;
+      }
+
+      // Convert volume to gallons
+      function toGal(val, unit) {
+        if (unit === 'gal') return val;
+        if (unit === 'qt')  return val / 4;
+        if (unit === 'L')   return val * 0.264172;
+        if (unit === 'mL')  return val * 0.000264172;
+        return val;
+      }
+
+      // Convert gallons back to display unit
+      function fromGal(val, unit) {
+        if (unit === 'gal') return val;
+        if (unit === 'qt')  return val * 4;
+        if (unit === 'L')   return val / 0.264172;
+        if (unit === 'mL')  return val / 0.000264172;
+        return val;
+      }
+
+      function unitLabel(unit) {
+        return unit;
+      }
+
+      function fmt(n) {
+        if (n >= 100) return n.toLocaleString(undefined, { maximumFractionDigits: 2 });
+        if (n >= 1)   return n.toLocaleString(undefined, { maximumFractionDigits: 3 });
+        return n.toLocaleString(undefined, { maximumFractionDigits: 4 });
+      }
+
+      function calculate() {
+        const c1Raw = parseFloat(document.getElementById('c1').value);
+        const c2Raw = parseFloat(document.getElementById('c2').value);
+        const v2Raw = parseFloat(document.getElementById('v2').value);
+        const v1Raw = parseFloat(document.getElementById('v1').value);
+        const u1 = document.getElementById('u1').value;
+        const u2 = document.getElementById('u2').value;
+        const uv1 = document.getElementById('uv1').value;
+        const uv2 = document.getElementById('uv2').value;
+
+        const resultsEl = document.getElementById('results');
+
+        if (mode === 'find-stock') {
+          if (isNaN(c1Raw) || isNaN(c2Raw) || isNaN(v2Raw)) {
+            resultsEl.innerHTML = '<p class="empty-state">Enter C₁, C₂, and final volume (V₂).</p>';
+            return;
+          }
+          const c1 = toPct(c1Raw, u1);
+          const c2 = toPct(c2Raw, u2);
+          if (c2 >= c1) {
+            resultsEl.innerHTML = '<p class="empty-state">Target concentration must be lower than stock concentration.</p>';
+            return;
+          }
+          const v2Gal = toGal(v2Raw, uv2);
+          const v1Gal = (c2 * v2Gal) / c1;
+          const waterGal = v2Gal - v1Gal;
+          const v1Display = fromGal(v1Gal, uv1);
+          const waterDisplay = fromGal(waterGal, uv1);
+
+          resultsEl.innerHTML = `
+            <div class="result-row">
+              <span class="result-label">Stock to add (V₁)</span>
+              <span class="result-value">${fmt(v1Display)} <span class="result-unit">${uv1}</span></span>
+            </div>
+            <div class="result-row">
+              <span class="result-label">Water to add</span>
+              <span class="result-value">${fmt(waterDisplay)} <span class="result-unit">${uv1}</span></span>
+            </div>
+            <div class="result-row">
+              <span class="result-label">Total final volume</span>
+              <span class="result-value">${fmt(v2Raw)} <span class="result-unit">${uv2}</span></span>
+            </div>
+            <div class="result-row">
+              <span class="result-label">Dilution ratio</span>
+              <span class="result-value">1 : ${fmt(waterGal / v1Gal)}</span>
+            </div>
+          `;
+        }
+
+        else if (mode === 'find-conc') {
+          // Know V1 (stock) and V2 (final), find C2
+          if (isNaN(c1Raw) || isNaN(v1Raw) || isNaN(v2Raw)) {
+            resultsEl.innerHTML = '<p class="empty-state">Enter C₁, stock volume (V₁), and final volume (V₂).</p>';
+            return;
+          }
+          const c1 = toPct(c1Raw, u1);
+          const v1Gal = toGal(v1Raw, uv1);
+          const v2Gal = toGal(v2Raw, uv2);
+          if (v1Gal >= v2Gal) {
+            resultsEl.innerHTML = '<p class="empty-state">Final volume must be greater than stock volume.</p>';
+            return;
+          }
+          const c2Pct = (c1 * v1Gal) / v2Gal;
+          const c2Mgl = c2Pct * 10000;
+          const waterGal = v2Gal - v1Gal;
+          const waterDisplay = fromGal(waterGal, uv1);
+
+          resultsEl.innerHTML = `
+            <div class="result-row">
+              <span class="result-label">Resulting concentration</span>
+              <span class="result-value">${fmt(c2Pct)} <span class="result-unit">%</span></span>
+            </div>
+            <div class="result-row">
+              <span class="result-label"></span>
+              <span class="result-value">${fmt(c2Mgl)} <span class="result-unit">mg/L</span></span>
+            </div>
+            <div class="result-row">
+              <span class="result-label">Water needed to reach final volume</span>
+              <span class="result-value">${fmt(waterDisplay)} <span class="result-unit">${uv1}</span></span>
+            </div>
+          `;
+        }
+
+        else if (mode === 'find-water') {
+          // Know V1 (stock) and C2 (target), find how much water total (V2) or water to add
+          if (isNaN(c1Raw) || isNaN(c2Raw) || isNaN(v1Raw)) {
+            resultsEl.innerHTML = '<p class="empty-state">Enter C₁, C₂, and stock volume (V₁).</p>';
+            return;
+          }
+          const c1 = toPct(c1Raw, u1);
+          const c2 = toPct(c2Raw, u2);
+          if (c2 >= c1) {
+            resultsEl.innerHTML = '<p class="empty-state">Target concentration must be lower than stock.</p>';
+            return;
+          }
+          const v1Gal = toGal(v1Raw, uv1);
+          const v2Gal = (c1 * v1Gal) / c2;
+          const waterGal = v2Gal - v1Gal;
+          const v2Display = fromGal(v2Gal, uv2);
+          const waterDisplay = fromGal(waterGal, uv2);
+
+          resultsEl.innerHTML = `
+            <div class="result-row">
+              <span class="result-label">Water to add</span>
+              <span class="result-value">${fmt(waterDisplay)} <span class="result-unit">${uv2}</span></span>
+            </div>
+            <div class="result-row">
+              <span class="result-label">Total final volume</span>
+              <span class="result-value">${fmt(v2Display)} <span class="result-unit">${uv2}</span></span>
+            </div>
+            <div class="result-row">
+              <span class="result-label">Dilution ratio (stock : water)</span>
+              <span class="result-value">1 : ${fmt(waterGal / v1Gal)}</span>
+            </div>
+          `;
+        }
+      }
+
+      function setMode(m) {
+        mode = m;
+        document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === m));
+
+        const titles = {
+          'find-stock': 'Find: How much stock do I need?',
+          'find-conc':  'Find: What concentration will I get?',
+          'find-water': 'Find: How much water do I need to add?',
+        };
+        const solveLabels = {
+          'find-stock': 'Final Volume Needed (V₂)',
+          'find-conc':  'Final Volume (V₂)',
+          'find-water': 'Final Volume — for reference (V₂)',
+        };
+        document.getElementById('card-title').textContent = titles[m];
+        document.getElementById('solve-label').textContent = solveLabels[m];
+
+        // Show/hide V1 field
+        document.getElementById('v1-field').style.display = (m === 'find-stock') ? 'none' : 'block';
+
+        calculate();
+      }
+
+      document.querySelectorAll('.mode-btn').forEach(btn => {
+        btn.addEventListener('click', () => setMode(btn.dataset.mode));
+      });
+
+      document.querySelectorAll('.preset-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.getElementById('c1').value = btn.dataset.c1;
+          document.getElementById('u1').value = btn.dataset.u1;
+          document.getElementById('c2').value = btn.dataset.c2;
+          document.getElementById('u2').value = btn.dataset.u2;
+          calculate();
+        });
+      });
+
+      ['c1','c2','v1','v2'].forEach(id => document.getElementById(id).addEventListener('input', calculate));
+      ['u1','u2','uv1','uv2'].forEach(id => document.getElementById(id).addEventListener('change', calculate));
+
+      // Hide V1 field initially (find-stock mode doesn't need it)
+      document.getElementById('v1-field').style.display = 'none';
+    </script>
+  </body>
+</html>
