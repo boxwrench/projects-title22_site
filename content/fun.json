@@ -1,28 +1,32 @@
 {
   "items": [
     {
-      "id": "water-tower-spotter",
-      "title": "Water Tower Spotter",
-      "blurb": "Photo log of distinct tower shapes and paint schemes.",
-      "description": "Personal field collection from road trips.",
-      "thumbnail": "assets/cards/optimized/overflow_header.png",
-      "url": "#"
+      "id": "bass-hole",
+      "title": "Bass Hole — Fish Clicker",
+      "blurb": "CYD/ESP32 fish clicker game for the cheap little touchscreen devboard.",
+      "description": "Runs on the ESP32 CYD. Tap fish. Earn points. That's it.",
+      "url": "https://github.com/boxwrench/Bass-Hole"
     },
     {
-      "id": "hydrant-color-notes",
-      "title": "Hydrant Color Notes",
-      "blurb": "Quick visual cheat sheet for common flow-capacity color systems.",
-      "description": "Reference list by region and utility standard.",
-      "thumbnail": "",
-      "url": "#"
+      "id": "canine-cleanup",
+      "title": "Canine Cleanup — Clicker Game",
+      "blurb": "Progressive clicker game for a fictional dog cleanup service.",
+      "description": "Web-based idle/clicker with upgrade loop. A good palette cleanser.",
+      "url": "https://github.com/boxwrench/Canine_Cleanup"
     },
     {
-      "id": "control-room-oddities",
-      "title": "Control Room Oddities",
-      "blurb": "Small archive of weird but memorable operator moments.",
-      "description": "A light collection of practical lessons and near-misses.",
-      "thumbnail": "assets/cards/optimized/writing_header.png",
-      "url": "#"
+      "id": "wrenchbox-music",
+      "title": "Wrenchbox — Music Maker",
+      "blurb": "Drag-and-drop sample-based music creation engine, Incredibox-style.",
+      "description": "Browser-based music layering toy with themed packs and bonus unlocks.",
+      "url": "https://boxwrench.github.io/wrenchbox/"
+    },
+    {
+      "id": "hydroflow-ca",
+      "title": "HydroFlow CA — Fluid Simulation",
+      "blurb": "High-performance grid-based fluid simulation using double-buffered cellular automata logic.",
+      "description": "Watch fluid physics emerge from simple grid rules.",
+      "url": "https://boxwrench.github.io/hydroflow-ca-/"
     }
   ],
   "_guide": "Each item should include: id, title, blurb, description, url. Thumbnail is optional."

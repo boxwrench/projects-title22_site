@@ -1,28 +1,18 @@
 {
   "items": [
     {
-      "id": "slow-sand-history",
-      "title": "Slow Sand Filtration Archive",
-      "blurb": "Historical drawings and design notes from early municipal plants.",
-      "description": "Primary-source references and old operating docs.",
-      "thumbnail": "assets/cards/optimized/overflow_header.png",
-      "url": "#"
+      "id": "cell-auto",
+      "title": "Cell-Auto — Cellular Automata",
+      "blurb": "Interactive cellular automata playground — Conway's Game of Life and variants.",
+      "description": "Visual experiment in emergent complexity from simple rules.",
+      "url": "https://boxwrench.github.io/cell-auto/"
     },
     {
-      "id": "scada-pattern-library",
-      "title": "SCADA Pattern Library",
-      "blurb": "Examples of modern alarm and trend visualization patterns.",
-      "description": "Useful UI references for operator-first screens.",
-      "thumbnail": "",
-      "url": "#"
-    },
-    {
-      "id": "valve-failure-casebook",
-      "title": "Valve Failure Casebook",
-      "blurb": "Collection of root-cause writeups for isolation and control valve failures.",
-      "description": "Maintenance and reliability learning set.",
-      "thumbnail": "assets/cards/optimized/tools_header.png",
-      "url": "#"
+      "id": "dist-esp32-cyd-tester",
+      "title": "ESP32 CYD Hardware Tester",
+      "blurb": "Diagnostic tool for testing random AliExpress ESP32 CYD boards.",
+      "description": "Handy if you're buying cheap CYD devboards and need to confirm what you actually got.",
+      "url": "https://github.com/boxwrench/DIST_ESP32-CYD-Tester"
     }
   ],
   "_guide": "Each item should include: id, title, blurb, description, url. Thumbnail is optional."

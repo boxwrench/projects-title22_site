@@ -1,40 +1,29 @@
 {
   "sectionTitle": "Tools",
   "sectionSubtitle": "Calculators, checklists, and templates.",
-  "sectionImage": "assets/cards/full/20260201_2327_Image Generation_remix_01kgekyve4edqbf2rjr12fwh77.png",
+  "sectionImage": "assets/cards/full/20260202_0858_Image Generation_remix_01kgfmj3wjfg9bqtm91tfc2pxt.png",
   "items": [
     {
-      "id": "chlorine-decay",
-      "title": "Chlorine Decay Calculator",
-      "blurb": "Estimate endpoint residual using residence time and decay constant.",
-      "description": "Quick utility for free chlorine forecasting in long detention zones.",
-      "thumbnail": "assets/cards/optimized/tools_header.png",
-      "tag": "Utility",
-      "status": "active",
-      "featured": true,
-      "url": "#"
-    },
-    {
-      "id": "ct-compliance-sheet",
-      "title": "CT Compliance Sheet",
-      "blurb": "Daily CT verification helper for disinfection reporting.",
-      "description": "Template-based workflow for SWTR reporting and shift handoff checks.",
+      "id": "centrac-b-v2",
+      "title": "Milton Roy Centrac B Troubleshooter",
+      "blurb": "Guided troubleshooting reference for the Milton Roy Centrac B chemical metering pump.",
+      "description": "Field-usable decision guide for diagnosing and resolving common Centrac B pump faults in chemical feed systems.",
       "thumbnail": "",
-      "tag": "Template",
+      "tag": "Maintenance",
       "status": "active",
       "featured": true,
-      "url": "#"
+      "url": "https://github.com/boxwrench/Centrac-B-v2"
     },
     {
-      "id": "chemical-startup-checklist",
-      "title": "Chemical Feed Startup Checklist",
-      "blurb": "Step-by-step startup and validation list for feed skids.",
-      "description": "Covers pumps, calibration, stroke checks, and residual confirmation.",
-      "thumbnail": "assets/cards/optimized/overflow_header.png",
-      "tag": "SOP",
-      "status": "build",
-      "featured": false,
-      "url": "#"
+      "id": "hvac-pro",
+      "title": "HVAC-PRO Troubleshooter",
+      "blurb": "Systematic HVAC fault diagnosis tool for building engineers and stationary operators.",
+      "description": "Step-through troubleshooting logic for common HVAC system issues, built from field experience.",
+      "thumbnail": "",
+      "tag": "Maintenance",
+      "status": "active",
+      "featured": true,
+      "url": "https://github.com/boxwrench/HVAC-PRO"
     }
   ],
   "_guide": "Each item should include: id, title, blurb, description, tag, status, featured, url. Thumbnail is optional."

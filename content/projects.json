@@ -6,35 +6,24 @@
     {
       "id": "water-treatment-sim",
       "title": "Water Treatment Plant Simulator",
-      "blurb": "Interactive operator-training simulator for conventional surface water treatment.",
-      "description": "Scenario-based simulator for coagulation, filtration, disinfection, and process upsets.",
+      "blurb": "Scenario-based operator training simulator for conventional surface water treatment.",
+      "description": "Interactive game covering coagulation, filtration, disinfection, and process upsets — built for operator decision-making practice.",
       "thumbnail": "assets/cards/optimized/projects_header.png",
       "tag": "Simulation",
       "status": "active",
       "featured": true,
-      "url": "https://github.com/boxwrench/Water-Treatment-Plant-Simulator"
+      "url": "https://boxwrench.github.io/Water-Treatment-Plant-Simulator/"
     },
     {
-      "id": "scada-alarm-normalizer",
-      "title": "SCADA Alarm Normalizer",
-      "blurb": "Standardized alarm text and priority model for faster response.",
-      "description": "Audit and cleanup workflow for high-noise alarm environments with operator-first naming conventions.",
-      "thumbnail": "",
-      "tag": "Operations",
-      "status": "build",
-      "featured": true,
-      "url": "#"
-    },
-    {
-      "id": "jar-test-tracker",
-      "title": "Jar Test Tracker",
-      "blurb": "Repeatable jar-test logging template with dose and settled turbidity trend capture.",
-      "description": "Tracks source shifts and links bench outcomes to actual dose setpoint decisions.",
-      "thumbnail": "assets/cards/optimized/tools_header.png",
-      "tag": "Lab",
+      "id": "atlas-twin-v3",
+      "title": "California Water Atlas — Digital Twin",
+      "blurb": "Interactive digital twin mapping California's water infrastructure and flow networks.",
+      "description": "Visualization project connecting source water, conveyance, treatment, and distribution across California's complex water system.",
+      "thumbnail": "assets/cards/optimized/projects_header.png",
+      "tag": "Data Viz",
       "status": "active",
-      "featured": false,
-      "url": "#"
+      "featured": true,
+      "url": "https://boxwrench.github.io/atlas-twin-v3/"
     }
   ],
   "_guide": "Each item should include: id, title, blurb, description, tag, status, featured, url. Thumbnail is optional."
