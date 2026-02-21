@@ -1,62 +1,148 @@
 {
   "profile": {
     "name": "Keith Wilkinson",
-    "title": "Water Operations Lead",
+    "title": "Senior Stationary Engineer",
     "location": "Livermore, CA",
-    "tagline": "Operations, compliance, and practical systems thinking.",
+    "tagline": "Water treatment operations, facility management, and regulatory compliance.",
     "contact": {
       "blog": "https://www.title22.org",
-      "linkedin": "",
-      "email": ""
+      "email": "westsunset@gmail.com"
     }
   },
+  "summary": "Highly experienced and certified Water Treatment Operator and Senior Stationary Engineer with over 9 years of progressive experience within the San Francisco Public Utilities Commission and a total of 14 years in facility maintenance and building engineering, including extensive hazardous waste management and regulatory compliance. Proven ability to lead teams, manage complex projects (including the Sunol Valley Water Treatment Plant ozone facility construction project), and ensure regulatory compliance including CERS, HazWaste, and fuel systems.",
   "currently": {
-    "role": "Building a practical library of tools and references for treatment operations.",
-    "focus": "Operational reliability, alarm quality, and treatment optimization workflows.",
-    "learning": "Advanced treatment strategy, automation patterns, and regulatory translation."
+    "role": "Senior Stationary Engineer at SFPUC Sunol Valley Water Treatment Plant.",
+    "focus": "Operational reliability, hazardous waste compliance, asset management, and team development.",
+    "learning": "AI applications in water operations, competency-based workforce development, and digital innovation."
   },
   "experience": [
     {
-      "role": "Lead Water Treatment Operator",
-      "org": "Municipal Surface Water Plant",
-      "period": "2018 - Present",
+      "role": "Acting Plant Chief",
+      "org": "SFPUC, Sunol Valley WTP",
+      "period": "March 2023 – March 2025",
       "highlights": [
-        "Led daily operations and process control for conventional treatment train.",
-        "Built repeatable SOP/checklist flow for shift turnovers and startup conditions.",
-        "Reduced nuisance alarms through severity and wording standardization effort."
+        "Oversaw all operations, maintenance, and regulatory compliance for the Sunol Valley Water Treatment Plant.",
+        "Managed a team of 13 operators and maintenance staff, providing leadership, training, and performance management.",
+        "Managed the plant's hazardous waste generation site ensuring compliance with CERS reporting, storage, transportation, and disposal.",
+        "Developed and revised SOPs for hazardous waste management, safety protocols, and critical plant processes.",
+        "Collaborated with County Health Departments and regulatory agencies for inspections and compliance.",
+        "Utilized Maximo for asset creation, job plan development, and maintenance planning."
       ]
     },
     {
-      "role": "Water Quality Analyst",
-      "org": "Regional Utility Lab",
-      "period": "2015 - 2018",
+      "role": "Acting Chief Construction Liaison of Operations",
+      "org": "SFPUC, Sunol",
+      "period": "January 2022 – March 2023",
       "highlights": [
-        "Managed compliance sample workflows and QA/QC review.",
-        "Supported DBP and microbial monitoring investigation and reporting.",
-        "Improved lab handoff documentation between bench and operations teams."
+        "Served as Acting Chief Construction Liaison for a major ozone facility project.",
+        "Ensured seamless integration planning for new ozone systems into existing plant operations.",
+        "Collaborated with engineers, contractors, and operations staff on project execution.",
+        "Managed project documentation and communication across all stakeholders."
       ]
+    },
+    {
+      "role": "Senior Stationary Engineer, Water Treatment",
+      "org": "SFPUC, Sunol",
+      "period": "January 2018 – Present",
+      "highlights": [
+        "Supervised Water Treatment Operators and maintenance staff overseeing all facility assets.",
+        "Developed and updated work orders in Maximo for tracking, prioritization, and completion of maintenance tasks.",
+        "Managed hazardous waste generation site with full CERS compliance.",
+        "Provided comprehensive training on hazardous waste management, safety procedures, and equipment operation.",
+        "Coordinated with County Health Departments for site inspections and compliance.",
+        "Oversaw fuel system management and regulatory compliance."
+      ]
+    },
+    {
+      "role": "Stationary Engineer, Water Treatment",
+      "org": "SFPUC, Sunol",
+      "period": "2015 – 2018",
+      "highlights": []
+    },
+    {
+      "role": "Stationary Engineer (Apprentice → Journeyman → Acting Senior)",
+      "org": "SFWAR, San Francisco",
+      "period": "2011 – 2015",
+      "highlights": []
+    },
+    {
+      "role": "Special Education Teacher",
+      "org": "SFUSD, San Francisco",
+      "period": "2007 – 2010",
+      "highlights": []
     }
   ],
   "certifications": [
-    "State Water Treatment Operator Certification",
-    "Distribution System Certification"
+    "Grade T5 Water Treatment Operator Certification (California)",
+    "HAZWOPER Technician (40-Hour) Certification",
+    "CPR/First Aid Certification",
+    "Universal CFC Certification",
+    "BACnet Certified Operator"
+  ],
+  "education": [
+    {
+      "institution": "CSUS Office of Water Programs",
+      "credential": "Water Treatment Plant Operation Specialist",
+      "year": "2017"
+    },
+    {
+      "institution": "Local 39 Training Department",
+      "credential": "Stationary Engineer Apprenticeship",
+      "year": "2010 – 2014"
+    },
+    {
+      "institution": "San Francisco State University",
+      "credential": "M.A. Education (unfinished)",
+      "year": "2009"
+    },
+    {
+      "institution": "San Francisco State University",
+      "credential": "B.S. Business Administration",
+      "year": "2005"
+    },
+    {
+      "institution": "Saint Ignatius College Preparatory",
+      "credential": "High School Diploma",
+      "year": "1998"
+    }
   ],
   "skills": {
     "operations": [
-      "Conventional surface water treatment",
-      "Coagulation and filtration tuning",
-      "Disinfection process control"
+      "Water treatment processes (coagulation, flocculation, sedimentation, filtration, disinfection, ozone)",
+      "Equipment O&M (pumps, motors, valves, chemical feed, SCADA, ozone systems)",
+      "Preventative maintenance and asset lifecycle management",
+      "Maximo CMMS"
     ],
-    "technical": [
-      "SCADA alarm strategy",
-      "Operational data analysis",
-      "Process documentation and SOP design"
+    "compliance": [
+      "Hazardous waste management (CERS reporting, storage, transport, disposal)",
+      "HAZWOPER 40-hr certified",
+      "Fuel systems compliance (AST/UST)",
+      "SOP development and regulatory documentation"
     ],
-    "other": [
-      "Cross-shift communication",
-      "Incident debrief and action tracking",
-      "Training and mentoring"
+    "leadership": [
+      "Team supervision and performance management",
+      "Training and workforce development",
+      "Project management and construction coordination",
+      "Procurement and contract administration"
+    ],
+    "emerging_tech": [
+      "AI applications in water operations",
+      "Digital innovation and workforce development (BAYWORK)",
+      "City Science Lab @ San Francisco participant",
+      "Competency-based learning and SharePoint integration"
     ]
   },
-  "_notes": "This is reference/sample content. Replace with your real resume details before publishing."
+  "communication": [
+    "Water industry blogger at www.title22.org",
+    "Panel Speaker, 2025 CFEE Water Conference",
+    "BAYWORK 2026 Water Summit planner and presenter",
+    "Presenter, IUOE 2026 Conference (upcoming)"
+  ],
+  "associations": [
+    "AWWA Nor Cal Operators Committee",
+    "AWWA National Workforce Strategies Committee",
+    "Abundance Network — working groups: Local Governance and AI x Procedural Bloat",
+    "Robot Garden Makerspace, Marshal",
+    "ACWA member"
+  ]
 }

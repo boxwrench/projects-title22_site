@@ -11,7 +11,7 @@
       "thumbnail": "assets/cards/optimized/research_header.png",
       "tag": "AI + Legal",
       "status": "active",
-      "featured": true,
+      "featured": false,
       "url": "pages/research/web/ai-legal-research-system-design.html"
     },
     {
@@ -33,7 +33,7 @@
       "thumbnail": "assets/cards/optimized/research_header.png",
       "tag": "Regulatory",
       "status": "active",
-      "featured": true,
+      "featured": false,
       "url": "pages/research/web/ai-for-regulatory-process-analysis.html"
     },
     {
@@ -129,10 +129,10 @@
       "title": "Modernizing Surface Water Treatment",
       "blurb": "Practical modernization pathways for process reliability, compliance, and performance.",
       "description": "Outlines upgrades spanning controls, process strategy, and operating discipline.",
-      "thumbnail": "",
+      "thumbnail": "assets/cards/optimized/research_header.png",
       "tag": "Treatment",
       "status": "active",
-      "featured": false,
+      "featured": true,
       "url": "pages/research/web/modernizing-surface-water-treatment.html"
     },
     {
@@ -151,10 +151,10 @@
       "title": "State PFAS Regulation vs. Federal Withdrawal",
       "blurb": "Comparative analysis of state action pathways under shifting federal posture.",
       "description": "Highlights compliance risk, enforcement variance, and planning implications.",
-      "thumbnail": "",
+      "thumbnail": "assets/cards/optimized/research_header.png",
       "tag": "PFAS",
       "status": "active",
-      "featured": false,
+      "featured": true,
       "url": "pages/research/web/state-pfas-regulation-vs-federal-withdrawal.html"
     },
     {

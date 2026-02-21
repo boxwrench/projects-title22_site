@@ -24,3 +24,6 @@ Thumbs.db
 admin.html
 admin.local.html
 admin.*.bak.html
+
+# gogcli Gmail attachment metadata (local only)
+content/keith_resume.md

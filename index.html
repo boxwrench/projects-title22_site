@@ -193,47 +193,11 @@
               </div>
             </div>
           </div>
-          <div class="resume-grid" style="margin-top: 2rem">
-            <div class="resume-main">
-              <div class="resume-block">
-                <h3 class="resume-role">Lead Water Treatment Operator</h3>
-                <p class="resume-company">
-                  City Utility District • 2018 - Present
-                </p>
-                <p class="resume-desc">
-                  Lead operator for a 40 MGD conventional surface water plant.
-                  Optimization of coagulation, filtration, and disinfection
-                  processes.
-                </p>
-              </div>
-              <div class="resume-block">
-                <h3 class="resume-role">Water Quality Analyst</h3>
-                <p class="resume-company">Regional Water Board • 2015 - 2018</p>
-                <p class="resume-desc">
-                  Regulatory compliance monitoring and reporting (TCR, DBP
-                  Rule). Laboratory QA/QC supervision.
-                </p>
-              </div>
+          <div class="resume-grid" style="margin-top: 2rem" id="home-resume-grid">
+            <div class="resume-main" id="home-resume-main">
+              <p style="color: var(--ink-lighter); font-size: 0.9rem;">Loading...</p>
             </div>
-            <div class="resume-sidebar">
-              <div class="now-block">
-                <h3 class="now-title">Now / Currently</h3>
-                <ul class="now-list">
-                  <li>Building Title 22 Tools</li>
-                  <li>Studying for T5 Certification</li>
-                  <li>Reading "Cadillac Desert"</li>
-                </ul>
-              </div>
-              <div class="skills-block">
-                <h3 class="now-title">Core Skills</h3>
-                <ul class="skills-list">
-                  <li>Process Control</li>
-                  <li>Wonderware / SCADA</li>
-                  <li>Regulatory Compliance</li>
-                  <li>Python & Data Analysis</li>
-                </ul>
-              </div>
-            </div>
+            <div class="resume-sidebar" id="home-resume-sidebar"></div>
           </div>
         </div>
       </section>
@@ -340,6 +304,52 @@
         });
         ContentLoader.loadSection("content/fun.json", "fun-list", {
           simpleList: true,
+        });
+
+        // Resume snapshot from resume.json
+        ContentLoader.load("content/resume.json").then(data => {
+          if (!data) return;
+          const esc = s => ContentLoader.escapeHTML(s);
+
+          // Top 2 roles
+          let mainHTML = '';
+          if (data.experience) {
+            data.experience.slice(0, 2).forEach(job => {
+              mainHTML += `
+                <div class="resume-block">
+                  <h3 class="resume-role">${esc(job.role)}</h3>
+                  <p class="resume-company">${esc(job.org)} &bull; ${esc(job.period)}</p>
+                  <p class="resume-desc">${esc((job.highlights && job.highlights[0]) || '')}</p>
+                </div>
+              `;
+            });
+          }
+          document.getElementById('home-resume-main').innerHTML = mainHTML;
+
+          // Sidebar: currently + top certs
+          let sideHTML = '';
+          if (data.currently) {
+            sideHTML += `
+              <div class="now-block">
+                <h3 class="now-title">Currently</h3>
+                <ul class="now-list">
+                  <li>${esc(data.currently.role)}</li>
+                  <li>${esc(data.currently.focus)}</li>
+                </ul>
+              </div>
+            `;
+          }
+          if (data.certifications) {
+            sideHTML += `
+              <div class="skills-block">
+                <h3 class="now-title">Certifications</h3>
+                <ul class="skills-list">
+                  ${data.certifications.slice(0, 3).map(c => `<li>${esc(c)}</li>`).join('')}
+                </ul>
+              </div>
+            `;
+          }
+          document.getElementById('home-resume-sidebar').innerHTML = sideHTML;
         });
       });
     </script>

@@ -4,12 +4,210 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Resume | Title 22</title>
-    <meta name="description" content="Professional experience and qualifications." />
+    <meta name="description" content="Professional experience and qualifications of Keith Wilkinson." />
     <link rel="icon" type="image/png" href="assets/brand/favicon/22favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/static.css" />
+    <style>
+      .resume-summary {
+        font-size: 1.05rem;
+        color: var(--ink-light);
+        line-height: 1.75;
+        margin-bottom: 36px;
+        border-left: 3px solid var(--accent);
+        padding-left: 16px;
+      }
+
+      .resume-section-label {
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--accent);
+        margin-bottom: 20px;
+        margin-top: 36px;
+      }
+
+      .resume-highlights {
+        list-style: none;
+        margin-top: 10px;
+      }
+
+      .resume-highlights li {
+        color: var(--ink-light);
+        font-size: 0.95rem;
+        padding: 4px 0 4px 16px;
+        position: relative;
+      }
+
+      .resume-highlights li::before {
+        content: "–";
+        position: absolute;
+        left: 0;
+        color: var(--ink-lighter);
+      }
+
+      .cert-list {
+        list-style: none;
+      }
+
+      .cert-list li {
+        font-size: 0.9rem;
+        color: var(--ink);
+        font-weight: 500;
+        padding: 6px 0;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+      }
+
+      .cert-list li:last-child {
+        border-bottom: none;
+      }
+
+      .skill-group {
+        margin-bottom: 18px;
+      }
+
+      .skill-group-label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--ink-lighter);
+        margin-bottom: 8px;
+      }
+
+      .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .skill-tag {
+        background: rgba(43, 108, 176, 0.08);
+        color: var(--accent);
+        font-size: 0.8rem;
+        font-weight: 600;
+        padding: 3px 10px;
+        border-radius: 20px;
+      }
+
+      .comm-list {
+        list-style: none;
+      }
+
+      .comm-list li {
+        font-size: 0.9rem;
+        color: var(--ink);
+        padding: 5px 0 5px 16px;
+        position: relative;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+      }
+
+      .comm-list li:last-child { border-bottom: none; }
+
+      .comm-list li::before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      /* Full resume expand */
+      .full-resume-toggle {
+        margin-top: 40px;
+        text-align: center;
+      }
+
+      .btn-expand {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--ink);
+        color: var(--white);
+        font-size: 0.9rem;
+        font-weight: 600;
+        padding: 12px 28px;
+        border-radius: var(--radius);
+        border: none;
+        cursor: pointer;
+        transition: background 0.2s ease;
+      }
+
+      .btn-expand:hover {
+        background: var(--accent);
+      }
+
+      .btn-expand .arrow {
+        transition: transform 0.3s ease;
+        display: inline-block;
+      }
+
+      .btn-expand.open .arrow {
+        transform: rotate(180deg);
+      }
+
+      .full-resume-panel {
+        display: none;
+        margin-top: 40px;
+        padding-top: 40px;
+        border-top: 2px solid rgba(0,0,0,0.08);
+      }
+
+      .full-resume-panel.open {
+        display: block;
+      }
+
+      .full-resume-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 60px;
+      }
+
+      .edu-block {
+        margin-bottom: 20px;
+      }
+
+      .edu-institution {
+        font-weight: 700;
+        font-size: 1rem;
+        color: var(--ink);
+      }
+
+      .edu-credential {
+        font-size: 0.9rem;
+        color: var(--ink-light);
+      }
+
+      .edu-year {
+        font-size: 0.8rem;
+        color: var(--ink-lighter);
+        font-weight: 600;
+        margin-top: 2px;
+      }
+
+      .assoc-list {
+        list-style: none;
+      }
+
+      .assoc-list li {
+        font-size: 0.9rem;
+        color: var(--ink);
+        padding: 6px 0;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+      }
+
+      .assoc-list li:last-child { border-bottom: none; }
+
+      @media (max-width: 700px) {
+        .full-resume-grid {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+      }
+    </style>
   </head>
   <body>
     <!-- Header -->
@@ -30,55 +228,48 @@
     </header>
 
     <main class="main-content">
-      
-      <!-- Resume Section (Full Page View) -->
+
       <section class="category-section section-resume" style="padding-top: 2rem;">
         <div class="container">
+
+          <!-- Header image -->
           <div class="category-header">
             <div class="category-image">
               <picture>
                 <source srcset="assets/cards/optimized/resume_header.webp" type="image/webp" />
-                <img src="assets/cards/optimized/resume_header.png" alt="Resume Landscape" />
+                <img src="assets/cards/optimized/resume_header.png" alt="Resume" />
               </picture>
               <div class="category-overlay">
                 <h1 class="category-title">Resume</h1>
-                <p class="category-subtitle">Professional experience and qualifications.</p>
+                <p class="category-subtitle" id="resume-tagline">Professional experience and qualifications.</p>
               </div>
             </div>
           </div>
-          <div class="resume-grid" style="margin-top: 2rem;">
-            <div class="resume-main">
-              <div class="resume-block">
-                <h3 class="resume-role">Lead Water Treatment Operator</h3>
-                <p class="resume-company">City Utility District • 2018 - Present</p>
-                <p class="resume-desc">Lead operator for a 40 MGD conventional surface water plant. Optimization of coagulation, filtration, and disinfection processes.</p>
-              </div>
-              <div class="resume-block">
-                <h3 class="resume-role">Water Quality Analyst</h3>
-                <p class="resume-company">Regional Water Board • 2015 - 2018</p>
-                <p class="resume-desc">Regulatory compliance monitoring and reporting (TCR, DBP Rule). Laboratory QA/QC supervision.</p>
-              </div>
+
+          <!-- Curated view -->
+          <div class="resume-grid" style="margin-top: 2rem;" id="resume-curated">
+            <div class="resume-main" id="resume-main">
+              <p style="color: var(--ink-lighter); font-size: 0.9rem;">Loading...</p>
             </div>
-            <div class="resume-sidebar">
-              <div class="now-block">
-                <h3 class="now-title">Now / Currently</h3>
-                <ul class="now-list">
-                  <li>Building Title 22 Tools</li>
-                  <li>Studying for T5 Certification</li>
-                  <li>Reading "Cadillac Desert"</li>
-                </ul>
-              </div>
-              <div class="skills-block">
-                <h3 class="now-title">Core Skills</h3>
-                <ul class="skills-list">
-                  <li>Process Control</li>
-                  <li>Wonderware / SCADA</li>
-                  <li>Regulatory Compliance</li>
-                  <li>Python & Data Analysis</li>
-                </ul>
-              </div>
+            <div class="resume-sidebar" id="resume-sidebar">
             </div>
           </div>
+
+          <!-- Full resume toggle -->
+          <div class="full-resume-toggle">
+            <button class="btn-expand" id="expand-btn" style="display:none;">
+              Full Resume <span class="arrow">▼</span>
+            </button>
+          </div>
+
+          <!-- Full resume panel -->
+          <div class="full-resume-panel" id="full-resume-panel">
+            <div class="full-resume-grid">
+              <div id="full-resume-left"></div>
+              <div id="full-resume-right"></div>
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -86,12 +277,11 @@
       <section class="newsletter-section">
         <div class="container newsletter-box">
           <h2 class="newsletter-title">Join the Flow</h2>
-          <p class="newsletter-desc">Weekly notes on water treatment operations, chemistry, and systems thinking.</p>
+          <p class="newsletter-desc">Notes on water treatment operations, compliance, and systems thinking.</p>
           <form class="newsletter-form" action="#" method="POST">
             <input type="email" class="newsletter-input" placeholder="Enter your email" required />
             <button type="submit" class="newsletter-btn">Subscribe</button>
           </form>
-          <p class="newsletter-note">Read by 500+ operators and engineers.</p>
         </div>
       </section>
 
@@ -108,6 +298,202 @@
         <p class="footer-copy">&copy; 2025 Title 22. Built for water treatment professionals.</p>
       </div>
     </footer>
+
     <script src="js/parallax.js"></script>
+    <script src="js/content-loader.js"></script>
+    <script>
+      function esc(str) {
+        return ContentLoader.escapeHTML(str);
+      }
+
+      function renderSkillTags(items) {
+        return items.map(s => `<span class="skill-tag">${esc(s)}</span>`).join('');
+      }
+
+      function renderExperienceBlock(job) {
+        const highlights = job.highlights && job.highlights.length
+          ? `<ul class="resume-highlights">${job.highlights.map(h => `<li>${esc(h)}</li>`).join('')}</ul>`
+          : '';
+        return `
+          <div class="resume-block">
+            <h3 class="resume-role">${esc(job.role)}</h3>
+            <p class="resume-company">${esc(job.org)} &bull; ${esc(job.period)}</p>
+            ${highlights}
+          </div>
+        `;
+      }
+
+      async function buildResume() {
+        const data = await ContentLoader.load('content/resume.json');
+        if (!data) return;
+
+        // Update tagline
+        if (data.profile && data.profile.tagline) {
+          document.getElementById('resume-tagline').textContent = data.profile.tagline;
+        }
+
+        // --- CURATED MAIN COLUMN ---
+        const mainEl = document.getElementById('resume-main');
+        let mainHTML = '';
+
+        // Summary
+        if (data.summary) {
+          mainHTML += `<p class="resume-summary">${esc(data.summary)}</p>`;
+        }
+
+        // Top 3 experience roles
+        if (data.experience && data.experience.length) {
+          mainHTML += `<p class="resume-section-label">Experience</p>`;
+          data.experience.slice(0, 3).forEach(job => {
+            mainHTML += renderExperienceBlock(job);
+          });
+        }
+
+        // Skills — operations + compliance
+        if (data.skills) {
+          mainHTML += `<p class="resume-section-label">Skills</p>`;
+          const groups = [
+            { key: 'operations', label: 'Operations' },
+            { key: 'compliance', label: 'Compliance & Safety' },
+            { key: 'leadership', label: 'Leadership' },
+          ];
+          groups.forEach(g => {
+            if (data.skills[g.key] && data.skills[g.key].length) {
+              mainHTML += `
+                <div class="skill-group">
+                  <div class="skill-group-label">${esc(g.label)}</div>
+                  <div class="skill-tags">${renderSkillTags(data.skills[g.key])}</div>
+                </div>
+              `;
+            }
+          });
+        }
+
+        mainEl.innerHTML = mainHTML;
+
+        // --- CURATED SIDEBAR ---
+        const sidebarEl = document.getElementById('resume-sidebar');
+        let sidebarHTML = '';
+
+        // Currently
+        if (data.currently) {
+          sidebarHTML += `
+            <div class="now-block">
+              <h3 class="now-title">Currently</h3>
+              <ul class="now-list">
+                <li>${esc(data.currently.role)}</li>
+                <li>${esc(data.currently.focus)}</li>
+                <li>${esc(data.currently.learning)}</li>
+              </ul>
+            </div>
+          `;
+        }
+
+        // Key certifications (top 2)
+        if (data.certifications && data.certifications.length) {
+          sidebarHTML += `
+            <div class="skills-block">
+              <h3 class="now-title">Certifications</h3>
+              <ul class="cert-list">
+                ${data.certifications.slice(0, 2).map(c => `<li>${esc(c)}</li>`).join('')}
+              </ul>
+            </div>
+          `;
+        }
+
+        // Communication
+        if (data.communication && data.communication.length) {
+          sidebarHTML += `
+            <div class="skills-block">
+              <h3 class="now-title">Speaking &amp; Writing</h3>
+              <ul class="comm-list">
+                ${data.communication.map(c => `<li>${esc(c)}</li>`).join('')}
+              </ul>
+            </div>
+          `;
+        }
+
+        sidebarEl.innerHTML = sidebarHTML;
+
+        // --- FULL RESUME PANEL ---
+        const fullLeft = document.getElementById('full-resume-left');
+        const fullRight = document.getElementById('full-resume-right');
+        let fullLeftHTML = '';
+        let fullRightHTML = '';
+
+        // Remaining experience (entries 4+)
+        if (data.experience && data.experience.length > 3) {
+          fullLeftHTML += `<p class="resume-section-label">Earlier Experience</p>`;
+          data.experience.slice(3).forEach(job => {
+            fullLeftHTML += renderExperienceBlock(job);
+          });
+        }
+
+        // Education
+        if (data.education && data.education.length) {
+          fullLeftHTML += `<p class="resume-section-label">Education</p>`;
+          data.education.forEach(e => {
+            fullLeftHTML += `
+              <div class="edu-block">
+                <div class="edu-institution">${esc(e.institution)}</div>
+                <div class="edu-credential">${esc(e.credential)}</div>
+                <div class="edu-year">${esc(e.year)}</div>
+              </div>
+            `;
+          });
+        }
+
+        // All certifications
+        if (data.certifications && data.certifications.length) {
+          fullRightHTML += `
+            <div class="skills-block">
+              <h3 class="now-title">All Certifications</h3>
+              <ul class="cert-list">
+                ${data.certifications.map(c => `<li>${esc(c)}</li>`).join('')}
+              </ul>
+            </div>
+          `;
+        }
+
+        // Emerging tech skills
+        if (data.skills && data.skills.emerging_tech) {
+          fullRightHTML += `
+            <div class="skills-block">
+              <h3 class="now-title">Emerging Technology</h3>
+              <div class="skill-tags" style="margin-bottom:0">${renderSkillTags(data.skills.emerging_tech)}</div>
+            </div>
+          `;
+        }
+
+        // Professional associations
+        if (data.associations && data.associations.length) {
+          fullRightHTML += `
+            <div class="skills-block">
+              <h3 class="now-title">Associations &amp; Volunteer</h3>
+              <ul class="assoc-list">
+                ${data.associations.map(a => `<li>${esc(a)}</li>`).join('')}
+              </ul>
+            </div>
+          `;
+        }
+
+        fullLeft.innerHTML = fullLeftHTML;
+        fullRight.innerHTML = fullRightHTML;
+
+        // Show toggle button
+        const expandBtn = document.getElementById('expand-btn');
+        expandBtn.style.display = 'inline-flex';
+
+        expandBtn.addEventListener('click', () => {
+          const panel = document.getElementById('full-resume-panel');
+          const isOpen = panel.classList.toggle('open');
+          expandBtn.classList.toggle('open', isOpen);
+          expandBtn.querySelector('.arrow').textContent = isOpen ? '▲' : '▼';
+          expandBtn.childNodes[0].textContent = isOpen ? 'Collapse ' : 'Full Resume ';
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', buildResume);
+    </script>
   </body>
 </html>
